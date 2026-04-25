@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/test_bg"
+    android:background="@drawable/main"
     android:padding="@dimen/activity_horizontal_margin"
     tools:context=".MainActivity">
 
@@ -34,6 +34,7 @@
         />
 
     <EditText
+        android:id="@+id/email_edit_text"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:autofillHints="emailAddress"
@@ -51,6 +52,7 @@
         android:drawablePadding="@dimen/drawable_padding"
         />
     <EditText
+        android:id="@+id/password_edit_text"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:textColorHint="#FFFF"
@@ -84,19 +86,19 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="20dp"/>
-<HorizontalScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:scrollbars="none"
-    android:layout_marginBottom="40dp">
+
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:paddingStart="42dp"
-        android:paddingEnd="42dp">
+        android:paddingStart="35dp"
+        android:paddingEnd="35dp">
+
         <Button
+            android:id="@+id/sign_in_button"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_top_standard"
@@ -108,9 +110,11 @@
             app:backgroundTint="@null" />
 
         <Space
-            android:layout_width="59dp"
-            android:layout_height="match_parent"/>
+            android:layout_width="45dp"
+            android:layout_height="match_parent" />
+
         <Button
+            android:id="@+id/sign_up_button"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_top_standard"
@@ -122,5 +126,4 @@
             app:backgroundTint="@null" />
 
     </LinearLayout>
-</HorizontalScrollView>
 </LinearLayout>
