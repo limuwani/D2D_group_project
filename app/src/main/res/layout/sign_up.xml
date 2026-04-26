@@ -35,6 +35,8 @@
         android:autofillHints="fullname"
         android:drawableTint="#FFFF"
         android:hint="@string/fullname"
+
+        android:textSize="12sp"
         android:inputType="textEmailAddress"
         android:background="@drawable/edittext_bg"
 
@@ -57,6 +59,7 @@
             android:inputType="textEmailAddress"
             android:background="@drawable/edittext_bg"
 
+            android:textSize="12sp"
             android:padding="@dimen/padding_standard"
             android:textColorHint="#FFFF"
 

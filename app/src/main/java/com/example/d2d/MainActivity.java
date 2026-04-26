@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showCustomerScreen() {
-        setContentView(R.layout.customer_page);
+        setContentView(R.layout.casanova_cat);
         // Add more logic here if needed (e.g. back button to login)
     }
 }
-
+
