@@ -42,4 +42,10 @@
     <string name="select_restaurant">Select restaurant</string>
     <string name="sandton_hazelwood_rd">Sandton, Hazelwood Rd</string>
     <string name="braamfontein_juta_st">Braamfontein, Juta St</string>
+    <string name="takeaway_orders">Takeaway orders</string>
+    <string name="deluxe_meat_chips_combo"><![CDATA[Deluxe Meat & Chips Combo]]></string>
+    <string name="the_mega_braai_feast">The Mega Braai Feast</string>
+    <string name="flame_grilled_beef_veggie_kebabs"><![CDATA[Flame-Grilled Beef & Veggie Kebabs]]></string>
+    <string name="cilantro_lime_prawns">Cilantro Lime Prawns</string>
+    <string name="drinks_beverages"><![CDATA[Drinks & Beverages]]></string>
 </resources>
