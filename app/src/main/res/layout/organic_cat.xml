@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     android:background="@drawable/main"
     >
     
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="-50dp"
+        android:layout_marginTop="5dp"
         >
         <ImageButton
             android:layout_width="wrap_content"
@@ -58,6 +61,7 @@
         >
         <Button
             style="?android:attr/buttonBarButtonStyle"
+            android:id="@+id/meals"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:background="@drawable/catagory_btn"
@@ -67,6 +71,7 @@
 
         <Button
             style="?android:attr/buttonBarButtonStyle"
+            android:id="@+id/drinks_bev"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:background="@drawable/catagory_btn"
@@ -75,7 +80,7 @@
             android:textSize="12sp" />
     </LinearLayout>
 
-<!--    Products-->
+<!-- Meal Products-->
     <LinearLayout
         android:id="@+id/meals_container"
         android:layout_width="match_parent"
@@ -346,6 +351,281 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-<!--End of products-->
+<!--End of Meal products-->
     </LinearLayout>
+
+<!--    Drinks & Beverages Products-->
+    <LinearLayout
+        android:id="@+id/drinks_bev"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/black_coffee"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:padding="12dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/catagories"
+            >
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/drink_1"
+                android:background="@drawable/product_bg" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="16dp"
+                android:gravity="center_vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Black Coffee"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:paddingStart="13dp"
+                    android:paddingEnd="13dp"
+                    />
+                <Space
+                    android:layout_width="8dp"
+                    android:layout_height="12dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="R59.99"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:paddingStart="13dp"
+                        android:paddingEnd="13dp" />
+                    <ImageButton
+
+                        android:id="@+id/add_to_cart_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/white_cart"
+                        android:srcCompact="@drawable/add_to_cart"
+                        android:background="@drawable/no_backround"
+                        android:scaleType="fitCenter"
+
+                        android:layout_marginLeft="150dp"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/choco_bliss"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:padding="12dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/catagories"
+            >
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/drink_2"
+                android:background="@drawable/product_bg" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="16dp"
+                android:gravity="center_vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Choco Bliss"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:paddingStart="13dp"
+                    android:paddingEnd="13dp"
+                    />
+                <Space
+                    android:layout_width="8dp"
+                    android:layout_height="12dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="R150.00"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:paddingStart="13dp"
+                        android:paddingEnd="13dp" />
+                    <ImageButton
+
+                        android:id="@+id/add_to_cart_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/white_cart"
+                        android:srcCompact="@drawable/add_to_cart"
+                        android:background="@drawable/no_backround"
+                        android:scaleType="fitCenter"
+
+                        android:layout_marginLeft="150dp"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lime_spark"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:padding="12dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/catagories"
+            >
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/drink_3"
+                android:background="@drawable/product_bg" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="16dp"
+                android:gravity="center_vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lime Spark"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:paddingStart="13dp"
+                    android:paddingEnd="13dp"
+                    />
+                <Space
+                    android:layout_width="8dp"
+                    android:layout_height="12dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="R99.99"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:paddingStart="13dp"
+                        android:paddingEnd="13dp" />
+                    <ImageButton
+
+                        android:id="@+id/add_to_cart_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/white_cart"
+                        android:srcCompact="@drawable/add_to_cart"
+                        android:background="@drawable/no_backround"
+                        android:scaleType="fitCenter"
+
+                        android:layout_marginLeft="150dp"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/berry_luxe"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:padding="12dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/catagories"
+            >
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/drink_4"
+                android:background="@drawable/product_bg" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="16dp"
+                android:gravity="center_vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Berry Luxe"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:paddingStart="13dp"
+                    android:paddingEnd="13dp"
+                    />
+                <Space
+                    android:layout_width="8dp"
+                    android:layout_height="12dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="R120.00"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:paddingStart="13dp"
+                        android:paddingEnd="13dp" />
+                    <ImageButton
+
+                        android:id="@+id/add_to_cart_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/white_cart"
+                        android:srcCompact="@drawable/add_to_cart"
+                        android:background="@drawable/no_backround"
+                        android:scaleType="fitCenter"
+
+                        android:layout_marginLeft="150dp"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+<!--    End of Drinks & Beverages Products-->
 </LinearLayout>
+</ScrollView>

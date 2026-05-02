@@ -48,4 +48,6 @@
     <string name="flame_grilled_beef_veggie_kebabs"><![CDATA[Flame-Grilled Beef & Veggie Kebabs]]></string>
     <string name="cilantro_lime_prawns">Cilantro Lime Prawns</string>
     <string name="drinks_beverages"><![CDATA[Drinks & Beverages]]></string>
+    <string name="create_account">Create Account</string>
+    <string name="drinks_milkshakes"><![CDATA[Drinks & MilkShakes]]></string>
 </resources>

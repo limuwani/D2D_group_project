@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main"
+    android:gravity="center"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingStart="-198dp"
+        android:layout_marginTop="-210dp"
+        android:layout_marginBottom="80dp"
+        >
+
+        <ImageButton
+            android:id="@+id/back_to_orderstatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_arrow_back_24"
+
+            android:layout_marginRight="20dp"
+            android:background="@drawable/no_backround"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rate Service"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="How was your experience with waiter "
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/waiter_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="#24?"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            >
+
+            <ImageView
+                android:id="@+id/thumbs_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:src="@drawable/thumbs_up"
+                android:paddingStart="90dp"
+                />
+
+            <ImageView
+                android:id="@+id/thumbs_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:src="@drawable/thumbs_down"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            android:layout_marginTop="30dp"
+            android:background="@drawable/catagories"
+            >
+            <TextView
+                android:id="@+id/comments"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+
+                android:text="Any comments?"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="40dp"
+                android:paddingStart="10dp"
+
+                />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/submit_feedback"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+
+            android:text="Submit Feedback"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_gradient_bg"
+            app:backgroundTint="@null"
+            />
+
+    </LinearLayout>
+</LinearLayout>
