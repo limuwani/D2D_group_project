@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Intent intent = new Intent(LoginActivity.this, CustomerActivity.class);
                                 intent.putExtra("user_id", user.getUser_id());
                                 startActivity(intent);
-                                //finish();
+                                finish();
                             } else if("staff".equals(user.getRole())){
                                 Intent intent = new Intent(LoginActivity.this, StaffActivity.class);
                                 intent.putExtra("user_id", user.getUser_id());
@@ -99,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             }
                         } else {
-                            Log.d("LOGIN", "Login failed");
+                            //if the status is not success  we need to clear the form  and tell the user to try agin
                         }
                     });
                 }
