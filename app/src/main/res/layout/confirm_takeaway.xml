@@ -4,6 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+<<<<<<< HEAD
+=======
+    android:gravity="center"
+>>>>>>> Anonsurf
     android:background="@drawable/main"
     >
 
@@ -13,7 +17,12 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:paddingStart="-148dp"
+<<<<<<< HEAD
         android:layout_marginTop="10dp"
+=======
+        android:layout_marginTop="-190dp"
+        android:layout_marginBottom="90dp"
+>>>>>>> Anonsurf
         >
 
         <ImageButton
@@ -33,6 +42,7 @@
             android:textStyle="bold"
             />
     </LinearLayout>
+<<<<<<< HEAD
     <Space
         android:layout_width="match_parent"
         android:layout_height="100dp"/>
@@ -42,6 +52,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="gon"
+=======
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+>>>>>>> Anonsurf
         >
         <TextView
             android:layout_width="wrap_content"
@@ -51,9 +68,14 @@
             android:textSize="16sp"
 
             android:paddingStart="27dp"
+<<<<<<< HEAD
             android:layout_marginBottom="15dp"
             />
 
+=======
+            android:layout_marginBottom="10dp"
+            />
+>>>>>>> Anonsurf
         <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="350dp"
@@ -61,19 +83,32 @@
             android:gravity="center"
 
             android:layout_marginStart="25dp"
+<<<<<<< HEAD
             android:layout_marginBottom="40dp"
             android:background="@drawable/white_border_bg"
+=======
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/catagories"
+>>>>>>> Anonsurf
             >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
+<<<<<<< HEAD
                 android:text="Incoming Order!"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="20sp"
 
                 android:layout_marginTop="30dp"
+=======
+                android:text="Total Amount Due"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+
+                android:layout_marginTop="35dp"
+>>>>>>> Anonsurf
                 android:layout_marginBottom="15dp"
                 />
 
@@ -82,6 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
+<<<<<<< HEAD
                 android:text="The restaurant to start an order for you"
                 android:textSize="15sp"
                 android:textColor="@color/white"
@@ -124,5 +160,41 @@
 
         </LinearLayout>
 
+=======
+                android:text="R234.00"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+
+                android:layout_marginBottom="35dp"
+                />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/confirm_order"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+
+            android:text="Confirm & Place Order"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="25dp"
+            android:background="@drawable/btn_gradient_bg"
+            app:backgroundTint="@null"
+            />
+        <Button
+            android:id="@+id/cancel_order"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+
+            android:text="Cancel"
+
+            android:layout_marginStart="25dp"
+            android:background="@drawable/catagories"
+            app:backgroundTint="@null"
+            />
+>>>>>>> Anonsurf
     </LinearLayout>
 </LinearLayout>

@@ -3,20 +3,33 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
+=======
+    android:gravity="center"
+>>>>>>> Anonsurf
     android:background="@drawable/main"
     >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+<<<<<<< HEAD
         android:paddingStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"
+=======
+        android:gravity="center"
+        android:paddingStart="-198dp"
+        android:layout_marginTop="-250dp"
+>>>>>>> Anonsurf
         android:layout_marginBottom="80dp"
         >
 
         <ImageButton
+<<<<<<< HEAD
             android:id="@+id/back_btn"
+=======
+>>>>>>> Anonsurf
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_arrow_back_24"
@@ -34,12 +47,16 @@
     </LinearLayout>
 
     <TextView
+<<<<<<< HEAD
         android:id="@+id/customer_id"
+=======
+>>>>>>> Anonsurf
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:text="Order ID:#D2D-998"
         android:textColor="@color/white"
+<<<<<<< HEAD
         android:layout_marginTop="25dp"
         android:layout_marginStart="10dp"
         />
@@ -50,20 +67,39 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/red_border_bg"
+=======
+        android:layout_marginStart="-110dp"
+        />
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical"
+        android:background="@drawable/catagories"
+>>>>>>> Anonsurf
         android:layout_marginTop="10dp"
         >
 
         <LinearLayout
+<<<<<<< HEAD
             android:layout_width="match_parent"
+=======
+            android:layout_width="350dp"
+>>>>>>> Anonsurf
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="20dp"
             >
             <TextView
                 android:id="@+id/status"
+<<<<<<< HEAD
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+=======
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+>>>>>>> Anonsurf
 
                 android:text="Pending"
                 android:textColor="@color/white"
@@ -80,7 +116,11 @@
                 android:textStyle="bold"
                 android:textColor="#CD1C18"
 
+<<<<<<< HEAD
                 android:layout_marginEnd="15dp"
+=======
+                android:layout_marginLeft="170dp"
+>>>>>>> Anonsurf
                 />
         </LinearLayout>
         <TextView
@@ -97,12 +137,20 @@
     </LinearLayout>
 
     <LinearLayout
+<<<<<<< HEAD
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:background="@drawable/white_border_bg"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+=======
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@drawable/catagories"
+
+>>>>>>> Anonsurf
         android:layout_marginTop="30dp"
         >
         <TextView

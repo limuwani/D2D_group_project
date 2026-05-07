@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+<<<<<<< HEAD
     xmlns:tools="http://schemas.android.com/tools"
+=======
+>>>>>>> Anonsurf
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main"
+<<<<<<< HEAD
+=======
+    android:gravity="center"
+>>>>>>> Anonsurf
     >
 
     <LinearLayout
@@ -14,9 +21,15 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:paddingStart="-198dp"
+<<<<<<< HEAD
         android:layout_marginTop="10dp"
         android:layout_marginBottom="80dp"
         tools:ignore="RtlSymmetry">
+=======
+        android:layout_marginTop="-210dp"
+        android:layout_marginBottom="80dp"
+        >
+>>>>>>> Anonsurf
 
         <ImageButton
             android:id="@+id/back_to_orderstatus"
@@ -24,12 +37,20 @@
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_arrow_back_24"
 
+<<<<<<< HEAD
             android:layout_marginEnd="20dp"
+=======
+            android:layout_marginRight="20dp"
+>>>>>>> Anonsurf
             android:background="@drawable/no_backround"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:text="@string/rate_service"
+=======
+            android:text="Rate Service"
+>>>>>>> Anonsurf
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -40,7 +61,10 @@
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+<<<<<<< HEAD
         android:layout_marginStart="25dp"
+=======
+>>>>>>> Anonsurf
         >
         <LinearLayout
             android:layout_width="350dp"
@@ -50,7 +74,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+<<<<<<< HEAD
                 android:text="@string/how_was_your_experience_with_waiter"
+=======
+                android:text="How was your experience with waiter "
+>>>>>>> Anonsurf
                 android:textColor="@color/white"/>
 
             <TextView
@@ -58,7 +86,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
+<<<<<<< HEAD
                 android:text="@string/_24"
+=======
+                android:text="#24?"
+>>>>>>> Anonsurf
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 />
@@ -78,14 +110,21 @@
 
                 android:src="@drawable/thumbs_up"
                 android:paddingStart="90dp"
+<<<<<<< HEAD
                 tools:ignore="RtlSymmetry" />
+=======
+                />
+>>>>>>> Anonsurf
 
             <ImageView
                 android:id="@+id/thumbs_down"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
+<<<<<<< HEAD
                 android:contentDescription="@string/todo"
+=======
+>>>>>>> Anonsurf
                 android:src="@drawable/thumbs_down"
                 />
         </LinearLayout>
@@ -96,6 +135,7 @@
             android:orientation="vertical"
 
             android:layout_marginTop="30dp"
+<<<<<<< HEAD
 
             >
             <TextView
@@ -119,6 +159,22 @@
                 android:layout_marginBottom="1dp"
                 android:paddingStart="10dp"
                 android:background="@drawable/catagories"
+=======
+            android:background="@drawable/catagories"
+            >
+            <TextView
+                android:id="@+id/comments"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+
+                android:text="Any comments?"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="40dp"
+                android:paddingStart="10dp"
+>>>>>>> Anonsurf
 
                 />
         </LinearLayout>

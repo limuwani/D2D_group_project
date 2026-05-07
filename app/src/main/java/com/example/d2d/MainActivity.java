@@ -1,6 +1,7 @@
 package com.example.d2d;
 
 import android.os.Bundle;
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 import android.view.View;
 import android.view.Menu;
@@ -20,6 +21,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 >>>>>>> Stashed changes
+=======
+import android.widget.Button;
+>>>>>>> Anonsurf
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,10 +31,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.d2d.databinding.ActivityMainBinding;
-
 public class MainActivity extends AppCompatActivity {
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
@@ -68,21 +71,31 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+=======
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        showLoginScreen();
+>>>>>>> Anonsurf
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+    private void showLoginScreen() {
+        setContentView(R.layout.login_page);
+
+        Button signUpBtn = findViewById(R.id.sign_up_button);
+        Button signInBtn = findViewById(R.id.sign_in_button);
+
+        signUpBtn.setOnClickListener(v -> showSignUpScreen());
+        signInBtn.setOnClickListener(v -> showCustomerScreen());
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
+    private void showSignUpScreen() {
+        setContentView(R.layout.sign_up);
+
+        Button backToLoginBtn = findViewById(R.id.back_to_login_button);
+        backToLoginBtn.setOnClickListener(v -> showLoginScreen());
     }
+<<<<<<< HEAD
 }
 =======
         setContentView(R.layout.activity_main);
@@ -231,3 +244,12 @@ public class MainActivity extends AppCompatActivity {
 }
 
 >>>>>>> Stashed changes
+=======
+
+    private void showCustomerScreen() {
+        setContentView(R.layout.casanova_cat);
+        // Add more logic here if needed (e.g. back button to login)
+    }
+}
+
+>>>>>>> Anonsurf
