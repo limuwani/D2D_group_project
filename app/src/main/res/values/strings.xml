@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 <resources>
     <string name="app_name">D2D</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -51,6 +54,7 @@
     <string name="drinks_beverages"><![CDATA[Drinks & Beverages]]></string>
     <string name="create_account">Create Account</string>
     <string name="drinks_milkshakes"><![CDATA[Drinks & MilkShakes]]></string>
+<<<<<<< HEAD
     <string name="rate_service">Rate Service</string>
     <string name="how_was_your_experience_with_waiter">How was your experience with waiter</string>
     <string name="_24">#24?</string>
@@ -60,4 +64,6 @@
     <string name="profile">Profile</string>
     <string name="confirm_place_order"><![CDATA[Confirm & Place Order]]></string>
     <string name="no_ratings_yet">No ratings yet</string>
+=======
+>>>>>>> origin/main
 </resources>

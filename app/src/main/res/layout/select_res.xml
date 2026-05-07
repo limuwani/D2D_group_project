@@ -13,8 +13,8 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="40dp"
         >
+
         <ImageButton
-            android:id="@+id/back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/baseline_arrow_back_24"
@@ -46,4 +46,102 @@
         android:clipToPadding="false"
         android:paddingBottom="80dp" />
 
+
+    <LinearLayout
+        android:id="@+id/the_organic_res"
+        android:layout_width="380dp"
+        android:layout_height="120dp"
+        android:padding="12dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:background="@drawable/catagories"
+        >
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/organic"
+            android:background="@drawable/product_bg" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp"
+            android:gravity="center_vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="The Organic Restuarant"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:paddingStart="13dp"
+                android:paddingEnd="13dp"
+                />
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="12dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sandton_hazelwood_rd"
+                android:textColor="@color/white"
+                android:textStyle="normal"
+                android:paddingStart="13dp"
+                android:paddingEnd="13dp"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/casanova"
+        android:layout_width="380dp"
+        android:layout_height="120dp"
+        android:padding="12dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:background="@drawable/catagories"
+        >
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/casanova"
+            android:background="@drawable/product_bg" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp"
+            android:gravity="center_vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Casa Nova Restaurant"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:paddingStart="13dp"
+                android:paddingEnd="13dp"
+                />
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="12dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/braamfontein_juta_st"
+                android:textColor="@color/white"
+                android:textStyle="normal"
+                android:paddingStart="13dp"
+                android:paddingEnd="13dp"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

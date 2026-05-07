@@ -2,10 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main"
+
     >
 
     <LinearLayout
@@ -18,6 +20,7 @@
         android:layout_marginBottom="80dp"
         tools:ignore="RtlSymmetry">
 
+
         <ImageButton
             android:id="@+id/back_to_orderstatus"
             android:layout_width="wrap_content"
@@ -25,11 +28,12 @@
             android:src="@drawable/baseline_arrow_back_24"
 
             android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
             android:background="@drawable/no_backround"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/rate_service"
+            android:text="Rate Service"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -50,7 +54,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/how_was_your_experience_with_waiter"
+                android:text="How was your experience with waiter "
                 android:textColor="@color/white"/>
 
             <TextView
@@ -58,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="@string/_24"
+                android:text="#24?"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 />
@@ -79,6 +83,7 @@
                 android:src="@drawable/thumbs_up"
                 android:paddingStart="90dp"
                 tools:ignore="RtlSymmetry" />
+                />
 
             <ImageView
                 android:id="@+id/thumbs_down"
@@ -119,8 +124,8 @@
                 android:layout_marginBottom="1dp"
                 android:paddingStart="10dp"
                 android:background="@drawable/catagories"
+            />
 
-                />
         </LinearLayout>
 
         <Button

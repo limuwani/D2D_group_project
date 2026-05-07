@@ -5,6 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main"
+<<<<<<< HEAD
+=======
+    android:gravity="center"
+>>>>>>> Anonsurf
     >
 
 
@@ -12,6 +16,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+<<<<<<< HEAD
     android:gravity="center_vertical"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="40dp"
@@ -23,6 +28,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/baseline_arrow_back_24"
+=======
+    android:gravity="center"
+    android:paddingStart="-148dp"
+    android:layout_marginTop="-170dp"
+    android:layout_marginBottom="90dp"
+    >
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_arrow_back_24"
+
+        android:layout_marginRight="20dp"
+>>>>>>> Anonsurf
         android:background="@drawable/no_backround"/>
     <TextView
         android:layout_width="wrap_content"
@@ -31,7 +50,10 @@
         android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold"
+<<<<<<< HEAD
         android:layout_marginStart="16dp"
+=======
+>>>>>>> Anonsurf
         />
 </LinearLayout>
 
@@ -52,6 +74,7 @@
         android:paddingStart="25dp"
         />
         <LinearLayout
+<<<<<<< HEAD
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -71,6 +94,25 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+=======
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="25dp"
+            android:background="@drawable/catagories">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10sp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+>>>>>>> Anonsurf
                     android:text="#D2D-992-Thabiseng"
 
                     android:textColor="@color/white"
@@ -79,12 +121,21 @@
                     android:paddingStart="10dp"
                     />
                 <TextView
+<<<<<<< HEAD
                     android:id="@+id/status_change_1"
+=======
+                    android:id="@+id/status_change"
+>>>>>>> Anonsurf
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="IN PREP"
                     android:textColor="#CD1C18"
                     android:textStyle="bold"
+<<<<<<< HEAD
+=======
+
+                    android:layout_marginLeft="125dp"
+>>>>>>> Anonsurf
                     />
 
             </LinearLayout>
@@ -98,6 +149,7 @@
                 android:gravity="center"
                 >
                 <Button
+<<<<<<< HEAD
                     android:id="@+id/mark_ready_1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -118,6 +170,24 @@
                     android:layout_weight="1"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="10dp"
+=======
+                    android:id="@+id/mark_ready"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Mark Ready"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+
+                    android:layout_marginStart="0dp"
+                    android:background="@drawable/catagories"
+                    app:backgroundTint="@null"
+                    />
+                <Button
+                    android:id="@+id/mark_collected"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+>>>>>>> Anonsurf
 
                     android:text="Mark Collected"
                     android:textSize="11sp"
@@ -131,6 +201,7 @@
         </LinearLayout>
 
     <LinearLayout
+<<<<<<< HEAD
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -150,6 +221,25 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+=======
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="25dp"
+        android:background="@drawable/catagories">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10sp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+>>>>>>> Anonsurf
                 android:text="#D2D-101-Frozen"
 
                 android:textColor="@color/white"
@@ -158,12 +248,21 @@
                 android:paddingStart="10dp"
                 />
             <TextView
+<<<<<<< HEAD
                 android:id="@+id/status_change_2"
+=======
+                android:id="@+id/status_change"
+>>>>>>> Anonsurf
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="COLLECTED"
                 android:textColor="#0BDA51"
                 android:textStyle="bold"
+<<<<<<< HEAD
+=======
+
+                android:layout_marginLeft="125dp"
+>>>>>>> Anonsurf
                 />
 
         </LinearLayout>
@@ -177,6 +276,7 @@
             android:gravity="center"
             >
             <Button
+<<<<<<< HEAD
                 android:id="@+id/mark_ready_2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -197,6 +297,24 @@
                 android:layout_weight="1"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
+=======
+                android:id="@+id/mark_ready"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Mark Ready"
+                android:textSize="11sp"
+                android:textStyle="bold"
+
+                android:layout_marginStart="0dp"
+                android:background="@drawable/catagories"
+                app:backgroundTint="@null"
+                />
+            <Button
+                android:id="@+id/mark_collected"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+>>>>>>> Anonsurf
 
                 android:text="Mark Collected"
                 android:textSize="11sp"
@@ -209,6 +327,7 @@
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
+<<<<<<< HEAD
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -228,6 +347,25 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+=======
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="25dp"
+        android:background="@drawable/catagories">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10sp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+>>>>>>> Anonsurf
                 android:text="#D2D-192-Batman"
 
                 android:textColor="@color/white"
@@ -236,12 +374,21 @@
                 android:paddingStart="10dp"
                 />
             <TextView
+<<<<<<< HEAD
                 android:id="@+id/status_change_3"
+=======
+                android:id="@+id/status_change"
+>>>>>>> Anonsurf
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="READY"
                 android:textColor="#FFA500"
                 android:textStyle="bold"
+<<<<<<< HEAD
+=======
+
+                android:layout_marginLeft="138dp"
+>>>>>>> Anonsurf
                 />
 
         </LinearLayout>
@@ -255,6 +402,7 @@
             android:gravity="center"
             >
             <Button
+<<<<<<< HEAD
                 android:id="@+id/mark_ready_3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -275,6 +423,24 @@
                 android:layout_weight="1"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
+=======
+                android:id="@+id/mark_ready"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Mark Ready"
+                android:textSize="11sp"
+                android:textStyle="bold"
+
+                android:layout_marginStart="0dp"
+                android:background="@drawable/catagories"
+                app:backgroundTint="@null"
+                />
+            <Button
+                android:id="@+id/mark_collected"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+>>>>>>> Anonsurf
 
                 android:text="Mark Collected"
                 android:textSize="11sp"

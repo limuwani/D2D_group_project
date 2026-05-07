@@ -6,6 +6,7 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
+<<<<<<< HEAD
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
@@ -13,4 +14,6 @@
       </ProjectState>
     </option>
   </component>
+=======
+>>>>>>> Anonsurf
 </project>
