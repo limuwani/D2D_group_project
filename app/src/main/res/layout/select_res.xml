@@ -4,28 +4,17 @@
     android:layout_height="match_parent"
     android:background="@drawable/main"
     android:orientation="vertical"
-<<<<<<< HEAD
-=======
-    android:gravity="center"
->>>>>>> Anonsurf
     >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-<<<<<<< HEAD
         android:layout_marginTop="32dp"
         android:layout_marginBottom="40dp"
         >
+
         <ImageButton
-            android:id="@+id/back_btn"
-=======
-        android:layout_marginTop="-210dp"
-        android:layout_marginBottom="100dp"
-        >
-        <ImageButton
->>>>>>> Anonsurf
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/baseline_arrow_back_24"
@@ -33,11 +22,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
-            android:text="Select restaurant"
-=======
             android:text="@string/select_restaurant"
->>>>>>> Anonsurf
             android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="@color/white"
@@ -48,7 +33,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
         android:text="Choose your favorite restaurant"
         android:textColor="@color/white"
         android:textSize="15sp"
@@ -62,13 +46,7 @@
         android:clipToPadding="false"
         android:paddingBottom="80dp" />
 
-=======
-        android:text="Choose your favourite sport"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        android:layout_marginStart="-90dp"
-        android:layout_marginBottom="15dp"
-        />
+
     <LinearLayout
         android:id="@+id/the_organic_res"
         android:layout_width="380dp"
@@ -166,5 +144,4 @@
 
         </LinearLayout>
     </LinearLayout>
->>>>>>> Anonsurf
 </LinearLayout>

@@ -11,11 +11,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/create_a_new_accout"
-        android:textColor="@color/white"
+        android:text="Create a new account"
+        android:textColor="#FFFF"
         android:textStyle="bold"
-        android:textSize="29sp"
-        android:paddingStart="75dp"
+        android:textSize="27sp"
+        android:paddingStart="60dp"
         android:paddingEnd="60dp"
         android:layout_marginTop="-0dp"
         android:layout_marginBottom="20dp"
@@ -24,8 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:text="@string/please_fill_in_the_form_to_continue"
-        android:textColor="@color/white"
+        android:text="Please fill in the form to continue"
+        android:textColor="#FFFF"
         />
 
 
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="First Name"
-            android:textColor="@color/white"
+            android:textColor="#FFFF"
             android:textStyle="bold"
             android:textSize="15sp"
             />
@@ -62,7 +62,7 @@
             android:background="@drawable/edittext_bg"
 
             android:padding="@dimen/padding_standard"
-            android:textColor="@color/white"
+            android:textColor="#FFFF"
             android:textColorHint="#FFFF"
 
             android:layout_marginTop="5dp"

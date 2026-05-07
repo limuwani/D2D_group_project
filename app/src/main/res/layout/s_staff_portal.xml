@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
     android:background="@drawable/main">
 
@@ -11,8 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-<<<<<<< HEAD
-        android:gravity="center_vertical"
         >
 
         <ImageButton
@@ -22,22 +19,11 @@
             android:background="@drawable/baseline_arrow_back_24"
             android:layout_marginTop="32dp"
             android:layout_marginStart="16dp"
-=======
 
         android:gravity="center"
-        android:layout_marginTop="-250dp"
-        >
+        />
 
-        <ImageButton
-            android:id="@+id/back_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_arrow_back_24"
 
-            android:background="@drawable/no_backround"
-            android:scaleType="fitCenter"
->>>>>>> Anonsurf
-            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,10 +31,7 @@
             android:textColor="@color/white"
 
             android:layout_marginLeft="15dp"
-<<<<<<< HEAD
             android:layout_marginTop="32dp"
-=======
->>>>>>> Anonsurf
 
             android:textStyle="bold"
             android:textSize="25sp"
@@ -68,36 +51,12 @@
         android:layout_marginTop="30dp"
         />
     <LinearLayout
-<<<<<<< HEAD
-        android:layout_width="match_parent"
-=======
         android:layout_width="350dp"
->>>>>>> Anonsurf
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/catagories"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
-<<<<<<< HEAD
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         >
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_action_name"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="20dp"
-            />
-        <Button
-            android:id="@+id/start_order"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-=======
-        >
+
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -111,7 +70,6 @@
             android:id="@+id/start_order"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
->>>>>>> Anonsurf
 
             android:text="+ Start New Order"
             android:textColor="@color/black"
@@ -123,7 +81,6 @@
     </LinearLayout>
 
     <LinearLayout
-<<<<<<< HEAD
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -135,10 +92,7 @@
         android:background="@drawable/catagories"
         >
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-=======
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -146,20 +100,15 @@
         android:paddingStart="15dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/catagories"
-        >
+        />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
->>>>>>> Anonsurf
             android:text="Active Status"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="15sp"
-<<<<<<< HEAD
             android:layout_marginTop="15dp"
-=======
-            android:layout_marginTop="10dp"
->>>>>>> Anonsurf
             android:layout_marginBottom="30dp"
             />
 
@@ -174,17 +123,11 @@
             android:textStyle="bold"
 
             android:layout_marginTop="10dp"
-<<<<<<< HEAD
-            android:background="@drawable/btn_gradient_bg"
-            app:backgroundTint="@null"
-            />
-=======
-            android:layout_marginLeft="150dp"
             android:background="@drawable/btn_gradient_bg"
             app:backgroundTint="@null"
             />
 
 
->>>>>>> Anonsurf
+
     </LinearLayout>
 </LinearLayout>
