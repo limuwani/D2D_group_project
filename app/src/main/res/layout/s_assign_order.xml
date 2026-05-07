@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="32dp"
+        android:paddingStart="16dp"
+        >
+
+        <ImageButton
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_arrow_back_24"
+
+            android:background="@drawable/no_backround"
+            android:scaleType="fitCenter"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Order"
+            android:textColor="@color/white"
+
+            android:layout_marginStart="15dp"
+
+            android:textStyle="bold"
+            android:textSize="25sp"
+            />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter the customer's email to link order"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:paddingStart="30dp"
+        />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Customer Email"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:paddingStart="30dp"
+
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="5sp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        >
+
+        <EditText
+            android:id="@+id/fullname_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="eg.guest@gmail.com"
+
+            android:autofillHints="fullname"
+            android:drawableTint="#FFFF"
+            android:hint="@string/fullname"
+
+            android:textSize="15sp"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/edittext_bg"
+
+            android:padding="@dimen/padding_standard"
+            android:textColor="@color/white"
+            android:textColorHint="#FFFF"
+
+            android:layout_marginTop="5dp"
+            android:drawablePadding="@dimen/drawable_padding"
+            />
+    </LinearLayout>
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selected Restaurant"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:paddingStart="30dp"
+
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="5sp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        >
+
+        <EditText
+            android:id="@+id/selected_restaurant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="The Organic Restaurant"
+            android:textStyle="bold"
+
+            android:autofillHints="fullname"
+            android:drawableTint="#FFFF"
+            android:hint="@string/fullname"
+
+            android:textSize="15sp"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/edittext_bg"
+
+            android:padding="@dimen/padding_standard"
+            android:textColor="@color/white"
+            android:textColorHint="#FFFF"
+
+            android:layout_marginTop="5dp"
+            android:drawablePadding="@dimen/drawable_padding"
+            />
+    </LinearLayout>
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="35dp"/>
+    <Button
+        android:id="@+id/send_to_customer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+
+        android:text="Send to Customer"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/btn_gradient_bg"
+        app:backgroundTint="@null"
+        />
+    <Button
+        android:id="@+id/staff_cancel_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+
+        android:text="Cancel"
+
+        android:background="@drawable/catagories"
+        app:backgroundTint="@null"
+        />
+</LinearLayout>

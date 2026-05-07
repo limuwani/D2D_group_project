@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <resources>
     <string name="app_name">D2D</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -10,4 +11,67 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+=======
+<resources>
+    <string name="app_name">D2D</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="forgot_password"><u>Forgot Password?</u></string>
+    <string name="welcome_back">WELCOME BACK!</string>
+    <string name="sign_into_your_account">Sign into your account</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="pizza">Pizza</string>
+    <string name="burgers">Burgers</string>
+    <string name="drinks">Drinks</string>
+    <string name="dessert">Dessert</string>
+    <string name="frequent_order">Frequent order</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="todo">TODO</string>
+    <string name="spicy_beef">Spicy Beef</string>
+    <string name="spicy_beef_burger">Spicy Beef Burger</string>
+    <string name="r14_99">R14.99</string>
+    <string name="juicy_chicken_burger">Juicy Chicken Burger</string>
+    <string name="r24_99">R24.99</string>
+    <string name="r39_99">R39.99</string>
+    <string name="_2_double_beef_burger">2 Double Beef Burger</string>
+    <string name="black_spicy_burger">Black Spicy Burger</string>
+    <string name="r17_99">R17.99</string>
+    <string name="create_a_new_accout">Create a new accout</string>
+    <string name="please_fill_in_the_form_to_continue">Please fill in the form to continue</string>
+    <string name="fullname">Fullname</string>
+    <string name="full_name">Full Name</string>
+    <string name="login">Login</string>
+    <string name="have_an_account">Have an account?</string>
+    <string name="search">Search</string>
+    <string name="select_restaurant">Select restaurant</string>
+    <string name="sandton_hazelwood_rd">Sandton, Hazelwood Rd</string>
+    <string name="braamfontein_juta_st">Braamfontein, Juta St</string>
+    <string name="takeaway_orders">Takeaway orders</string>
+    <string name="deluxe_meat_chips_combo"><![CDATA[Deluxe Meat & Chips Combo]]></string>
+    <string name="the_mega_braai_feast">The Mega Braai Feast</string>
+    <string name="flame_grilled_beef_veggie_kebabs"><![CDATA[Flame-Grilled Beef & Veggie Kebabs]]></string>
+    <string name="cilantro_lime_prawns">Cilantro Lime Prawns</string>
+    <string name="drinks_beverages"><![CDATA[Drinks & Beverages]]></string>
+    <string name="create_account">Create Account</string>
+    <string name="drinks_milkshakes"><![CDATA[Drinks & MilkShakes]]></string>
+    <string name="rate_service">Rate Service</string>
+    <string name="how_was_your_experience_with_waiter">How was your experience with waiter</string>
+    <string name="_24">#24?</string>
+    <string name="any_comments">Any comments?</string>
+    <string name="home">Home</string>
+    <string name="orders">Orders</string>
+    <string name="profile">Profile</string>
+    <string name="confirm_place_order"><![CDATA[Confirm & Place Order]]></string>
+    <string name="no_ratings_yet">No ratings yet</string>
+>>>>>>> Stashed changes
 </resources>

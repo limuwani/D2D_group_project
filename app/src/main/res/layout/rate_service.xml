@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingStart="-198dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="80dp"
+        tools:ignore="RtlSymmetry">
+
+        <ImageButton
+            android:id="@+id/back_to_orderstatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_arrow_back_24"
+
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/no_backround"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rate_service"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="25dp"
+        >
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/how_was_your_experience_with_waiter"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/waiter_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="@string/_24"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            >
+
+            <ImageView
+                android:id="@+id/thumbs_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:src="@drawable/thumbs_up"
+                android:paddingStart="90dp"
+                tools:ignore="RtlSymmetry" />
+
+            <ImageView
+                android:id="@+id/thumbs_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:contentDescription="@string/todo"
+                android:src="@drawable/thumbs_down"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            android:layout_marginTop="30dp"
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="COMMENTS"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:paddingStart="5dp"
+                />
+            <EditText
+                android:id="@+id/comments"
+                android:layout_width="350dp"
+                android:layout_height="80dp"
+
+                android:text="Share your thoughts..."
+                android:textColor="@color/white"
+                android:textSize="15sp"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="1dp"
+                android:paddingStart="10dp"
+                android:background="@drawable/catagories"
+
+                />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/submit_feedback"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+
+            android:text="Submit Feedback"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_gradient_bg"
+            app:backgroundTint="@null"
+            />
+
+    </LinearLayout>
+</LinearLayout>
