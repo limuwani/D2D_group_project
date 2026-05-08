@@ -50,6 +50,7 @@
     <string name="drinks_beverages"><![CDATA[Drinks & Beverages]]></string>
     <string name="create_account">Create Account</string>
     <string name="drinks_milkshakes"><![CDATA[Drinks & MilkShakes]]></string>
+<<<<<<< HEAD
     <string name="rate_service">Rate Service</string>
     <string name="how_was_your_experience_with_waiter">How was your experience with waiter</string>
     <string name="_24">#24?</string>
@@ -60,4 +61,8 @@
     <string name="confirm_place_order"><![CDATA[Confirm & Place Order]]></string>
     <string name="no_ratings_yet">No ratings yet</string>
 
+=======
+    <string name="order_status">Order Status</string>
+    <string name="the_kitchen_has_recieved_your_takeaway_order">The kitchen has recieved your takeaway order.</string>
+>>>>>>> ed4fc1248cdbedb6c4e83c81f2b7103d5fb3ce09
 </resources>
