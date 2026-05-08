@@ -46,10 +46,10 @@
             />
 
         <EditText
-            android:id="@+id/fullname_edit_text"
+            android:id="@+id/name_edit_text"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Tahbiseng"
+            android:text="First Name"
 
             android:drawableStart="@drawable/outline_account_circle_24"
             android:textStyle="bold"
@@ -87,10 +87,10 @@
             />
 
         <EditText
-            android:id="@+id/fullname_edit_text"
+            android:id="@+id/Surname_edit_text"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Frozen"
+            android:text="Last Name"
 
             android:drawableStart="@drawable/outline_account_circle_24"
             android:textStyle="bold"
