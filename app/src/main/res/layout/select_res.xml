@@ -39,12 +39,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginBottom="15dp"
         />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/restaurant_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingBottom="80dp" />
+
 
 
     <LinearLayout
@@ -52,6 +47,8 @@
         android:layout_width="380dp"
         android:layout_height="120dp"
         android:padding="12dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         android:visibility="visible"
@@ -101,6 +98,8 @@
         android:layout_width="380dp"
         android:layout_height="120dp"
         android:padding="12dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         android:visibility="visible"
