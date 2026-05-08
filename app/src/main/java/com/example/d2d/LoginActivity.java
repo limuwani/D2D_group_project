@@ -30,16 +30,28 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
     @SuppressLint("UseCompatTextViewDrawableApis")
-    public void onLoginClick(View v){
-        String Email = email.getText().toString();
-        String Pass = password.getText().toString().trim();
+    public boolean validate(boolean isValid, String Email, String Pass){
         if(Email.isEmpty()){
+            isValid=true;
             email.setCompoundDrawableTintList(ColorStateList.valueOf(Color.RED));
         }
         if(Pass.isEmpty()){
+            isValid = true;
             password.setCompoundDrawableTintList(ColorStateList.valueOf(Color.RED));
         }
+        return isValid;
     }
-
-
+    @SuppressLint("UseCompatTextViewDrawableApis")
+    public void onClickListener(){
+        loginBtn.setOnClickListener(v->{
+            String Email = email.getText().toString().trim();
+            String Pass = password.getText().toString().trim();
+            boolean isValid = true;
+            isValid = validate(isValid,Email,Pass);
+            if(isValid){
+                Intent intent = new Intent(LoginActivity.this,SignUp.class);
+                startActivity(intent);
+            }
+        });
+    }
 }
