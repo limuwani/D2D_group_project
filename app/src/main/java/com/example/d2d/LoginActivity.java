@@ -23,12 +23,10 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.sign_in_button);
         password = findViewById(R.id.password_edit_text);
         signup = findViewById(R.id.sign_up_button);
-
         signup.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, SignUp.class);
             startActivity(intent);
         });
-
         onClickListener();
     }
 
@@ -36,12 +34,14 @@ public class LoginActivity extends AppCompatActivity {
     public boolean validate(String Email, String Pass) {
         boolean isValid = true;
         if (Email.isEmpty()) {
+            email.setBackgroundResource(R.drawable.edittext_error_style);
+            email.setError("Email is required");
             isValid = false;
-            email.setCompoundDrawableTintList(ColorStateList.valueOf(Color.RED));
         }
         if (Pass.isEmpty()) {
+            password.setBackgroundResource(R.drawable.edittext_error_style);
+            password.setError("Password is required");
             isValid = false;
-            password.setCompoundDrawableTintList(ColorStateList.valueOf(Color.RED));
         }
         return isValid;
     }
@@ -51,8 +51,9 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(v -> {
             String Email = email.getText().toString().trim();
             String Pass = password.getText().toString().trim();
-            
-            if (validate(Email, Pass)) {
+            boolean isValid = true;
+            isValid = validate(Email, Pass);
+            if (isValid) {
                 // If login is valid, go to the restaurant selection screen
                 Intent intent = new Intent(LoginActivity.this, select_res.class);
                 startActivity(intent);

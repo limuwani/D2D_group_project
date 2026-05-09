@@ -17,8 +17,4 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
     </group>
-<<<<<<< HEAD
 </menu>
-=======
-</menu>
->>>>>>> c78d7c53cdbd2599b5ea7f1891a1471147d8542e

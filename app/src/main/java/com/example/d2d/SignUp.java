@@ -14,11 +14,16 @@ import android.content.Intent;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textfield.TextInputEditText;
+
+
 public class SignUp extends AppCompatActivity {
     EditText name,surname,email,password,confirmed_pass;
     Button btnSignUp;
     CheckBox termsCheckBox;
-    @SuppressLint("CutPasteId")
+    @SuppressLint({"CutPasteId", "WrongViewCast"})
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up);
@@ -29,6 +34,7 @@ public class SignUp extends AppCompatActivity {
         confirmed_pass = findViewById(R.id.confirm_password_edit_text);
         btnSignUp = findViewById(R.id.signup_submit_button);
         termsCheckBox = findViewById(R.id.terms_condions_checkbox);
+
         Button backToLogin = findViewById(R.id.back_to_login_button);
         backToLogin.setOnClickListener(v -> {
             Intent intent = new Intent(SignUp.this, LoginActivity.class);
@@ -39,27 +45,41 @@ public class SignUp extends AppCompatActivity {
     }
 
     @SuppressLint("UseCompatTextViewDrawableApis")
-    public boolean validate(boolean valide,String Email, String Name, String Surname, String pass, String confirmed_password, CheckBox termCon){
+    public boolean validate(boolean valide,String Email, String Name, String Surname, String pass, String confirmed_password, CheckBox termCon) {
 
-        if(Email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(Email).matches()){
-            email.setCompoundDrawableTintList(ColorStateList.valueOf(Color.RED));
+        if (Email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
+            email.setBackgroundResource(R.drawable.edittext_error_style);
+            email.setError("Email is required");
             valide = false;
         }
-        if(Name.isEmpty()){
-            name.setCompoundDrawableTintList(ColorStateList.valueOf(Color.RED));
+        else{
+            email.setBackgroundResource(R.drawable.edittext_bg);
+            email.setError(null);
+        }
+        if (Name.isEmpty()) {
+            name.setBackgroundResource(R.drawable.edittext_error_style);
+            name.setError("Your name is required");
+            valide = false;
+        }
+        if (Surname.isEmpty()) {
+            surname.setBackgroundResource(R.drawable.edittext_error_style);
+            surname.setError("Last name is required");
             valide = false;
         }
         if(pass.isEmpty()){
-            password.setCompoundDrawableTintList(ColorStateList.valueOf(Color.RED));
+            password.setBackgroundResource(R.drawable.edittext_error_style);
+            password.setError("Password is required");
             valide = false;
         }
-        if(!confirmed_password.equals(pass) || confirmed_password.isEmpty()) {
-            confirmed_pass.setCompoundDrawableTintList(ColorStateList.valueOf(Color.RED));
+        if (!confirmed_password.equals(pass) || confirmed_password.isEmpty()) {
+            confirmed_pass.setBackgroundResource(R.drawable.edittext_error_style);
+            confirmed_pass.setError("Confirm email");
             valide = false;
         }
-
         return valide;
     }
+
+
     public void OnClickButtonListener(){
         btnSignUp.setOnClickListener(v->{
             String Fname = name.getText().toString().trim();
@@ -71,7 +91,6 @@ public class SignUp extends AppCompatActivity {
             isValid = validate(isValid,Email,Fname,Lname,pass,conPass,termsCheckBox);
             if(!termsCheckBox.isChecked()){
                 Toast.makeText(this,"You must accept the terms and conditions",Toast.LENGTH_SHORT).show();
-                isValid = false;
             }
             if(isValid){
                 Intent intent = new Intent(SignUp.this,select_res.class);
