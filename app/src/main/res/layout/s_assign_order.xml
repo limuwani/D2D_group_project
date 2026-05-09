@@ -75,11 +75,9 @@
             android:id="@+id/fullname_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="eg.guest@gmail.com"
 
-            android:autofillHints="fullname"
             android:drawableTint="#FFFF"
-            android:hint="@string/fullname"
+            android:hint="@string/eg_guest_gmail_com"
 
             android:textSize="15sp"
             android:inputType="textEmailAddress"
@@ -122,15 +120,13 @@
             android:id="@+id/selected_restaurant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="The Organic Restaurant"
             android:textStyle="bold"
 
-            android:autofillHints="fullname"
             android:drawableTint="#FFFF"
-            android:hint="@string/fullname"
+            android:hint="@string/eg_the_organic_restaurant"
 
             android:textSize="15sp"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:background="@drawable/edittext_bg"
 
             android:padding="@dimen/padding_standard"

@@ -92,11 +92,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="#D2D-992-Thabiseng"
+                    android:text="Casa Nova"
 
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:textSize="15sp"
+                    android:textSize="20sp"
                     android:paddingStart="10dp"
                     />
                 <TextView
@@ -108,8 +108,19 @@
                     android:textStyle="bold"
                     />
 
-            </LinearLayout>
 
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ORDER #101 - john@D2D.com"
+                android:textColor="@color/white"
+                android:layout_marginStart="10dp"
+                />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

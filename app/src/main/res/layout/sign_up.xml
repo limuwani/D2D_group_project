@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create a new account"
+        android:text="@string/create_a_new_account"
         android:textColor="#FFFF"
         android:textStyle="bold"
         android:textSize="27sp"
@@ -40,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="First Name"
+
             android:textColor="#FFFF"
             android:textStyle="bold"
             android:textSize="15sp"
@@ -49,21 +50,19 @@
             android:id="@+id/name_edit_text"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="First Name"
 
             android:drawableStart="@drawable/outline_account_circle_24"
             android:textStyle="bold"
-            android:autofillHints="First Name"
             android:drawableTint="#FFFF"
-            android:hint="@string/fullname"
+            android:hint="John"
 
             android:textSize="12sp"
-            android:inputType="textEmailAddress"
+            android:inputType="textPersonName"
             android:background="@drawable/edittext_bg"
 
             android:padding="@dimen/padding_standard"
-            android:textColor="#FFFF"
-            android:textColorHint="#FFFF"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
 
             android:layout_marginTop="5dp"
             android:drawablePadding="@dimen/drawable_padding"
@@ -80,7 +79,7 @@
             <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Last Name"
+            android:text="@string/last__name"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="15sp"
@@ -90,16 +89,14 @@
             android:id="@+id/Surname_edit_text"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Last Name"
 
             android:drawableStart="@drawable/outline_account_circle_24"
             android:textStyle="bold"
-            android:autofillHints="Last Name"
             android:drawableTint="#FFFF"
-            android:hint="@string/fullname"
+            android:hint="Doe"
 
             android:textSize="12sp"
-            android:inputType="textEmailAddress"
+            android:inputType="textPersonName"
             android:background="@drawable/edittext_bg"
 
             android:padding="@dimen/padding_standard"
@@ -129,12 +126,11 @@
             android:id="@+id/signup_email_edit_text"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="your.name@gmail.com"
             android:textColor="@color/white"
 
             android:drawableStart="@drawable/baseline_email_24"
             android:drawableTint="#FFFF"
-            android:hint="@string/email"
+            android:hint="your.name@gmail.com"
 
             android:textStyle="bold"
             android:inputType="textEmailAddress"
@@ -167,7 +163,6 @@
         android:id="@+id/signup_password_edit_text"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Create a strong password"
 
         android:drawableEnd="@drawable/icons_eye"
         android:textSize="12sp"
@@ -175,7 +170,8 @@
         android:drawableTint="#FFFF"
 
         android:textStyle="bold"
-        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:hint="@string/create_a_strong_password"
         android:background="@drawable/edittext_bg"
 
         android:padding="@dimen/padding_standard"
@@ -205,16 +201,16 @@
             android:id="@+id/confirm_password_edit_text"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Confirm your password"
 
             android:textSize="12sp"
             android:textColor="@color/white"
             android:drawableTint="#FFFF"
 
             android:textStyle="bold"
-            android:hint="@string/password"
+            android:hint="@string/confirm_your_password"
             android:background="@drawable/edittext_bg"
 
+            android:inputType="textPassword"
             android:padding="@dimen/padding_standard"
             android:textColorHint="#FFFF"
             android:drawableStart="@drawable/baseline_lock_24"
@@ -225,43 +221,46 @@
             />
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        >
-        <CheckBox
-            android:id="@+id/terms_condions_checkbox"
-            android:layout_width="wrap_content"
+
+
+        <LinearLayout
+            android:layout_width="310dp"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
+            <CheckBox
+                android:id="@+id/terms_condions_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="I agree to the "
-            android:textColor="@color/white"/>
-        <Button
-            android:id="@+id/terms_conditions"
-            style="?android:attr/buttonBarButtonStyle"
-
-            android:layout_marginLeft="-7dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Terms and Conditions"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-
-            android:textSize="12sp"
-            />
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I agree to the "
+                android:textColor="@color/white"/>
 
 
-    </LinearLayout>
+                <Button
+                    android:id="@+id/terms_conditions"
+                    style="?android:attr/buttonBarButtonStyle"
+
+                    android:layout_marginLeft="-7dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Terms and Conditions"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+
+                    android:textSize="12sp"
+                    />
+
+        </LinearLayout>
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="40dp"/>
+        android:layout_height="30dp"/>
     <Button
         android:id="@+id/signup_submit_button"
         android:layout_width="250dp"
