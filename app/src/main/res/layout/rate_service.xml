@@ -83,7 +83,6 @@
                 android:src="@drawable/thumbs_up"
                 android:paddingStart="90dp"
                 tools:ignore="RtlSymmetry" />
-                />
 
             <ImageView
                 android:id="@+id/thumbs_down"
@@ -116,10 +115,12 @@
                 android:layout_width="350dp"
                 android:layout_height="80dp"
 
-                android:text="Share your thoughts..."
+                android:hint="Share your thoughts..."
+                android:textColorHint="@color/white"
                 android:textColor="@color/white"
                 android:textSize="15sp"
 
+                android:inputType="text"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="1dp"
                 android:paddingStart="10dp"

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Button
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/catagories"
+            android:layout_marginStart="25dp"
+            android:paddingStart="15dp"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="1.Servive Description"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15sp"
+                    android:text="The D2D Ordering System is a specialized interface designed for tracking order status and providing service feedback. This platform does not facilitate direct order placement by customers"
+                    android:textColor="@color/white"
+
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp"
+                    />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
