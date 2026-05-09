@@ -25,12 +25,16 @@ public class SignUp extends AppCompatActivity {
         name = findViewById(R.id.name_edit_text);
         surname = findViewById(R.id.Surname_edit_text);
         email = findViewById(R.id.signup_email_edit_text);
-        password = findViewById(R.id.signup_email_edit_text);
+        password = findViewById(R.id.signup_password_edit_text);
         confirmed_pass = findViewById(R.id.confirm_password_edit_text);
         btnSignUp = findViewById(R.id.signup_submit_button);
         termsCheckBox = findViewById(R.id.terms_condions_checkbox);
-        boolean valide = true;
-
+        Button backToLogin = findViewById(R.id.back_to_login_button);
+        backToLogin.setOnClickListener(v -> {
+            Intent intent = new Intent(SignUp.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        });
         OnClickButtonListener();
     }
 
@@ -67,6 +71,7 @@ public class SignUp extends AppCompatActivity {
             isValid = validate(isValid,Email,Fname,Lname,pass,conPass,termsCheckBox);
             if(!termsCheckBox.isChecked()){
                 Toast.makeText(this,"You must accept the terms and conditions",Toast.LENGTH_SHORT).show();
+                isValid = false;
             }
             if(isValid){
                 Intent intent = new Intent(SignUp.this,select_res.class);
