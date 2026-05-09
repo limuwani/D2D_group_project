@@ -53,9 +53,7 @@ public class SignUp extends AppCompatActivity {
             confirmed_pass.setCompoundDrawableTintList(ColorStateList.valueOf(Color.RED));
             valide = false;
         }
-        if(!termCon.isChecked()){
 
-        }
         return valide;
     }
     public void OnClickButtonListener(){
