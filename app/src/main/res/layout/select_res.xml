@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main"
@@ -10,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="40dp"
         >
 
@@ -22,8 +23,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/select_restaurant"
-            android:textSize="25sp"
+            android:text="Discover"
+            android:fontFamily="@font/archivoblack"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:textColor="@color/white"
             android:paddingLeft="10dp"
@@ -33,7 +35,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose your favorite restaurant"
+        android:text="Hand-picked premium selections"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:layout_marginStart="25dp"
@@ -42,56 +44,89 @@
 
 
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/the_organic_res"
-        android:layout_width="380dp"
-        android:layout_height="120dp"
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
         android:padding="12dp"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
         android:visibility="visible"
         android:background="@drawable/catagories"
         >
         <ImageView
-            android:layout_width="100dp"
+            android:id="@+id/res_image"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/organic"
             android:background="@drawable/product_bg" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/bottom_dim_gradient"/>
+
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:orientation="vertical"
-            android:layout_marginStart="16dp"
-            android:gravity="center_vertical"
+            android:padding="16dp"
             >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="The Organic Restuarant"
+                android:text="Organic Resto"
                 android:textColor="@color/white"
+                android:textSize="30sp"
                 android:textStyle="bold"
-                android:paddingStart="13dp"
-                android:paddingEnd="13dp"
-                />
+                android:fontFamily="@font/lobster"/>
             <Space
-                android:layout_width="8dp"
-                android:layout_height="12dp" />
-            <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/sandton_hazelwood_rd"
-                android:textColor="@color/white"
-                android:textStyle="normal"
-                android:paddingStart="13dp"
-                android:paddingEnd="13dp"
-                />
+                android:orientation="horizontal">
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="100dp"
+                    android:layout_height="32dp"
+                    android:text="@string/open_now"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:textColor="@color/green"
+                    android:background="@drawable/green_border_bg"
+                    app:backgroundTint="@null"
+                    />
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/res_image_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sandton-Healthy"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+                <Space
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/rating_organic_resto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No Ratings"
+                    android:textColor="@color/orange"
+
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
-    </LinearLayout>
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/casanova"

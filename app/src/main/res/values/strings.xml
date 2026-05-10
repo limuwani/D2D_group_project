@@ -70,4 +70,6 @@
     <string name="last__name">Last Name</string>
     <string name="eg_guest_gmail_com">eg.guest@gmail.com</string>
     <string name="eg_the_organic_restaurant">eg.The Organic Restaurant...</string>
+    <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="open_now">OPEN NOW</string>
 </resources>

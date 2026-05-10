@@ -14,10 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:paddingStart="-198dp"
+        android:paddingStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="40dp"
         tools:ignore="RtlSymmetry">
 
 
@@ -34,11 +33,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rate Service"
+            android:fontFamily="@font/archivoblack"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold"
             />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/restaurant_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Casa Nova"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:fontFamily="@font/lobster"
+        android:paddingStart="25dp"
+        />
 
     <LinearLayout
         android:layout_width="350dp"
@@ -75,23 +86,61 @@
             android:layout_marginTop="30dp"
             >
 
-            <ImageView
-                android:id="@+id/thumbs_up"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="20dp"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/catagories"
+                >
+                <ImageView
+                    android:id="@+id/thumbs_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
-                android:src="@drawable/thumbs_up"
-                android:paddingStart="90dp"
-                tools:ignore="RtlSymmetry" />
-
-            <ImageView
-                android:id="@+id/thumbs_down"
-                android:layout_width="wrap_content"
+                    android:src="@drawable/thumbs_up"
+                    tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EXCEPTIONAL"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/archivoblack"/>
+            </LinearLayout>
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/catagories"
+                >
+                <ImageView
+                    android:id="@+id/thumbs_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
-                android:contentDescription="@string/todo"
-                android:src="@drawable/thumbs_down"
-                />
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/thumbs_down"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SUPBAR"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/archivoblack"
+                    android:layout_marginBottom="20dp"
+                    />
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout

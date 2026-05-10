@@ -28,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Takeaway Queue"
+        android:fontFamily="@font/archivoblack"
         android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -47,23 +48,49 @@
         android:paddingStart="25dp"
         />
     <LinearLayout
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:visibility="visible"
+        android:orientation="vertical"
         android:gravity="center"
         >
 
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/empty_queue"
+            />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="NO TAKEAWAYS YET"
+            android:text="All caught up!"
+            android:fontFamily="@font/archivoblack"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="25dp"
-
             />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="The fulfillment queue is currently clear. No active orders requires attention."
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            />
+
     </LinearLayout>
 
 <LinearLayout
@@ -130,22 +157,46 @@
                 android:gravity="center"
                 >
 
-                <Button
-                    android:id="@+id/mark_collected_1"
-                    android:layout_width="320dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="10dp"
+                    android:orientation="horizontal"
 
-                    android:text="NEXT STATUS"
-                    android:textSize="11sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
+                    >
+                    <Button
+                        android:id="@+id/mark_collected_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="10dp"
 
-                    android:background="@drawable/btn_gradient_bg"
-                    app:backgroundTint="@null"
-                    />
+                        android:text="SET READY"
+                        android:textSize="11sp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
 
+                        android:background="@drawable/white_border_bg"
+                        app:backgroundTint="@null"
+                        />
+
+                    <Button
+                        android:id="@+id/mark_collected_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="10dp"
+
+                        android:text="COLLECTED"
+                        android:textSize="11sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+
+                        android:background="@drawable/btn_gradient_bg"
+                        app:backgroundTint="@null"
+                        />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
@@ -277,7 +328,19 @@
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
-
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    <Button
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:text="+ ADD NEW ORDER"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:background="@drawable/btn_gradient_bg"
+        app:backgroundTint="@null"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"/>
 
 
 </LinearLayout>

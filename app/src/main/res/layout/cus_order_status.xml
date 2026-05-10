@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,9 +28,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/order_status"
+            android:text="Active Orders"
             android:textColor="@color/white"
             android:textSize="25sp"
+            android:fontFamily="@font/archivoblack"
             android:textStyle="bold"
             />
     </LinearLayout>
@@ -39,12 +41,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="18dp"
-        android:visibility="gone"
+        android:visibility="visible"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hello 🖐️"
+            android:fontFamily="@font/archivoblack"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -68,13 +71,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:textSize="35sp"
+            android:textSize="25sp"
+            android:fontFamily="@font/archivoblack"
             android:layout_marginTop="8dp"
             android:paddingStart="55dp"
             android:paddingEnd="55dp"
-            android:text="No orders yet"
+            android:text="Your tray is empty"
             android:textStyle="bold"/>
-
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="There are no live orders to track right now. Start a new experience from the explore page."
+                android:textColor="@color/white"
+                android:paddingStart="30dp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="45dp"/>
+        <Button
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:text="BROWSE RESTAURANTS"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginStart="40dp"
+            android:background="@drawable/btn_gradient_bg"
+            app:backgroundTint="@null"/>
 
     </LinearLayout>
     
