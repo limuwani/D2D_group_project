@@ -89,6 +89,7 @@
                     android:layout_marginTop="30dp">
 
                     <LinearLayout
+                        android:id="@+id/thumbs_up_layout"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -119,6 +120,7 @@
                         android:layout_height="wrap_content" />
 
                     <LinearLayout
+                        android:id="@+id/thumbs_down_layout"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

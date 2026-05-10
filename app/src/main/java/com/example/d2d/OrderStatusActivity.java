@@ -20,7 +20,12 @@ public class OrderStatusActivity extends AppCompatActivity {
 
         // For testing purposes, let's make the order card visible and clickable
         android.view.View orderCard = findViewById(R.id.active_order_card);
+        android.view.View emptyState = findViewById(R.id.empty_state_layout);
+
+        // If we have an order, hide empty state and show card
+        emptyState.setVisibility(android.view.View.GONE);
         orderCard.setVisibility(android.view.View.VISIBLE);
+
         orderCard.setOnClickListener(v -> {
             android.content.Intent intent = new android.content.Intent(OrderStatusActivity.this, RateServiceActivity.class);
             startActivity(intent);

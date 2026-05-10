@@ -21,6 +21,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import android.graphics.Color;
+import android.widget.Button;
+
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder> {
 
     private List<Restaurant> restaurantList;
@@ -53,15 +56,33 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
         // Dynamic Average Rating
         holder.resRating.setText(String.format("Avg: %.1f", restaurant.getAverageRating()));
+
+        // Dynamic Open/Closed Status
+        if (restaurant.isOpen()) {
+            holder.resStatusBtn.setText("OPEN NOW");
+            holder.resStatusBtn.setTextColor(Color.GREEN);
+            holder.resStatusBtn.setBackgroundResource(R.drawable.green_border_bg);
+            holder.resImage.setAlpha(1.0f); // Full brightness
+        } else {
+            holder.resStatusBtn.setText("CLOSED");
+            holder.resStatusBtn.setTextColor(Color.RED);
+            holder.resStatusBtn.setBackgroundResource(R.drawable.red_border_bg);
+            holder.resImage.setAlpha(0.5f); // Dimmed
+        }
         
         // Load image from URL
         loadImage(restaurant.getImageUrl(), holder.resImage);
 
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(activity, ConfirmTakeawayActivity.class);
-            intent.putExtra("restaurant_id", restaurant.getId());
-            intent.putExtra("restaurant_name", restaurant.getName());
-            activity.startActivity(intent);
+            if (restaurant.isOpen()) {
+                Intent intent = new Intent(activity, ConfirmTakeawayActivity.class);
+                intent.putExtra("restaurant_id", restaurant.getId());
+                intent.putExtra("restaurant_name", restaurant.getName());
+                activity.startActivity(intent);
+            } else {
+                // Optional: Show a message that the restaurant is closed
+                android.widget.Toast.makeText(activity, restaurant.getName() + " is currently closed.", android.widget.Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -96,6 +117,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         TextView resName;
         TextView resLocation;
         TextView resRating;
+        Button resStatusBtn;
 
         public RestaurantViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -103,6 +125,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             resName = itemView.findViewById(R.id.res_name_item);
             resLocation = itemView.findViewById(R.id.res_location_item);
             resRating = itemView.findViewById(R.id.res_rating_item);
+            resStatusBtn = itemView.findViewById(R.id.res_status_btn);
         }
     }
 }

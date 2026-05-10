@@ -90,14 +90,22 @@ public class LoginActivity extends AppCompatActivity {
 
         // Hardcoded Bypass for Testing
         if ("naledi@D2D.com".equalsIgnoreCase(username) && "naledi123".equals(password)) {
+            getSharedPreferences("D2D_PREFS", MODE_PRIVATE).edit()
+                .putString("user_id", "501")
+                .putString("user_role", "customer").apply();
+                
             Intent intent = new Intent(LoginActivity.this, SecureAccountActivity.class);
-            intent.putExtra("user_id", "hardcoded_customer");
+            intent.putExtra("user_id", "501");
             startActivity(intent);
             finish();
             return;
         } else if ("zandile_waiter@D2d.com".equalsIgnoreCase(username) && "zandile123".equals(password)) {
+            getSharedPreferences("D2D_PREFS", MODE_PRIVATE).edit()
+                .putString("user_id", "201")
+                .putString("user_role", "staff").apply();
+
             Intent intent = new Intent(LoginActivity.this, StaffActivity.class);
-            intent.putExtra("user_id", "hardcoded_staff");
+            intent.putExtra("user_id", "201");
             startActivity(intent);
             finish();
             return;
@@ -122,6 +130,15 @@ public class LoginActivity extends AppCompatActivity {
 
                     Gson gson = new Gson();
                     LoginResponse user = gson.fromJson(jsonData, LoginResponse.class);
+
+                    if (user != null && "success".equals(user.getStatus())) {
+                        // SAVE USER IDENTITY TO VAULT (SharedPreferences)
+                        android.content.SharedPreferences pref = getSharedPreferences("D2D_PREFS", MODE_PRIVATE);
+                        pref.edit()
+                            .putString("user_id", user.getUser_id())
+                            .putString("user_role", user.getRole())
+                            .apply();
+                    }
 
                     runOnUiThread(() -> {
                         if (user != null && "success".equals(user.getStatus())) {

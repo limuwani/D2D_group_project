@@ -12,10 +12,20 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public class SignUp extends AppCompatActivity {
     EditText name, surname, email, password, confirmed_pass;
     Button btnSignUp;
     CheckBox termsCheckBox;
+    private final OkHttpClient client = new OkHttpClient();
 
     @SuppressLint({"CutPasteId", "WrongViewCast"})
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,10 +118,42 @@ public class SignUp extends AppCompatActivity {
             }
 
             if (isValid) {
-                // After signup, proceed to secure account setup
-                Intent intent = new Intent(SignUp.this, SecureAccountActivity.class);
-                startActivity(intent);
-                finish();
+                registerUser(Fname, Lname, Email, pass);
+            }
+        });
+    }
+
+    private void registerUser(String fname, String lname, String emailAddr, String pass) {
+        String url = "https://wmc.ms.wits.ac.za/students/sgroup2676/d2dGroupProject/oderTrackingApp/users/register.php";
+
+        RequestBody body = new FormBody.Builder()
+                .add("first_name", fname)
+                .add("last_name", lname)
+                .add("email", emailAddr)
+                .add("password", pass)
+                .add("role", "customer")
+                .build();
+
+        Request request = new Request.Builder().url(url).post(body).build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                runOnUiThread(() -> Toast.makeText(SignUp.this, "Network error", Toast.LENGTH_SHORT).show());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    runOnUiThread(() -> {
+                        Toast.makeText(SignUp.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(SignUp.this, SecureAccountActivity.class);
+                        startActivity(intent);
+                        finish();
+                    });
+                } else {
+                    runOnUiThread(() -> Toast.makeText(SignUp.this, "Registration failed. Try again.", Toast.LENGTH_SHORT).show());
+                }
             }
         });
     }

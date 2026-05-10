@@ -102,4 +102,6 @@
     <string name="_1_service_description">1. Service Description</string>
     <string name="last_updated_april_29_2026">Last updated: April 29, 2026</string>
     <string name="initialize_order">Initialize Order</string>
+    <string name="your_order_is_ready_to_be_placed">Your order is ready to be placed.</string>
+    <string name="browse_restaurants">BROWSE RESTAURANTS</string>
 </resources>

@@ -46,6 +46,7 @@
 
             <!-- Empty State -->
             <LinearLayout
+                android:id="@+id/empty_state_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"

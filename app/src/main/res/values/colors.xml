@@ -15,6 +15,7 @@
 
     <color name="yellow">#FFC300</color>
     <color name="green">#0BDA51</color>
+    <color name="green_dark">#1B5E20</color>
     <color name="gradient_end">#FFFFFFFF</color>
 
     <!-- Red Palette -->

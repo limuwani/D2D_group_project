@@ -66,12 +66,16 @@ public class select_res extends AppCompatActivity {
                             restaurantList.clear();
                             for (int i = 0; i < array.length(); i++) {
                                 JSONObject resObj = array.getJSONObject(i);
+                                // Check if status is 1 (open) or 0 (closed)
+                                int statusInt = resObj.optInt("is_open", 1); 
+                                
                                 restaurantList.add(new Restaurant(
                                         resObj.getInt("restaurant_id"),
                                         resObj.getString("name"),
                                         resObj.getString("image_url"),
                                         resObj.optString("address", "Location TBD"),
-                                        resObj.optDouble("average_rating", 0.0)
+                                        resObj.optDouble("average_rating", 0.0),
+                                        statusInt == 1
                                 ));
                             }
 
