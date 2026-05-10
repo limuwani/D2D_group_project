@@ -93,7 +93,7 @@
                 />
 
             <EditText
-                android:id="@+id/Surname_edit_text"
+                android:id="@+id/secret_answer_edit_text"
                 android:layout_width="310dp"
                 android:layout_height="wrap_content"
 
