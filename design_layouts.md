@@ -3,7 +3,8 @@
 > **Project**: D2D Group Project  
 > **Package**: `com.example.d2d`  
 > **Document Version**: 1.1  
-> **Last Updated**: May 10, 2026 (Refined Recovery & Staff flows)
+> **Last Updated**: May 10, 2026 (Refined Recovery & Staff flows)  
+> **Live Mockup**: [d2ddesignmock.netlify.app](https://d2ddesignmock.netlify.app)
 
 ---
 
@@ -36,7 +37,7 @@ The application consists of **16 XML layout files** organized across three funct
 
 ```mermaid
 graph TD
-    subgraph AUTH["🔐 Authentication Flow"]
+    subgraph AUTH["[Auth] Authentication Flow"]
         A["login_page.xml<br/><b>Sign In</b>"]
         B["sign_up.xml<br/><b>Create Account</b>"]
         C["terms.xml<br/><b>Terms & Conditions</b>"]
@@ -46,18 +47,18 @@ graph TD
         D3["new_password.xml<br/><b>New Password</b>"]
     end
 
-    subgraph CORE["⚙️ Core Shell"]
+    subgraph CORE["[Core] Core Shell"]
         E["activity_main.xml<br/><b>Main Shell</b><br/>(FrameLayout + BottomNav)"]
     end
 
-    subgraph CUSTOMER["👤 Customer Flow"]
+    subgraph CUSTOMER["[User] Customer Flow"]
         F["select_res.xml<br/><b>Discover Restaurants</b>"]
         G["confirm_takeaway.xml<br/><b>Confirm Takeaway</b>"]
         H["cus_order_status.xml<br/><b>Active Orders</b>"]
         I["rate_service.xml<br/><b>Rate Service</b>"]
     end
 
-    subgraph STAFF["🧑‍🍳 Staff Flow"]
+    subgraph STAFF["[Staff] Staff Flow"]
         L["s_active_queue.xml<br/><b>Takeaway Queue</b>"]
         K["s_assign_order.xml<br/><b>New Order</b>"]
         M["s_view_feedback.xml<br/><b>Staff Profile</b>"]
@@ -100,11 +101,11 @@ graph TD
     M -- "BACK TO QUEUE btn" --> L
 
     %% Back Arrows
-    G -- "⬅ Back" --> F
-    H -- "⬅ Back" --> F
-    I -- "⬅ Back" --> H
-    K -- "⬅ Back" --> L
-    L -- "⬅ Back" --> F
+    G -- "[Back]" --> F
+    H -- "[Back]" --> F
+    I -- "[Back]" --> H
+    K -- "[Back]" --> L
+    L -- "[Back]" --> F
 
     %% Styling
     style AUTH fill:#1a1a2e,stroke:#e94560,stroke-width:2px,color:#fff
@@ -120,10 +121,10 @@ graph TD
 ```mermaid
 graph LR
     subgraph ENTRY["App Launch"]
-        START(("🚀 App Start"))
+        START(("START"))
     end
 
-    subgraph AUTH_GATE["Authentication Gate"]
+    subgraph AUTH_GATE["Auth Gate"]
         LOGIN["LoginActivity.java<br/>login_page.xml"]
         SIGNUP["SignUp.java<br/>sign_up.xml"]
     end
@@ -133,15 +134,15 @@ graph LR
     end
 
     subgraph CUST_ZONE["Customer Zone<br/>BottomNav: bottom_nav_bar.xml"]
-        C1["🏠 Home<br/>select_res.xml"]
-        C2["📦 Orders<br/>cus_order_status.xml"]
-        C3["👤 Profile"]
+        C1["[Home] Home<br/>select_res.xml"]
+        C2["[Order] Orders<br/>cus_order_status.xml"]
+        C3["[Profile] Profile"]
     end
 
     subgraph STAFF_ZONE["Staff Zone<br/>BottomNav: staff_nav_bar.xml"]
-        S1["📋 Queue<br/>s_active_queue.xml"]
-        S2["📋 Manage<br/>s_assign_order.xml"]
-        S3["👤 Profile<br/>s_view_feedback.xml"]
+        S1["[Queue] Queue<br/>s_active_queue.xml"]
+        S2["[Manage] Manage<br/>s_assign_order.xml"]
+        S3["[Profile] Profile<br/>s_view_feedback.xml"]
     end
 
     START --> LOGIN
