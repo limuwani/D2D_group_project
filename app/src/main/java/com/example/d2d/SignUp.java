@@ -1,32 +1,27 @@
+// Modified by Anon - Responsive UI & Flow
 package com.example.d2d;
-import android.os.Bundle;
+
 import android.annotation.SuppressLint;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Patterns;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Button;
-import android.view.View;
-import android.widget.EditText;
-import android.graphics.Color;
-import android.content.Intent;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.textfield.TextInputLayout;
-import com.google.android.material.textfield.TextInputEditText;
-
-
 public class SignUp extends AppCompatActivity {
-    EditText name,surname,email,password,confirmed_pass;
+    EditText name, surname, email, password, confirmed_pass;
     Button btnSignUp;
     CheckBox termsCheckBox;
+
     @SuppressLint({"CutPasteId", "WrongViewCast"})
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up);
+
         name = findViewById(R.id.name_edit_text);
         surname = findViewById(R.id.Surname_edit_text);
         email = findViewById(R.id.signup_email_edit_text);
@@ -41,60 +36,82 @@ public class SignUp extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+
+        Button termsBtn = findViewById(R.id.terms_conditions);
+        termsBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(SignUp.this, TermsActivity.class);
+            startActivity(intent);
+        });
+
         OnClickButtonListener();
     }
 
-    @SuppressLint("UseCompatTextViewDrawableApis")
-    public boolean validate(boolean valide,String Email, String Name, String Surname, String pass, String confirmed_password, CheckBox termCon) {
+    public boolean validate(String Email, String Name, String Surname, String pass, String confirmed_password) {
+        boolean isValid = true;
 
         if (Email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
             email.setBackgroundResource(R.drawable.edittext_error_style);
-            email.setError("Email is required");
-            valide = false;
-        }
-        else{
+            email.setError("Valid email is required");
+            isValid = false;
+        } else {
             email.setBackgroundResource(R.drawable.edittext_bg);
-            email.setError(null);
         }
+
         if (Name.isEmpty()) {
             name.setBackgroundResource(R.drawable.edittext_error_style);
-            name.setError("Your name is required");
-            valide = false;
+            name.setError("First name is required");
+            isValid = false;
+        } else {
+            name.setBackgroundResource(R.drawable.edittext_bg);
         }
+
         if (Surname.isEmpty()) {
             surname.setBackgroundResource(R.drawable.edittext_error_style);
             surname.setError("Last name is required");
-            valide = false;
+            isValid = false;
+        } else {
+            surname.setBackgroundResource(R.drawable.edittext_bg);
         }
-        if(pass.isEmpty()){
+
+        if (pass.isEmpty()) {
             password.setBackgroundResource(R.drawable.edittext_error_style);
             password.setError("Password is required");
-            valide = false;
+            isValid = false;
+        } else {
+            password.setBackgroundResource(R.drawable.edittext_bg);
         }
+
         if (!confirmed_password.equals(pass) || confirmed_password.isEmpty()) {
             confirmed_pass.setBackgroundResource(R.drawable.edittext_error_style);
-            confirmed_pass.setError("Confirm email");
-            valide = false;
+            confirmed_pass.setError("Passwords do not match");
+            isValid = false;
+        } else {
+            confirmed_pass.setBackgroundResource(R.drawable.edittext_bg);
         }
-        return valide;
+
+        return isValid;
     }
 
-
-    public void OnClickButtonListener(){
-        btnSignUp.setOnClickListener(v->{
+    public void OnClickButtonListener() {
+        btnSignUp.setOnClickListener(v -> {
             String Fname = name.getText().toString().trim();
             String Lname = surname.getText().toString().trim();
             String Email = email.getText().toString().trim();
             String pass = password.getText().toString().trim();
             String conPass = confirmed_pass.getText().toString().trim();
-            boolean isValid = true;
-            isValid = validate(isValid,Email,Fname,Lname,pass,conPass,termsCheckBox);
-            if(!termsCheckBox.isChecked()){
-                Toast.makeText(this,"You must accept the terms and conditions",Toast.LENGTH_SHORT).show();
+
+            boolean isValid = validate(Email, Fname, Lname, pass, conPass);
+
+            if (!termsCheckBox.isChecked()) {
+                Toast.makeText(this, "You must accept the terms and conditions", Toast.LENGTH_SHORT).show();
+                isValid = false;
             }
-            if(isValid){
-                Intent intent = new Intent(SignUp.this,select_res.class);
+
+            if (isValid) {
+                // After signup, proceed to secure account setup
+                Intent intent = new Intent(SignUp.this, SecureAccountActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

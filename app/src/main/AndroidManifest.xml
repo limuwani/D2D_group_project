@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,8 +17,7 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.D2D.NoActionBar">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,6 +25,19 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"/>
+        <activity android:name=".SignUp"/>
+        <activity android:name=".CustomerActivity"/>
+        <activity android:name=".StaffActivity"/>
+        <activity android:name=".ConfirmTakeawayActivity"/>
+        <activity android:name=".OrderStatusActivity"/>
+        <activity android:name=".RateServiceActivity"/>
+        <activity android:name=".AssignOrderActivity"/>
+        <activity android:name=".StaffFeedbackActivity"/>
+        <activity android:name=".SecureAccountActivity"/>
+        <activity android:name=".TermsActivity"/>
+        <activity android:name=".RecoveryStep1Activity"/>
+        <activity android:name=".RecoveryStep2Activity"/>
+        <activity android:name=".NewPasswordActivity"/>
         <activity android:name=".select_res"/>
     </application>
 

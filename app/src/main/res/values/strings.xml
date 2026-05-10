@@ -1,4 +1,12 @@
 <resources>
+    <string-array name="security_questions">
+        <item>Select a security question...</item>
+        <item>What was the name of your first pet?</item>
+        <item>What is your mother\'s maiden name?</item>
+        <item>What was the name of your primary school?</item>
+        <item>In what city were you born?</item>
+        <item>What is your favorite book?</item>
+    </string-array>
     <string name="app_name">D2D</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -80,4 +88,18 @@
     <string name="new_password">NEW PASSWORD</string>
     <string name="new__password">New Password</string>
     <string name="secure_your_account_with_a_new_passkey">Secure your account with a new passkey.</string>
+    <string name="back_to_login">BACK TO LOGIN</string>
+    <string name="i_read_the_terms_and_conditions">I read the terms and conditions</string>
+    <string name="we_process_minimal_user_data_primarily_email_identifiers_solely_for_the_purpose_of_matching_users_with_their_active_fulfillment_requests">We process minimal user data (primarily email identifiers) solely for the purpose of matching users with their active fulfillment requests.</string>
+    <string name="_5_data_privacy">5. Data Privacy</string>
+    <string name="users_are_encouraged_to_share_their_service_experience_through_the_feedback_module_this_data_is_used_to_optimize_fulfillment_intelligence_and_service_quality">Users are encouraged to share their service experience through the feedback module. This data is used to optimize fulfillment intelligence and service quality.</string>
+    <string name="_4_feedback_submission">4. Feedback Submission</string>
+    <string name="all_orders_are_initialized_by_authorized_fulfillment_center_staff_the_system_provides_real_time_updates_as_the_order_transitions_from_pending_to_ready_and_collected_d2d_is_a_monitoring_tool_and_is_not_responsible_for_the_contents_or_timing_of_the_orders">All orders are initialized by authorized fulfillment center staff. The system provides real-time updates as the order transitions from PENDING to READY and COLLECTED. D2D is a monitoring tool and is not responsible for the contents or timing of the orders.</string>
+    <string name="_3_order_tracking">3. Order Tracking</string>
+    <string name="users_may_access_the_system_to_monitor_active_fulfillment_requests_unauthorized_attempts_to_access_administrative_functions_or_the_staff_portal_are_strictly_prohibited">Users may access the system to monitor active fulfillment requests. Unauthorized attempts to access administrative functions or the Staff Portal are strictly prohibited.</string>
+    <string name="_2_user_conduct">2. User Conduct</string>
+    <string name="the_d2d_ordering_system_is_a_specialized_interface_designed_for_tracking_order_status_and_providing_service_feedback_this_platform_does_not_facilitate_direct_order_placement_by_customers">The D2D Ordering System is a specialized interface designed for tracking order status and providing service feedback. This platform does not facilitate direct order placement by customers.</string>
+    <string name="_1_service_description">1. Service Description</string>
+    <string name="last_updated_april_29_2026">Last updated: April 29, 2026</string>
+    <string name="initialize_order">Initialize Order</string>
 </resources>

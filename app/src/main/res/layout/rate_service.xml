@@ -2,195 +2,184 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main"
+    android:background="@drawable/main">
 
-    >
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="40dp"
-        tools:ignore="RtlSymmetry">
-
-
-        <ImageButton
-            android:id="@+id/back_to_orderstatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_arrow_back_24"
-
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/no_backround"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rate Service"
-            android:fontFamily="@font/archivoblack"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/restaurant_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Casa Nova"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:fontFamily="@font/lobster"
-        android:paddingStart="25dp"
-        />
-
-    <LinearLayout
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="25dp"
-        >
-        <LinearLayout
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="How was your experience with waiter "
-                android:textColor="@color/white"/>
-
-            <TextView
-                android:id="@+id/waiter_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="#24?"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                />
-        </LinearLayout>
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="30dp"
-            >
-
-            <LinearLayout
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="20dp"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:background="@drawable/catagories"
-                >
-                <ImageView
-                    android:id="@+id/thumbs_up"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:src="@drawable/thumbs_up"
-                    tools:ignore="RtlSymmetry" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="EXCEPTIONAL"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="20dp"
-                    android:fontFamily="@font/archivoblack"/>
-            </LinearLayout>
-            <Space
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"/>
-            <LinearLayout
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:background="@drawable/catagories"
-                >
-                <ImageView
-                    android:id="@+id/thumbs_down"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:contentDescription="@string/todo"
-                    android:src="@drawable/thumbs_down"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="SUPBAR"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/archivoblack"
-                    android:layout_marginBottom="20dp"
-                    />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="16dp">
 
-            android:layout_marginTop="30dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp">
 
-            >
+                <ImageButton
+                    android:id="@+id/back_to_orderstatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_arrow_back_24"
+                    android:background="@drawable/no_backround"
+                    android:contentDescription="Back" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rate Service"
+                    android:fontFamily="@font/archivoblack"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="16dp" />
+            </LinearLayout>
+
             <TextView
+                android:id="@+id/restaurant_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="COMMENTS"
+                android:text="Casa Nova"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:paddingStart="5dp"
-                />
-            <EditText
-                android:id="@+id/comments"
-                android:layout_width="350dp"
-                android:layout_height="80dp"
+                android:textSize="30sp"
+                android:fontFamily="@font/lobster"
+                android:layout_marginStart="10dp" />
 
-                android:hint="Share your thoughts..."
-                android:textColorHint="@color/white"
-                android:textColor="@color/white"
-                android:textSize="15sp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
 
-                android:inputType="text"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="1dp"
-                android:paddingStart="10dp"
-                android:background="@drawable/catagories"
-            />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="How was your experience with waiter "
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/waiter_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="#24?"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Feedback Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="30dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:background="@drawable/categories">
+
+                        <ImageView
+                            android:id="@+id/thumbs_up"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/thumbs_up" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="EXCEPTIONAL"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/archivoblack" />
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:background="@drawable/categories">
+
+                        <ImageView
+                            android:id="@+id/thumbs_down"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/thumbs_down" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="SUBPAR"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/archivoblack" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Comments Section -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="COMMENTS"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_marginTop="30dp"
+                    android:paddingStart="5dp" />
+
+                <EditText
+                    android:id="@+id/comments"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:hint="Share your thoughts..."
+                    android:textColorHint="@color/white"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:inputType="textMultiLine"
+                    android:gravity="top"
+                    android:layout_marginTop="5dp"
+                    android:padding="12dp"
+                    android:background="@drawable/categories" />
+
+                <Button
+                    android:id="@+id/submit_feedback"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Submit Feedback"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:background="@drawable/btn_gradient_bg"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
         </LinearLayout>
-
-        <Button
-            android:id="@+id/submit_feedback"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-
-            android:text="Submit Feedback"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-
-            android:layout_marginTop="20dp"
-            android:background="@drawable/btn_gradient_bg"
-            app:backgroundTint="@null"
-            />
-
-    </LinearLayout>
+    </ScrollView>
 </LinearLayout>

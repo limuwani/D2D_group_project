@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About D2D - Corporate Specification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Lobster&family=Archivo+Black&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0A0A0A;
+            --accent-red: #CD1C18;
+            --muted-gray: rgba(255, 255, 255, 0.6);
+            --glass-white: rgba(255, 255, 255, 0.03);
+            --text-white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            line-height: 1.6;
+        }
+
+        .app-container {
+            max-width: 420px;
+            margin: 40px auto;
+            background: #000;
+            border: 8px solid #222;
+            border-radius: 45px;
+            min-height: 850px;
+            position: relative;
+            overflow-y: auto;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.9);
+        }
+
+        .app-container::-webkit-scrollbar { display: none; }
+
+        /* Header */
+        .app-header {
+            padding: 40px 25px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .app-header h1 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 22px;
+            color: var(--accent-red);
+            letter-spacing: 1px;
+        }
+
+        .content-body {
+            padding: 25px;
+        }
+
+        /* Mission Section */
+        .mission-box {
+            background: linear-gradient(135deg, rgba(205,28,24,0.1) 0%, transparent 100%);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--accent-red);
+        }
+
+        .mission-box h3 {
+            font-size: 14px;
+            color: var(--accent-red);
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .mission-box p {
+            font-size: 16px;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        /* Value Pillars */
+        .pillar {
+            margin-bottom: 50px;
+        }
+
+        .img-frame {
+            width: 100%;
+            height: 220px;
+            border-radius: 18px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        .img-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pillar h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pillar h2::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-red);
+            border-radius: 50%;
+        }
+
+        .pillar p {
+            font-size: 14px;
+            color: var(--muted-gray);
+        }
+
+        /* Legal & Info Section */
+        .info-grid {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .info-item {
+            background: var(--glass-white);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .info-item span {
+            display: block;
+            font-size: 10px;
+            color: var(--muted-gray);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .info-item b {
+            font-size: 13px;
+        }
+
+        /* Support Button */
+        .support-btn {
+            display: block;
+            margin: 30px 0;
+            padding: 16px;
+            background: #FFFFFF;
+            color: #000;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        /* Footer */
+        .app-footer {
+            padding: 40px 20px;
+            text-align: center;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .app-footer p {
+            font-size: 11px;
+            color: rgba(255,255,255,0.3);
+            margin-bottom: 5px;
+        }
+
+        .app-footer .links {
+            margin-top: 15px;
+        }
+
+        .app-footer .links a {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-size: 12px;
+            margin: 0 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <header class="app-header">
+            <h1>ABOUT D2D</h1>
+        </header>
+
+        <div class="content-body">
+            <!-- Professional Mission -->
+            <div class="mission-box">
+                <h3>Our Mission</h3>
+                <p>"To redefine the urban dining experience by delivering world-class culinary excellence through seamless, transparent, and diverse technological solutions."</p>
+            </div>
+
+            <!-- Quality Pillar -->
+            <div class="pillar">
+                <div class="img-frame">
+                    <img src="onboarding_partners.jpg" alt="Quality">
+                </div>
+                <h2>Elite Culinary Standards</h2>
+                <p>We source only from certified, premium restaurant partners. Every vendor in the D2D network undergoes a rigorous selection process to ensure your palate is always respected.</p>
+            </div>
+
+            <!-- Inclusivity Pillar -->
+            <div class="pillar">
+                <div class="img-frame">
+                    <img src="onboarding_satisfaction.png" alt="Inclusivity">
+                </div>
+                <h2>Inclusive Community</h2>
+                <p>Diversity is our foundation. D2D is built to serve everyone, representing a rich tapestry of cultures and flavors that unite our local community through shared food experiences.</p>
+            </div>
+
+            <!-- Innovation Pillar -->
+            <div class="pillar">
+                <div class="img-frame">
+                    <img src="onboarding_interaction.png" alt="Innovation">
+                </div>
+                <h2>Service Innovation</h2>
+                <p>Beyond delivery, we provide a personalized concierge experience. Our staff-customer interaction models are designed to bring the elegance of the dining table directly to your screen.</p>
+            </div>
+
+            <!-- Technical Info Grid -->
+            <div class="info-grid">
+                <div class="info-item">
+                    <span>App Version</span>
+                    <b>1.2.4-stable</b>
+                </div>
+                <div class="info-item">
+                    <span>Build Number</span>
+                    <b>2024.05.10</b>
+                </div>
+                <div class="info-item">
+                    <span>Status</span>
+                    <b>Verified</b>
+                </div>
+                <div class="info-item">
+                    <span>Region</span>
+                    <b>Wits / Gauteng</b>
+                </div>
+            </div>
+
+            <a href="#" class="support-btn">CONTACT SUPPORT</a>
+        </div>
+
+        <footer class="app-footer">
+            <p>© 2024 D2D Group Project. All Rights Reserved.</p>
+            <p>Made with ❤️ in South Africa</p>
+            <div class="links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>

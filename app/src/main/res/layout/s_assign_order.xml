@@ -4,180 +4,139 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main"
-    >
-    <LinearLayout
+    android:background="@drawable/main">
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="32dp"
-        android:paddingStart="16dp"
-        >
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <ImageButton
-            android:id="@+id/back_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_arrow_back_24"
-
-            android:background="@drawable/no_backround"
-            android:scaleType="fitCenter"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="New Order"
-            android:textColor="@color/white"
-
-            android:layout_marginStart="15dp"
-
-            android:textStyle="bold"
-            android:textSize="25sp"
-            />
-
-    </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="15dp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Enter the customer's email to link order"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        android:paddingStart="30dp"
-        />
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp"/>
-    <LinearLayout
-        android:layout_width="380dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:background="@drawable/catagories"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Customer Email"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            android:layout_marginTop="20dp"
-            android:paddingStart="30dp"
-
-            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="5sp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            >
+            android:padding="20dp">
 
-            <EditText
-                android:id="@+id/fullname_edit_text"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp">
 
-                android:drawableTint="#FFFF"
-                android:hint="@string/eg_guest_gmail_com"
+                <ImageButton
+                    android:id="@+id/back_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_arrow_back_24"
+                    android:background="@drawable/no_backround"
+                    android:contentDescription="Back" />
 
-                android:textSize="15sp"
-                android:inputType="textEmailAddress"
-                android:background="@drawable/edittext_bg"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="New Order"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="15dp"
+                    android:textStyle="bold"
+                    android:textSize="25sp" />
+            </LinearLayout>
 
-                android:padding="@dimen/padding_standard"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter the customer's email to link order"
                 android:textColor="@color/white"
-                android:textColorHint="#FFFF"
+                android:textSize="15sp"
+                android:paddingStart="10dp" />
 
-                android:layout_marginTop="5dp"
-                android:drawablePadding="@dimen/drawable_padding"
-                />
-        </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
 
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Assigned Restaurant"
-            android:textColor="@color/white"
-            android:paddingStart="30dp"
-            android:textStyle="bold"
-            android:textSize="15sp"
-
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="5sp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            >
-
-            <EditText
-                android:id="@+id/selected_restaurant"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/categories"
+                android:padding="20dp"
+                android:layout_marginHorizontal="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Customer Email"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/fullname_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableTint="#FFFF"
+                    android:hint="@string/eg_guest_gmail_com"
+                    android:textSize="15sp"
+                    android:inputType="textEmailAddress"
+                    android:background="@drawable/edittext_bg"
+                    android:padding="@dimen/padding_standard"
+                    android:textColor="@color/white"
+                    android:textColorHint="#FFFF"
+                    android:layout_marginTop="5dp"
+                    android:drawablePadding="@dimen/drawable_padding" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Assigned Restaurant"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_marginTop="20dp" />
+
+                <EditText
+                    android:id="@+id/selected_restaurant"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:drawableTint="#FFFF"
+                    android:hint="Casa Nova"
+                    android:textSize="15sp"
+                    android:inputType="text"
+                    android:background="@drawable/edittext_bg"
+                    android:padding="@dimen/padding_standard"
+                    android:textColor="@color/white"
+                    android:textColorHint="#FFFF"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:drawablePadding="@dimen/drawable_padding" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <Button
+                android:id="@+id/send_to_customer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:text="@string/initialize_order"
+                android:textColor="@color/black"
                 android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/btn_gradient_bg"
+                app:backgroundTint="@null" />
 
-                android:drawableTint="#FFFF"
-                android:hint="Casa Nova"
-
-                android:textSize="15sp"
-                android:inputType="text"
-                android:background="@drawable/edittext_bg"
-
-                android:padding="@dimen/padding_standard"
-                android:textColor="@color/white"
-                android:textColorHint="#FFFF"
-
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="30dp"
-                android:drawablePadding="@dimen/drawable_padding"
-                />
+            <Button
+                android:id="@+id/staff_cancel_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:text="Cancel"
+                android:background="@drawable/categories"
+                app:backgroundTint="@null" />
         </LinearLayout>
-
-    </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="30dp"/>
-    <Button
-        android:id="@+id/send_to_customer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-
-        android:text="Initialize Order"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/btn_gradient_bg"
-        app:backgroundTint="@null"
-        />
-    <Button
-        android:id="@+id/staff_cancel_order"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-
-        android:text="Cancel"
-
-        android:background="@drawable/catagories"
-        app:backgroundTint="@null"
-        />
+    </ScrollView>
 </LinearLayout>

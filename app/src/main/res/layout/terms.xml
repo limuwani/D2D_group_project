@@ -1,200 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-   xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main"
-    >
+    android:fitsSystemWindows="true"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <LinearLayout
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="10dp"
-            android:layout_marginBottom="20dp"
-            >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/terms_conditions"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="30sp"
-                />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="15dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Last updated: April 29,2026"
-                android:textColor="@color/white"/>
-        </LinearLayout>
+            android:text="@string/terms_conditions"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/last_updated_april_29_2026"
+            android:textColor="@color/white" />
+
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="30dp"/>
+            android:layout_height="30dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/white_border_bg"
-            android:layout_marginStart="25dp"
-            android:paddingStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="1.Service Description"
-                android:textColor="@color/white"
-                android:textSize="25sp"
-                android:textStyle="bold"
-
-                android:layout_marginTop="20dp"
-                />
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="10dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textSize="15sp"
-                    android:text="The D2D Ordering System is a specialized interface designed for tracking order status and providing service feedback. This platform does not facilitate direct order placement by customers."
-                    android:textColor="@color/white"
-
-                    android:paddingStart="30dp"
-                    android:paddingEnd="30dp"
-                    />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp"/>
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2.User Conduct"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="25sp"
-
-                android:layout_marginBottom="10dp"/>
+            android:padding="20dp"
+            android:layout_marginHorizontal="10dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Users may access the system to monitor active fulfillment requests. Unauthorized attempts to access administrative functions or the Staff Portal are strictly prohibited."
+                android:text="@string/_1_service_description"
                 android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:textSize="15sp"
-                android:paddingStart="30dp"
-                android:paddingEnd="30dp"
-                />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp"/>
+                android:text="@string/the_d2d_ordering_system_is_a_specialized_interface_designed_for_tracking_order_status_and_providing_service_feedback_this_platform_does_not_facilitate_direct_order_placement_by_customers"
+                android:textColor="@color/white" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3.Order Tracking"
+                android:layout_marginTop="25dp"
+                android:text="@string/_2_user_conduct"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="25sp"
-
-                android:layout_marginBottom="10dp"/>
+                android:textSize="22sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="All orders are initialized by authorized fulfillment center staff. The system provides real-time updates as the order transitions from PENDING to READY and COLLECTED. D2D is a monitoring tool and is not responsible for the contents or timing of the orders."
+                android:layout_marginTop="10dp"
+                android:text="@string/users_may_access_the_system_to_monitor_active_fulfillment_requests_unauthorized_attempts_to_access_administrative_functions_or_the_staff_portal_are_strictly_prohibited"
                 android:textColor="@color/white"
-                android:textSize="15sp"
-                android:paddingStart="30dp"
-                android:paddingEnd="30dp"
-                />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp"/>
+                android:textSize="15sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4.Feedback Submission"
+                android:layout_marginTop="25dp"
+                android:text="@string/_3_order_tracking"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="25sp"
-
-                android:layout_marginBottom="10dp"/>
+                android:textSize="22sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/all_orders_are_initialized_by_authorized_fulfillment_center_staff_the_system_provides_real_time_updates_as_the_order_transitions_from_pending_to_ready_and_collected_d2d_is_a_monitoring_tool_and_is_not_responsible_for_the_contents_or_timing_of_the_orders"
                 android:textColor="@color/white"
-                android:text="Users are encouraged to share their service experience through the feedback module. This data is used to optimize fulfillment intelligence and service quality."
-                android:textSize="15sp"
-                android:paddingStart="30dp"
-                android:paddingEnd="30dp"
-                />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp"/>
+                android:textSize="15sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5.Data Privacy"
+                android:layout_marginTop="25dp"
+                android:text="@string/_4_feedback_submission"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="25sp"
-
-                android:layout_marginBottom="10dp"/>
+                android:textSize="22sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/white"
-                android:text="We process minimal user data(primarly email identifiers) solely for the purpose of matching users with their active fulfillment requests."
-                android:textSize="15sp"
-                android:paddingStart="30dp"
-                android:paddingEnd="30dp"
-                />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp"/>
+                android:text="@string/users_are_encouraged_to_share_their_service_experience_through_the_feedback_module_this_data_is_used_to_optimize_fulfillment_intelligence_and_service_quality"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/_5_data_privacy"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:text="@string/we_process_minimal_user_data_primarily_email_identifiers_solely_for_the_purpose_of_matching_users_with_their_active_fulfillment_requests"
+                android:textSize="15sp" />
         </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="310dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp"
-                android:paddingStart="35dp"
-                >
-                <CheckBox
-                    android:id="@+id/terms_conditions_checkbox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="10dp">
 
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="I read the terms and conditions "
-                    android:textColor="@color/white"/>
-            </LinearLayout>
+            <CheckBox
+                android:id="@+id/terms_conditions_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/i_read_the_terms_and_conditions"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
         <Button
             android:id="@+id/terms_to_login"
-            android:layout_width="330dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="BACK TO LOGIN"
-            android:layout_marginStart="40dp"
-            android:background="@drawable/catagories"
-            app:backgroundTint="@null"/>
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:text="@string/back_to_login"
+            android:textColor="@color/white"
+            android:background="@drawable/categories"
+            app:backgroundTint="@null" />
+
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp"/>
+            android:layout_height="30dp" />
     </LinearLayout>
 </ScrollView>
