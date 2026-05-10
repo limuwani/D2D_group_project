@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText passwordText;
     Button loginBtn;
 
+    Button signUpBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Button signUpBtn = findViewById(R.id.sign_up_button);
+        signUpBtn = findViewById(R.id.sign_up_button);
         signUpBtn.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, SignUp.class);
             startActivity(intent);
