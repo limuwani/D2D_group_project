@@ -2,8 +2,8 @@
 
 > **Project**: D2D Group Project  
 > **Package**: `com.example.d2d`  
-> **Document Version**: 1.1  
-> **Last Updated**: May 10, 2026 (Refined Recovery & Staff flows)  
+> **Document Version**: 1.2  
+> **Last Updated**: May 11, 2026 (Production API & Dynamic UI Integration)  
 > **Live Mockup**: [d2ddesignmock.netlify.app](https://d2ddesignmock.netlify.app)
 
 ---
@@ -92,8 +92,8 @@ graph TD
     H -- "Rate collected order" --> I
     I -- "Submit Feedback btn" --> H
 
-    %% Staff Branching
-    F -. "Staff role<br/>(email contains 'waiter')" .-> L
+    %% Staff Branching (Direct from Login)
+    A -. "Staff role (email contains 'waiter')" .-> L
     L -- "+ ADD NEW ORDER btn" --> K
     K -- "Initialize Order btn" --> L
     K -- "Cancel btn" --> L
@@ -105,7 +105,7 @@ graph TD
     H -- "[Back]" --> F
     I -- "[Back]" --> H
     K -- "[Back]" --> L
-    L -- "[Back]" --> F
+    L -- "[Back]" --> LoginActivity
 
     %% Styling
     style AUTH fill:#1a1a2e,stroke:#e94560,stroke-width:2px,color:#fff
@@ -406,10 +406,13 @@ graph LR
 graph LR
     subgraph Activities["Java Activities"]
         MA["MainActivity.java"]
-        LA["LoginActivity.java"]
-        SU["SignUp.java"]
-        SR["select_res.java"]
-        CS["CustomerSignUp.java<br/>(Data Model)"]
+        LA["LoginActivity.java (Saves user_id)"]
+        SU["SignUp.java (Real API Registration)"]
+        SR["select_res.java (RecyclerView API)"]
+        CTA["ConfirmTakeawayActivity.java (Place Order API)"]
+        OSA["OrderStatusActivity.java (Tracking)"]
+        RSA["RateServiceActivity.java (Glass Toggle)"]
+        AOA["AssignOrderActivity.java (Search API)"]
     end
 
     subgraph Layouts["XML Layouts"]
@@ -430,9 +433,7 @@ graph LR
     style Layouts fill:#0f3460,stroke:#53a8b6,color:#fff
 ```
 
-> [!IMPORTANT]
-> **Unbound Layouts**: The following layouts are designed but do not yet have dedicated Activity classes wiring their navigation logic:
-> `confirm_takeaway.xml`, `cus_order_status.xml`, `rate_service.xml`, `secure_account.xml`, `terms.xml`, `s_assign_order.xml`, `s_active_queue.xml`, `s_view_feedback.xml`, `recover_account_step_1.xml`, `revover_account_step_2.xml`, `new_password.xml`
+> **Functional Status**: All core customer and staff flows are now wired to production APIs on the `wmc.ms.wits.ac.za` server.
 
 ---
 
@@ -470,3 +471,6 @@ stateDiagram-v2
 | **Status: Ready** | `#FFA500` (Orange) |
 | **Status: Collected** | `#0BDA51` (Green) |
 | **Status: Open** | `@color/green` |
+| **Glass: Positive** | `@drawable/glass_green` (Transparent Green, `green_dark` border) |
+| **Glass: Negative** | `@drawable/glass_red` (Transparent Red, `red_dark` border) |
+| **UX: Empty State** | Consistent "Hello 🖐️" layout for `confirm_takeaway` and `cus_order_status`. |
