@@ -1,32 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main">
+    android:background="@drawable/main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/secure_your_account"
+        android:text="Security Check"
+        android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:fontFamily="@font/archivoblack"
+
         />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Complete this one-time setup to enable password recovery"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:layout_marginStart="10dp"
-            />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please answer your secret question."
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:paddingStart="15dp"
+        android:layout_marginTop="10dp"/>
+
     <Space
         android:layout_width="wrap_content"
         android:layout_height="50dp"/>
+
     <LinearLayout
         android:layout_width="350dp"
         android:layout_height="wrap_content"
@@ -46,7 +55,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CHOOSE A SECURITY QUESTION"
+                android:text="YOUR QUESTION"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="15sp"
@@ -54,7 +63,7 @@
                 />
 
             <EditText
-                android:id="@+id/pick_question"
+                android:id="@+id/choose_question"
                 android:layout_width="310dp"
                 android:layout_height="wrap_content"
 
@@ -85,7 +94,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="YOUR SECRET ANSWER"
+                android:text="YOUR ANSWER"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="15sp"
@@ -93,7 +102,7 @@
                 />
 
             <EditText
-                android:id="@+id/secret_answer_edit_text"
+                android:id="@+id/secret_answer"
                 android:layout_width="310dp"
                 android:layout_height="wrap_content"
 
@@ -114,25 +123,14 @@
         </LinearLayout>
 
         <Space
-            android:layout_width="wrap_content"
-            android:layout_height="10dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Make sure this is something only you know. You will need this to reset your password."
-            android:textColor="@color/white"
-            android:textSize="13sp"
-            android:paddingStart="25dp"/>
-
-        <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp"/>
+            android:layout_height="30dp"/>
 
         <Button
-            android:id="@+id/complete_setup"
+            android:id="@+id/verify_answer"
             android:layout_width="310dp"
             android:layout_height="wrap_content"
-            android:text="Complete Setup"
+            android:text="VERIFY ANSWER"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="20dp"
@@ -141,4 +139,17 @@
             android:layout_marginBottom="30dp"
             />
     </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GO BACK"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginStart="125dp"
+        android:textColor="@color/white"
+        android:background="@drawable/white_border_bg"
+        app:backgroundTint="@null"/>
 </LinearLayout>

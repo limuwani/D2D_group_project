@@ -70,7 +70,7 @@
 
             android:padding="@dimen/padding_standard"
             android:textColor="@color/white"
-            android:textColorHint="#FFFF"
+            android:textColorHint="@color/glass_white"
 
             android:layout_marginTop="40dp"
             android:drawableStart="@drawable/email"
@@ -83,7 +83,7 @@
             android:id="@+id/password_edit_text"
             android:layout_width="330dp"
             android:layout_height="wrap_content"
-            android:textColorHint="#FFFF"
+            android:textColorHint="@color/glass_white"
             android:drawableTint="@color/white"
 
             android:hint="@string/password"

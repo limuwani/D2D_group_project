@@ -2,31 +2,33 @@
 
 > **Project**: D2D Group Project  
 > **Package**: `com.example.d2d`  
-> **Document Version**: 1.0  
-> **Last Updated**: May 10, 2026
+> **Document Version**: 1.1  
+> **Last Updated**: May 10, 2026 (Refined Recovery & Staff flows)
 
 ---
 
 ## 1. Screen Inventory
 
-The application consists of **14 XML layout files** organized across three functional domains:
+The application consists of **16 XML layout files** organized across three functional domains:
 
 | # | Layout File | Screen Title | Domain | Role Access |
 |---|-------------|-------------|--------|-------------|
 | 1 | `login_page.xml` | Sign In | Authentication | All Users |
-| 2 | `sign_up.xml` | Create Account | Authentication | All Users |
-| 3 | `secure_account.xml` | Secure Your Account | Authentication | All Users |
-| 4 | `terms.xml` | Terms & Conditions | Authentication | All Users |
-| 5 | `activity_main.xml` | Main Shell (Nav Host) | Core Framework | All Users |
-| 6 | `select_res.xml` | Discover Restaurants | Customer | Customer |
-| 7 | `confirm_takeaway.xml` | Confirm Takeaway | Customer | Customer |
-| 8 | `cus_order_status.xml` | Active Orders | Customer | Customer |
-| 9 | `rate_service.xml` | Rate Service | Customer | Customer |
-| 10 | `s_staff_portal.xml` | Staff Portal | Staff | Staff / Waiter |
-| 11 | `s_assign_order.xml` | New Order | Staff | Staff / Waiter |
-| 12 | `s_active_queue.xml` | Takeaway Queue | Staff | Staff / Waiter |
-| 13 | `s_view_feedback.xml` | Staff Profile / Feedback | Staff | Staff / Waiter |
-| 14 | `item_restaurant.xml` | Restaurant Card (Reusable) | Component | Customer |
+| 2 | `sign_up.xml` | Create Account | Authentication | Customer |
+| 3 | `secure_account.xml` | Secure Your Account | Authentication | Customer |
+| 4 | `recover_account_step_1.xml` | Reset Password (ID) | Authentication | Customer |
+| 5 | `revover_account_step_2.xml` | Security Check | Authentication | Customer |
+| 6 | `new_password.xml` | Reset Password | Authentication | Customer |
+| 7 | `terms.xml` | Terms & Conditions | Authentication | All Users |
+| 8 | `activity_main.xml` | Main Shell (Nav Host) | Core Framework | All Users |
+| 9 | `select_res.xml` | Discover Restaurants | Customer | Customer |
+| 10 | `confirm_takeaway.xml` | Confirm Takeaway | Customer | Customer |
+| 11 | `cus_order_status.xml` | Active Orders | Customer | Customer |
+| 12 | `rate_service.xml` | Rate Service | Customer | Customer |
+| 13 | `s_assign_order.xml` | New Order | Staff | Staff / Waiter |
+| 14 | `s_active_queue.xml` | Takeaway Queue | Staff | Staff / Waiter |
+| 15 | `s_view_feedback.xml` | Staff Profile / Feedback | Staff | Staff / Waiter |
+| 16 | `item_restaurant.xml` | Restaurant Card (Reusable) | Component | Customer |
 
 ---
 
@@ -38,7 +40,10 @@ graph TD
         A["login_page.xml<br/><b>Sign In</b>"]
         B["sign_up.xml<br/><b>Create Account</b>"]
         C["terms.xml<br/><b>Terms & Conditions</b>"]
-        D["secure_account.xml<br/><b>Secure Account</b>"]
+        D["secure_account.xml<br/><b>Secure Account (Setup)</b>"]
+        D1["recover_account_step_1.xml<br/><b>Verify Identity</b>"]
+        D2["revover_account_step_2.xml<br/><b>Security Check</b>"]
+        D3["new_password.xml<br/><b>New Password</b>"]
     end
 
     subgraph CORE["⚙️ Core Shell"]
@@ -53,9 +58,8 @@ graph TD
     end
 
     subgraph STAFF["🧑‍🍳 Staff Flow"]
-        J["s_staff_portal.xml<br/><b>Staff Portal</b>"]
-        K["s_assign_order.xml<br/><b>New Order</b>"]
         L["s_active_queue.xml<br/><b>Takeaway Queue</b>"]
+        K["s_assign_order.xml<br/><b>New Order</b>"]
         M["s_view_feedback.xml<br/><b>Staff Profile</b>"]
     end
 
@@ -64,11 +68,23 @@ graph TD
     B -- "LOGIN btn" --> A
     B -- "Terms & Conditions btn" --> C
     C -- "BACK TO LOGIN btn" --> A
-    B -- "Create Account btn<br/>(on valid)" --> F
-    A -- "Sign In btn<br/>(on valid)" --> F
+    
+    %% Password Recovery (Existing Users)
+    A -- "Forgot Password btn" --> D1
+    D1 -- "CONTINUE btn" --> D2
+    D2 -- "VERIFY ANSWER btn" --> D3
+    D3 -- "UPDATE PASSWORD btn" --> A
+
+    %% Account Setup (First-time Users)
+    B -- "Create Account btn" --> D
+    A -- "Sign In btn (first time)" --> D
+    D -- "Complete Setup btn" --> F
+    
+    %% Normal Sign In
+    A -- "Sign In btn" --> F
 
     %% Post-Auth Branching
-    F -- "Select Restaurant<br/>(Customer role)" --> G
+    F -- "Select Restaurant" --> G
     G -- "Confirm btn" --> H
     G -- "Cancel btn" --> F
     H -- "BROWSE RESTAURANTS btn" --> F
@@ -76,12 +92,10 @@ graph TD
     I -- "Submit Feedback btn" --> H
 
     %% Staff Branching
-    F -. "Staff role<br/>(email contains 'waiter')" .-> J
-    J -- "+ Start New Order btn" --> K
-    J -- "VIEW Active Status btn" --> L
-    K -- "Initialize Order btn" --> L
-    K -- "Cancel btn" --> J
+    F -. "Staff role<br/>(email contains 'waiter')" .-> L
     L -- "+ ADD NEW ORDER btn" --> K
+    K -- "Initialize Order btn" --> L
+    K -- "Cancel btn" --> L
     L -- "View Feedback" --> M
     M -- "BACK TO QUEUE btn" --> L
 
@@ -89,8 +103,8 @@ graph TD
     G -- "⬅ Back" --> F
     H -- "⬅ Back" --> F
     I -- "⬅ Back" --> H
-    K -- "⬅ Back" --> J
-    L -- "⬅ Back" --> J
+    K -- "⬅ Back" --> L
+    L -- "⬅ Back" --> F
 
     %% Styling
     style AUTH fill:#1a1a2e,stroke:#e94560,stroke-width:2px,color:#fff
@@ -125,8 +139,8 @@ graph LR
     end
 
     subgraph STAFF_ZONE["Staff Zone<br/>BottomNav: staff_nav_bar.xml"]
-        S1["🏠 Home<br/>s_staff_portal.xml"]
-        S2["📋 Manage<br/>s_active_queue.xml"]
+        S1["📋 Queue<br/>s_active_queue.xml"]
+        S2["📋 Manage<br/>s_assign_order.xml"]
         S3["👤 Profile<br/>s_view_feedback.xml"]
     end
 
@@ -163,8 +177,8 @@ graph LR
 
 | Tab | ID | Icon | Destination |
 |-----|----|------|-------------|
-| Home | `staff_home_button` | `home_icon` | `s_staff_portal.xml` |
-| Manage | `manage` | `manage_icon` | `s_active_queue.xml` |
+| Queue | `staff_home_button` | `home_icon` | `s_active_queue.xml` |
+| New Order | `manage` | `manage_icon` | `s_assign_order.xml` |
 | Profile | `staff_profile` | `profile_icon` | `s_view_feedback.xml` |
 
 > [!NOTE]
@@ -188,7 +202,7 @@ graph LR
 |---------|----|------|--------|
 | Email field | `email_edit_text` | `EditText` | User email input |
 | Password field | `password_edit_text` | `EditText` | Password input (masked) |
-| Forgot Password | `forgot_password` | `Button` | — |
+| Forgot Password | `forgot_password` | `Button` | Navigates to `secure_account.xml` |
 | Sign In | `sign_in_button` | `Button` | Validates → navigates to `select_res` |
 | Sign Up | `sign_up_button` | `Button` | Navigates to `sign_up.xml` |
 
@@ -212,7 +226,7 @@ graph LR
 | Confirm Password | `confirm_password_edit_text` | `EditText` |
 | T&C Checkbox | `terms_condions_checkbox` | `CheckBox` |
 | Terms & Conditions | `terms_conditions` | `Button` → `terms.xml` |
-| Create Account | `signup_submit_button` | `Button` → validates → `select_res` |
+| Create Account | `signup_submit_button` | `Button` → validates → `secure_account.xml` |
 | Back to Login | `back_to_login_button` | `Button` → `LoginActivity` |
 
 ---
@@ -237,19 +251,68 @@ graph LR
 
 | Property | Value |
 |----------|-------|
-| **Purpose** | One-time security question setup for password recovery |
+| **Purpose** | One-time security question setup for first-time customers |
 
 **UI Components:**
 
-| Element | ID | Type |
-|---------|----|------|
-| Security Question | `Surname_edit_text` | `EditText` |
-| Secret Answer | `Surname_edit_text` | `EditText` |
-| Complete Setup | `complete_setup` | `Button` |
+| Element | ID | Type | Action |
+|---------|----|------|--------|
+| Security Question | `pick_question` | `EditText` | — |
+| Secret Answer | `secret_answer_edit_text` | `EditText` | — |
+| Complete Setup | `complete_setup` | `Button` | Navigates to `select_res.xml` |
 
 ---
 
-### 5.5 — Discover Restaurants (`select_res.xml`)
+### 5.5 — Verify Identity (`recover_account_step_1.xml`)
+
+| Property | Value |
+|----------|-------|
+| **Purpose** | Start password recovery by verifying user email |
+
+**UI Components:**
+
+| Element | ID | Type | Action |
+|---------|----|------|--------|
+| Email Address | — | `EditText` | User email input |
+| Continue | `continue_setup` | `Button` | Navigates to `revover_account_step_2.xml` |
+| Back to Login | — | `Button` | Returns to `login_page.xml` |
+
+---
+
+### 5.6 — Security Check (`revover_account_step_2.xml`)
+
+| Property | Value |
+|----------|-------|
+| **Purpose** | Validate user identity via security question |
+
+**UI Components:**
+
+| Element | ID | Type | Action |
+|---------|----|------|--------|
+| Your Question | `choose_question` | `EditText` | Displayed question |
+| Secret Answer | `secret_answer` | `EditText` | User answer input |
+| Verify Answer | `verify_answer` | `Button` | Navigates to `new_password.xml` |
+| Go Back | — | `Button` | Returns to previous step |
+
+---
+
+### 5.7 — Reset Password (`new_password.xml`)
+
+| Property | Value |
+|----------|-------|
+| **Purpose** | Set a new password after successful security validation |
+
+**UI Components:**
+
+| Element | ID | Type | Action |
+|---------|----|------|--------|
+| New Password | — | `EditText` | Masked password input |
+| Confirm Password | — | `EditText` | Masked password input |
+| Update Password | `update_new_pass` | `Button` | Updates → `login_page.xml` |
+
+---
+
+### 5.8 — Discover Restaurants (`select_res.xml`)
 
 | Property | Value |
 |----------|-------|
@@ -265,7 +328,7 @@ graph LR
 
 ---
 
-### 5.6 — Confirm Takeaway (`confirm_takeaway.xml`)
+### 5.9 — Confirm Takeaway (`confirm_takeaway.xml`)
 
 | Element | ID | Action |
 |---------|----|--------|
@@ -275,7 +338,7 @@ graph LR
 
 ---
 
-### 5.7 — Customer Order Status (`cus_order_status.xml`)
+### 5.10 — Customer Order Status (`cus_order_status.xml`)
 
 | Property | Value |
 |----------|-------|
@@ -284,7 +347,7 @@ graph LR
 
 ---
 
-### 5.8 — Rate Service (`rate_service.xml`)
+### 5.11 — Rate Service (`rate_service.xml`)
 
 | Element | ID | Type |
 |---------|----|------|
@@ -296,29 +359,7 @@ graph LR
 
 ---
 
-### 5.9 — Staff Portal (`s_staff_portal.xml`)
-
-| Element | ID | Action |
-|---------|----|--------|
-| Back button | `back_btn` | Returns to previous screen |
-| Start New Order | `start_order` | Navigates to `s_assign_order.xml` |
-| View Active Status | `view_active_status` | Navigates to `s_active_queue.xml` |
-
----
-
-### 5.10 — Assign New Order (`s_assign_order.xml`)
-
-| Element | ID | Purpose |
-|---------|----|---------|
-| Back button | `back_btn` | Returns to staff portal |
-| Customer Email | `fullname_edit_text` | Link order to customer |
-| Restaurant | `selected_restaurant` | Assign restaurant |
-| Initialize | `send_to_customer` | Submit order to queue |
-| Cancel | `staff_cancel_order` | Return to portal |
-
----
-
-### 5.11 — Takeaway Queue (`s_active_queue.xml`)
+### 5.12 — Takeaway Queue (`s_active_queue.xml`)
 
 | Property | Value |
 |----------|-------|
@@ -336,7 +377,19 @@ graph LR
 
 ---
 
-### 5.12 — Staff Feedback View (`s_view_feedback.xml`)
+### 5.13 — Assign New Order (`s_assign_order.xml`)
+
+| Element | ID | Purpose |
+|---------|----|---------|
+| Back button | `back_btn` | Returns to takeaway queue |
+| Customer Email | `fullname_edit_text` | Link order to customer |
+| Restaurant | `selected_restaurant` | Assign restaurant |
+| Initialize | `send_to_customer` | Submit order to queue |
+| Cancel | `staff_cancel_order` | Return to queue |
+
+---
+
+### 5.14 — Staff Feedback View (`s_view_feedback.xml`)
 
 | Property | Value |
 |----------|-------|
@@ -378,7 +431,7 @@ graph LR
 
 > [!IMPORTANT]
 > **Unbound Layouts**: The following layouts are designed but do not yet have dedicated Activity classes wiring their navigation logic:
-> `confirm_takeaway.xml`, `cus_order_status.xml`, `rate_service.xml`, `secure_account.xml`, `terms.xml`, `s_staff_portal.xml`, `s_assign_order.xml`, `s_active_queue.xml`, `s_view_feedback.xml`
+> `confirm_takeaway.xml`, `cus_order_status.xml`, `rate_service.xml`, `secure_account.xml`, `terms.xml`, `s_assign_order.xml`, `s_active_queue.xml`, `s_view_feedback.xml`, `recover_account_step_1.xml`, `revover_account_step_2.xml`, `new_password.xml`
 
 ---
 

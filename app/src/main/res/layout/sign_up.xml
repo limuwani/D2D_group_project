@@ -71,7 +71,7 @@
 
                 android:padding="@dimen/padding_standard"
                 android:textColor="@color/white"
-                android:textColorHint="@color/white"
+                android:textColorHint="@color/glass_white"
 
                 android:layout_marginTop="5dp"
                 android:drawablePadding="@dimen/drawable_padding"
@@ -110,7 +110,7 @@
 
                 android:padding="@dimen/padding_standard"
                 android:textColor="@color/white"
-                android:textColorHint="#FFFF"
+                android:textColorHint="@color/glass_white"
 
                 android:layout_marginTop="5dp"
                 android:drawablePadding="@dimen/drawable_padding"
@@ -147,7 +147,7 @@
 
                 android:textSize="12sp"
                 android:padding="@dimen/padding_standard"
-                android:textColorHint="#FFFF"
+                android:textColorHint="@color/glass_white"
 
                 android:layout_marginTop="5dp"
                 android:drawablePadding="@dimen/drawable_padding"
@@ -184,7 +184,7 @@
                 android:background="@drawable/edittext_bg"
 
                 android:padding="@dimen/padding_standard"
-                android:textColorHint="#FFFF"
+                android:textColorHint="@color/glass_white"
                 android:drawableStart="@drawable/baseline_lock_24"
 
                 android:layout_marginTop="5dp"
@@ -221,7 +221,7 @@
 
                 android:inputType="textPassword"
                 android:padding="@dimen/padding_standard"
-                android:textColorHint="#FFFF"
+                android:textColorHint="@color/glass_white"
                 android:drawableStart="@drawable/baseline_lock_24"
 
                 android:drawableEnd="@drawable/icons_eye"

@@ -72,4 +72,12 @@
     <string name="eg_the_organic_restaurant">eg.The Organic Restaurant...</string>
     <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
     <string name="open_now">OPEN NOW</string>
+    <string name="secure_your_account">Secure Your Account</string>
+    <string name="email_address">Email Address</string>
+    <string name="john_d2d_com">john@D2D.com</string>
+    <string name="update_password">UPDATE PASSWORD</string>
+    <string name="confirm_new_password">CONFIRM NEW PASSWORD</string>
+    <string name="new_password">NEW PASSWORD</string>
+    <string name="new__password">New Password</string>
+    <string name="secure_your_account_with_a_new_passkey">Secure your account with a new passkey.</string>
 </resources>
