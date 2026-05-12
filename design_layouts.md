@@ -474,3 +474,32 @@ stateDiagram-v2
 | **Glass: Positive** | `@drawable/glass_green` (Transparent Green, `green_dark` border) |
 | **Glass: Negative** | `@drawable/glass_red` (Transparent Red, `red_dark` border) |
 | **UX: Empty State** | Consistent "Hello 🖐️" layout for `confirm_takeaway` and `cus_order_status`. |
+
+---
+
+## 9. API & Role Mapping
+
+This table tracks all production and proposed endpoints across the system.
+
+| Domain | Endpoint | Role | Status | Description |
+|--------|----------|------|--------|-------------|
+| Auth | `users/login.php` | All | ✅ Live | Standard authentication |
+| Auth | `users/register.php` | Customer | ✅ Live | Account registration |
+| Auth | `users/userProfile.php` | All | ✅ Live | Fetch user profile details |
+| Auth | `users/updateProfile.php` | All | ✅ Live | Update user profile details |
+| Auth | `users/setSecurity.php` | Customer | ❌ Missing | Save security question/answer |
+| Auth | `users/verifyRecovery.php` | Customer | ❌ Missing | Start password reset flow |
+| Auth | `users/resetPassword.php` | Customer | ❌ Missing | Update password in DB |
+| Shop | `images/displayAllRestaurant.php` | Customer | ✅ Live | Fetch restaurant directory |
+| Shop | `images/imageUpload.php` | Staff | ✅ Live | Upload restaurant information |
+| Orders | `orders/createOder.php` | Customer | ✅ Live | Initialize new takeaway order |
+| Orders | `orders/getUserOrders.php` | Customer | ❌ Missing | Fetch order history/sync |
+| Orders | `orders/getOrderStatus.php` | Customer | ❌ Missing | Poll for status updates |
+| Staff | `orders/searchCustomers.php` | Staff | ✅ Live | Validate customer for new order |
+| Staff | `orders/getActiveQueue.php` | Staff | ❌ Missing | Load prep queue for staff |
+| Staff | `orders/updateOder.php` | Staff | ✅ Live | Advance order (Prep -> Ready) |
+| Feedback | `feedback/submitFeedback.php` | Customer | ❌ Missing | Save rating & comments |
+| Feedback | `feedback/getStaffStats.php` | Staff | ❌ Missing | Fetch satisfaction score |
+
+> [!IMPORTANT]
+> Some live endpoints contain typos (e.g., `createOder.php`). These must match the server-side file naming exactly to function.

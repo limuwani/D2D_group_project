@@ -1,6 +1,7 @@
 // Modified by Anon - Responsive UI & Flow
 package com.example.d2d;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,6 +34,30 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // --- CHECK FOR ACTIVE SESSION (Auto-Login) ---
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        android.database.Cursor sessionCursor = dbHelper.getActiveSession();
+        if (sessionCursor != null && sessionCursor.moveToFirst()) {
+            android.database.Cursor userCursor = dbHelper.getActiveUser();
+            if (userCursor != null && userCursor.moveToFirst()) {
+                @SuppressLint("Range") String userId = userCursor.getString(userCursor.getColumnIndex("user_id"));
+                @SuppressLint("Range") String role = userCursor.getString(userCursor.getColumnIndex("role"));
+                
+                userCursor.close();
+                sessionCursor.close();
+
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("user_id", userId);
+                intent.putExtra("user_role", role);
+                startActivity(intent);
+                finish();
+                return;
+            }
+            if (userCursor != null) userCursor.close();
+        }
+        if (sessionCursor != null) sessionCursor.close();
+
         setContentView(R.layout.login_page);
 
         emailText = findViewById(R.id.email_edit_text);
@@ -94,8 +119,9 @@ public class LoginActivity extends AppCompatActivity {
                 .putString("user_id", "501")
                 .putString("user_role", "customer").apply();
                 
-            Intent intent = new Intent(LoginActivity.this, SecureAccountActivity.class);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra("user_id", "501");
+            intent.putExtra("user_role", "customer");
             startActivity(intent);
             finish();
             return;
@@ -104,8 +130,9 @@ public class LoginActivity extends AppCompatActivity {
                 .putString("user_id", "201")
                 .putString("user_role", "staff").apply();
 
-            Intent intent = new Intent(LoginActivity.this, StaffActivity.class);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra("user_id", "201");
+            intent.putExtra("user_role", "staff");
             startActivity(intent);
             finish();
             return;
@@ -138,21 +165,20 @@ public class LoginActivity extends AppCompatActivity {
                             .putString("user_id", user.getUser_id())
                             .putString("user_role", user.getRole())
                             .apply();
+
+                        // --- STANDARD SQLITE PERSISTENCE ---
+                        DatabaseHelper dbHelper = new DatabaseHelper(LoginActivity.this);
+                        dbHelper.saveUser(user.getUser_id(), user.getRole(), username, "User " + user.getUser_id());
+                        dbHelper.saveSession(user.getUser_id(), "mock_token_" + System.currentTimeMillis());
                     }
 
                     runOnUiThread(() -> {
                         if (user != null && "success".equals(user.getStatus())) {
-                            if ("customer".equals(user.getRole())) {
-                                Intent intent = new Intent(LoginActivity.this, SecureAccountActivity.class);
-                                intent.putExtra("user_id", user.getUser_id());
-                                startActivity(intent);
-                                finish();
-                            } else if ("staff".equals(user.getRole())) {
-                                Intent intent = new Intent(LoginActivity.this, StaffActivity.class);
-                                intent.putExtra("user_id", user.getUser_id());
-                                startActivity(intent);
-                                finish();
-                            }
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            intent.putExtra("user_id", user.getUser_id());
+                            intent.putExtra("user_role", user.getRole());
+                            startActivity(intent);
+                            finish();
                         } else {
                             android.widget.Toast.makeText(LoginActivity.this, "Invalid credentials. Please try again.", android.widget.Toast.LENGTH_LONG).show();
                             passwordText.setText("");

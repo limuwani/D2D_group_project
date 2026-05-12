@@ -70,6 +70,16 @@ public class ConfirmTakeawayActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     runOnUiThread(() -> {
                         Toast.makeText(ConfirmTakeawayActivity.this, "Order Placed Successfully!", Toast.LENGTH_LONG).show();
+                        
+                        // --- STANDARD SQLITE PERSISTENCE ---
+                        DatabaseHelper dbHelper = new DatabaseHelper(ConfirmTakeawayActivity.this);
+                        dbHelper.saveOrder(
+                                "ORD-" + System.currentTimeMillis(),
+                                "Restaurant #" + restaurantId,
+                                "pending",
+                                "R 0.00"
+                        );
+
                         Intent intent = new Intent(ConfirmTakeawayActivity.this, OrderStatusActivity.class);
                         startActivity(intent);
                         finish();
