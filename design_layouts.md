@@ -93,7 +93,7 @@ graph TD
     I -- "Submit Feedback btn" --> H
 
     %% Staff Branching (Direct from Login)
-    A -. "Staff role (email contains 'waiter')" .-> L
+    A -. "Staff role (email ends with '@staff.d2d.ac.za')" .-> L
     L -- "+ ADD NEW ORDER btn" --> K
     K -- "Initialize Order btn" --> L
     K -- "Cancel btn" --> L
@@ -130,7 +130,7 @@ graph LR
     end
 
     subgraph ROLE_SPLIT["Role Detection"]
-        CHECK{"Email contains<br/>'waiter'?"}
+        CHECK{"Email ends with<br/>'@staff.d2d.ac.za'?"}
     end
 
     subgraph CUST_ZONE["Customer Zone<br/>BottomNav: bottom_nav_bar.xml"]

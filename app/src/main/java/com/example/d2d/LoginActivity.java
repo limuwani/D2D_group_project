@@ -125,7 +125,8 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
             return;
-        } else if ("zandile_waiter@D2d.com".equalsIgnoreCase(username) && "zandile123".equals(password)) {
+        } else if (username.toLowerCase().endsWith("@staff.d2d.ac.za") && "staff123".equals(password)) {
+            // Updated Staff Rule: Email domain @staff.d2d.ac.za
             getSharedPreferences("D2D_PREFS", MODE_PRIVATE).edit()
                 .putString("user_id", "201")
                 .putString("user_role", "staff").apply();
