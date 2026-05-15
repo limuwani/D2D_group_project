@@ -1,3 +1,4 @@
+/*
 package com.example.d2d;
 
 import android.content.ContentValues;
@@ -110,3 +111,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM " + TABLE_USERS + " LIMIT 1", null);
     }
 }
+
+*/

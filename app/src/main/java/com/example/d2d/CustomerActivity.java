@@ -1,3 +1,4 @@
+/*
 package com.example.d2d;
 
 import android.os.Bundle;
@@ -10,3 +11,5 @@ public class CustomerActivity extends AppCompatActivity {
         setContentView(R.layout.select_res);
     }
 }
+
+*/

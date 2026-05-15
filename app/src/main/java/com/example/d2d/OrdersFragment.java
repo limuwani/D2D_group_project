@@ -1,3 +1,4 @@
+/*
 package com.example.d2d;
 
 import android.database.Cursor;
@@ -57,3 +58,5 @@ public class OrdersFragment extends Fragment {
         adapter.notifyDataSetChanged();
     }
 }
+
+*/

@@ -1,3 +1,4 @@
+/*
 // Modified by Anon - Responsive UI & Flow
 package com.example.d2d;
 
@@ -23,3 +24,5 @@ public class StaffActivity extends AppCompatActivity {
         // If we had a list, we'd wire individual items here.
     }
 }
+
+*/

@@ -1,3 +1,4 @@
+/*
 package com.example.d2d;
 
 public class Order {
@@ -15,3 +16,5 @@ public class Order {
     public String getRestaurantName() { return restaurantName; }
     public String getStatus() { return status; }
 }
+
+*/

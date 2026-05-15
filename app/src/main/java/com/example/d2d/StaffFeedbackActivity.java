@@ -1,3 +1,4 @@
+/*
 package com.example.d2d;
 
 import android.os.Bundle;
@@ -10,3 +11,5 @@ public class StaffFeedbackActivity extends AppCompatActivity {
         setContentView(R.layout.s_view_feedback);
     }
 }
+
+*/

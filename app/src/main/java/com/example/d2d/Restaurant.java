@@ -1,3 +1,4 @@
+/*
 // Modified by Anon - Responsive UI & Flow
 package com.example.d2d;
 
@@ -25,3 +26,5 @@ public class Restaurant {
     public double getAverageRating() { return averageRating; }
     public boolean isOpen() { return isOpen; }
 }
+
+*/

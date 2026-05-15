@@ -1,3 +1,4 @@
+/*
 package com.example.d2d;
 
 import androidx.annotation.NonNull;
@@ -34,3 +35,5 @@ public class MainViewPagerAdapter extends FragmentStateAdapter {
         return 3;
     }
 }
+
+*/

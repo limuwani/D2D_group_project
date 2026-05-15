@@ -1,3 +1,4 @@
+/*
 // Modified by Anon - Responsive UI & Flow
 package com.example.d2d;
 
@@ -19,3 +20,5 @@ public class TermsActivity extends AppCompatActivity {
         });
     }
 }
+
+*/

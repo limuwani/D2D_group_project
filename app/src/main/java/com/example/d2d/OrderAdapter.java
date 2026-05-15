@@ -1,3 +1,4 @@
+/*
 package com.example.d2d;
 
 import android.view.LayoutInflater;
@@ -47,3 +48,5 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         }
     }
 }
+
+*/
