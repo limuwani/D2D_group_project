@@ -10,10 +10,8 @@ import android.widget.Toast;
 import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class ConfirmTakeawayActivity extends AppCompatActivity {
@@ -48,16 +46,13 @@ public class ConfirmTakeawayActivity extends AppCompatActivity {
     }
 
     private void placeOrder() {
-        // --- OFFICIAL API URL FOR CREATING ORDERS ---
-        String url = "https://wmc.ms.wits.ac.za/students/sgroup2676/d2dGroupProject/oderTrackingApp/orders/createOder.php";
-        
-        RequestBody body = new FormBody.Builder()
-                .add("user_id", userId)
-                .add("restaurant_id", restaurantId)
-                .add("order_status", "pending")
-                .build();
+        // --- OFFICIAL API URL FOR CREATING ORDERS (GET request) ---
+        String url = "https://wmc.ms.wits.ac.za/students/sgroup2676/d2dGroupProject/oderTrackingApp/orders/createOder.php"
+                + "?customer_id=" + userId
+                + "&staff_id=0"
+                + "&restaurant_id=" + restaurantId;
 
-        Request request = new Request.Builder().url(url).post(body).build();
+        Request request = new Request.Builder().url(url).get().build();
 
         client.newCall(request).enqueue(new Callback() {
             @Override
