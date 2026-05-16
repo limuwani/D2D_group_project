@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D2D | Registry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1>Staff Registry</h1>
+            <p class="subtitle">Assign yourself to a fulfillment center.</p>
+        </div>
+
+        <div class="list-item" onclick="assignRes('Midnight Grill', 'Rosebank')">
+            <img src="res_midnight.png" class="item-img" style="width: 56px; height: 56px; border-radius: 16px;">
+            <div style="flex: 1">
+                <div style="font-weight: 700; font-size: 17px;">Midnight Grill</div>
+                <div style="font-size: 12px; color: var(--text-dim)">Rosebank Hub</div>
+            </div>
+            <div style="color: var(--accent-light); font-size: 10px; font-weight: 800;">SELECT</div>
+        </div>
+
+        <div class="list-item" onclick="assignRes('Casa Nova', 'Braamfontein')">
+            <img src="res_casa.png" class="item-img" style="width: 56px; height: 56px; border-radius: 16px;">
+            <div style="flex: 1">
+                <div style="font-weight: 700; font-size: 17px;">Casa Nova</div>
+                <div style="font-size: 12px; color: var(--text-dim)">Braamfontein Hub</div>
+            </div>
+            <div style="color: var(--accent-light); font-size: 10px; font-weight: 800;">SELECT</div>
+        </div>
+
+        <div class="list-item" onclick="assignRes('Organic Resto', 'Sandton')">
+            <img src="res_organic.png" class="item-img" style="width: 56px; height: 56px; border-radius: 16px;">
+            <div style="flex: 1">
+                <div style="font-weight: 700; font-size: 17px;">Organic Resto</div>
+                <div style="font-size: 12px; color: var(--text-dim)">Sandton Hub</div>
+            </div>
+            <div style="color: var(--accent-light); font-size: 10px; font-weight: 800;">SELECT</div>
+        </div>
+
+        <a href="index.html" class="btn btn-outline" style="margin-top: 40px;">BACK TO LOGIN</a>
+    </div>
+
+    <script>
+        function assignRes(name, loc) {
+            sessionStorage.setItem('current_staff_res', name);
+            sessionStorage.setItem('current_staff_loc', loc);
+            window.location.href = 'staff_home.html';
+        }
+    </script>
+</body>
+</html>

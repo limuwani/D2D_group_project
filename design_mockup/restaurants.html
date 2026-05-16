@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D2D | Restaurants</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1>Discover</h1>
+            <p class="subtitle">Hand-picked premium selections.</p>
+        </div>
+
+        <div id="restaurant-list">
+            <!-- Dynamic Restaurant Cards -->
+        </div>
+
+        <nav class="nav-bar">
+            <a href="restaurants.html" class="nav-link active">
+                <div class="nav-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+                <span>EXPLORE</span>
+            </a>
+            <a href="orders.html" class="nav-link">
+                <div class="nav-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></div>
+                <span>TRACK</span>
+            </a>
+            <a href="customer_profile.html" class="nav-link">
+                <div class="nav-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                <span>PROFILE</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        function loadRestaurants() {
+            const list = document.getElementById('restaurant-list');
+            const feedbackList = JSON.parse(localStorage.getItem('d2d_feedback') || '[]');
+            
+            // Sync with Admin Data or Defaults
+            const DEFAULT_RESTAURANTS = [
+                { id: 1, name: 'Midnight Grill', loc: 'Rosebank', cat: 'Grill', img: 'res_midnight.png' },
+                { id: 2, name: 'Casa Nova', loc: 'Braamfontein', cat: 'Italian', img: 'res_casa.png' },
+                { id: 3, name: 'Organic Resto', loc: 'Sandton', cat: 'Healthy', img: 'res_organic.png' }
+            ];
+            const restaurants = JSON.parse(localStorage.getItem('d2d_restaurants') || JSON.stringify(DEFAULT_RESTAURANTS));
+
+            if (restaurants.length === 0) {
+                list.innerHTML = `
+                    <div class="card" style="text-align: center; opacity: 0.5; padding: 60px 20px;">
+                        <div style="font-weight: 700; font-size: 15px;">NO NODES DISCOVERED</div>
+                        <div style="font-size: 12px; margin-top: 10px;">The network is currently offline.</div>
+                    </div>
+                `;
+                return;
+            }
+
+            list.innerHTML = restaurants.map(res => {
+                const resFeedback = feedbackList.filter(f => f.restaurant === res.name);
+                let ratingHtml = '<div style="font-size: 9px; color: var(--text-dim); letter-spacing: 1px; font-weight: 700;">NEW</div>';
+                
+                if (resFeedback.length > 0) {
+                    const positive = resFeedback.filter(f => f.rating === 1).length;
+                    const score = Math.round((positive / resFeedback.length) * 100);
+                    ratingHtml = `
+                        <div style="font-weight: 800; color: var(--accent-light); font-size: 20px;">${score}%</div>
+                        <div style="font-size: 9px; color: var(--text-dim); letter-spacing: 1px; font-weight: 700;">MATCH</div>
+                    `;
+                }
+
+                return `
+                    <a href="orders.html" class="card featured-card" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.9)), url('${res.img}');">
+                        <div class="featured-content">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                                <div>
+                                    <div style="font-weight: 800; font-size: 26px; letter-spacing: -1px; color: #fff;">${res.name}</div>
+                                    <div style="display: flex; align-items: center; gap: 8px; margin-top: 4px;">
+                                        <span class="badge badge-ready" style="padding: 4px 10px; font-size: 8px; border-radius: 6px;">OPEN NOW</span>
+                                        <span style="font-size: 13px; color: var(--text-dim);">${res.loc} ${res.cat ? '• ' + res.cat : ''}</span>
+                                    </div>
+                                </div>
+                                <div style="text-align: right;">
+                                    ${ratingHtml}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                `;
+            }).join('');
+        }
+
+        loadRestaurants();
+    </script>
+</body>
+</html>

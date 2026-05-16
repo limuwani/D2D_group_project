@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D2D | Admin Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            background: var(--surface);
+            padding: 8px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            background: transparent;
+            color: var(--text-dim);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .tab-btn.active {
+            background: var(--surface-light);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .admin-section {
+            display: none;
+        }
+        .admin-section.active {
+            display: block;
+        }
+        .remove-btn {
+            color: #ff4444;
+            background: rgba(255, 68, 68, 0.1);
+            border: 1px solid rgba(255, 68, 68, 0.2);
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 10px;
+            text-transform: uppercase;
+            transition: 0.2s;
+        }
+        .remove-btn:hover {
+            background: #ff4444;
+            color: #fff;
+        }
+        .add-form {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div id="toast" class="toast">Admin Update Complete</div>
+        
+        <div class="header">
+            <h1 style="font-size: 32px;">Command Center</h1>
+            <p class="subtitle">System-wide orchestration intelligence.</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" id="tab-restaurants" onclick="showSection('restaurants')">Restaurants</button>
+            <button class="tab-btn" id="tab-staff" onclick="showSection('staff')">Staff</button>
+            <button class="tab-btn" id="tab-customers" onclick="showSection('customers')">Customers</button>
+        </div>
+
+        <!-- Restaurants Section -->
+        <div id="restaurants-section" class="admin-section active">
+            <div class="add-form">
+                <span class="label">Register New Restaurant</span>
+                <div class="input-wrapper">
+                    <input type="text" id="res-name" placeholder="Restaurant Name">
+                </div>
+                <div class="input-wrapper">
+                    <input type="text" id="res-loc" placeholder="Location (e.g. Sandton)">
+                </div>
+                <div class="input-wrapper">
+                    <input type="text" id="res-img" placeholder="Image URL (e.g. res_casa.png)">
+                </div>
+                <button class="btn btn-primary" onclick="addRestaurant()">INITIALIZE RESTAURANT</button>
+            </div>
+
+            <div class="label" style="margin-top: 40px;">Active Node Grid</div>
+            <div id="res-list">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+
+        <!-- Staff Section -->
+        <div id="staff-section" class="admin-section">
+            <div class="add-form">
+                <span class="label">Register New Staff Intelligence</span>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div class="input-wrapper">
+                        <input type="text" id="staff-fname" placeholder="First Name">
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="text" id="staff-lname" placeholder="Last Name">
+                    </div>
+                </div>
+                <div class="input-wrapper">
+                    <input type="email" id="staff-email" placeholder="email@intelligence.com">
+                </div>
+                <div class="input-wrapper">
+                    <input type="password" id="staff-pass" placeholder="Secure Access Key">
+                </div>
+                <div class="input-wrapper">
+                    <span class="label">Assigned Node</span>
+                    <select id="staff-assigned-res" style="width: 100%; background: #1a1a1a; border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; color: white; font-size: 15px; outline: none; appearance: none; cursor: pointer;">
+                        <option value="Midnight Grill">Midnight Grill</option>
+                        <option value="Casa Nova">Casa Nova</option>
+                        <option value="Organic Resto">Organic Resto</option>
+                        <option value="Global Kitchen">Global Kitchen</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="addStaff()">AUTHORIZE AGENT</button>
+            </div>
+
+            <div class="label" style="margin-top: 40px;">Staff Registry</div>
+            <div id="staff-list">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+
+        <!-- Customers Section -->
+        <div id="customers-section" class="admin-section">
+            <div class="label" style="margin-top: 20px;">Customer Intelligence Matrix</div>
+            <div id="customer-list">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+
+        <a href="index.html" class="btn btn-outline" style="margin-top: 40px;">QUIT COMMAND CENTER</a>
+    </div>
+
+    <script>
+        // Initial Data Sync
+        const DEFAULT_RESTAURANTS = [
+            { id: 1, name: 'Midnight Grill', loc: 'Rosebank', img: 'res_midnight.png' },
+            { id: 2, name: 'Casa Nova', loc: 'Braamfontein', img: 'res_casa.png' },
+            { id: 3, name: 'Organic Resto', loc: 'Sandton', img: 'res_organic.png' }
+        ];
+
+        function showSection(id) {
+            document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id + '-section').classList.add('active');
+            document.getElementById('tab-' + id).classList.add('active');
+            renderData();
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+
+        // Restaurant Logic
+        function addRestaurant() {
+            const name = document.getElementById('res-name').value;
+            const loc = document.getElementById('res-loc').value;
+            const img = document.getElementById('res-img').value || 'res_default.png';
+
+            if (!name || !loc) return alert('Fill required fields');
+
+            const res = JSON.parse(localStorage.getItem('d2d_restaurants') || JSON.stringify(DEFAULT_RESTAURANTS));
+            res.push({ id: Date.now(), name, loc, img });
+            localStorage.setItem('d2d_restaurants', JSON.stringify(res));
+            
+            showToast('Restaurant Initialized');
+            renderData();
+            document.querySelectorAll('#restaurants-section input').forEach(i => i.value = '');
+        }
+
+        function removeRestaurant(id) {
+            if (!confirm('Decommission this node?')) return;
+            let res = JSON.parse(localStorage.getItem('d2d_restaurants') || JSON.stringify(DEFAULT_RESTAURANTS));
+            res = res.filter(r => r.id !== id);
+            localStorage.setItem('d2d_restaurants', JSON.stringify(res));
+            renderData();
+        }
+
+        // Staff Logic
+        function addStaff() {
+            const fname = document.getElementById('staff-fname').value;
+            const lname = document.getElementById('staff-lname').value;
+            const email = document.getElementById('staff-email').value;
+            const pass = document.getElementById('staff-pass').value;
+            const assignedRes = document.getElementById('staff-assigned-res').value;
+
+            if (!fname || !email || !pass) return alert('Fill required fields');
+
+            const staff = JSON.parse(localStorage.getItem('d2d_staff') || '[]');
+            staff.push({ id: Date.now(), fname, lname, email, pass, assignedRes });
+            localStorage.setItem('d2d_staff', JSON.stringify(staff));
+
+            showToast('Staff Agent Authorized');
+            renderData();
+            document.querySelectorAll('#staff-section input').forEach(i => i.value = '');
+        }
+
+        function removeStaff(id) {
+            if (!confirm('Revoke agent access?')) return;
+            let staff = JSON.parse(localStorage.getItem('d2d_staff') || '[]');
+            staff = staff.filter(s => s.id !== id);
+            localStorage.setItem('d2d_staff', JSON.stringify(staff));
+            renderData();
+        }
+
+        function renderData() {
+            // Render Restaurants
+            const resList = document.getElementById('res-list');
+            const res = JSON.parse(localStorage.getItem('d2d_restaurants') || JSON.stringify(DEFAULT_RESTAURANTS));
+            resList.innerHTML = res.map(r => `
+                <div class="list-item">
+                    <div style="width: 50px; height: 50px; border-radius: 12px; background: #222; background-image: url('${r.img}'); background-size: cover; background-position: center;"></div>
+                    <div style="flex-grow: 1;">
+                        <div style="font-weight: 700; color: #fff;">${r.name}</div>
+                        <div style="font-size: 12px; color: var(--text-dim);">${r.loc}</div>
+                    </div>
+                    <button class="remove-btn" onclick="removeRestaurant(${r.id})">Remove</button>
+                </div>
+            `).join('');
+
+            // Render Staff
+            const staffList = document.getElementById('staff-list');
+            const staff = JSON.parse(localStorage.getItem('d2d_staff') || '[]');
+            staffList.innerHTML = staff.map(s => `
+                <div class="list-item">
+                    <div style="width: 40px; height: 40px; border-radius: 20px; background: #222; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px; color: var(--accent);">
+                        ${s.fname[0]}${s.lname ? s.lname[0] : ''}
+                    </div>
+                    <div style="flex-grow: 1;">
+                        <div style="font-weight: 700; color: #fff;">${s.fname} ${s.lname || ''}</div>
+                        <div style="font-size: 12px; color: var(--text-dim);">${s.email}</div>
+                    </div>
+                    <button class="remove-btn" onclick="removeStaff(${s.id})">Revoke</button>
+                </div>
+            `).join('') || '<div class="card" style="text-align: center; opacity: 0.5; padding: 40px;">No staff agents registered</div>';
+
+            // Render Customers
+            const custList = document.getElementById('customer-list');
+            let customers = JSON.parse(localStorage.getItem('d2d_customers') || '[]');
+            if (customers.length === 0) {
+                customers = [
+                    { name: 'Alex Johnson', email: 'alex@example.com' },
+                    { name: 'Sarah Miller', email: 'sarah.m@web.com' },
+                    { name: 'David Chen', email: 'd.chen@global.net' }
+                ];
+                localStorage.setItem('d2d_customers', JSON.stringify(customers));
+            }
+            custList.innerHTML = customers.map(c => `
+                <div class="list-item">
+                    <div style="flex-grow: 1;">
+                        <div style="font-weight: 700; color: #fff;">${c.name}</div>
+                        <div style="font-size: 12px; color: var(--text-dim);">${c.email}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        renderData();
+    </script>
+</body>
+</html>

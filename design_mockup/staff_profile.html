@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff | Performance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="header" style="text-align: center;">
+            <div style="width: 120px; height: 120px; background: var(--surface); border: 2px solid var(--border); border-radius: 60px; margin: 0 auto 24px auto; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div id="staff-percentage" style="font-size: 32px; font-weight: 800; color: var(--success);">100%</div>
+                <div style="font-size: 10px; font-weight: 700; color: var(--text-dim); letter-spacing: 1px;">SATISFACTION</div>
+            </div>
+            <h1 id="staff-name-title">Agent Profile</h1>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 8px;">
+                <div style="width: 8px; height: 8px; border-radius: 4px; background: var(--success);"></div>
+                <p class="subtitle" id="staff-res-title">Assigned: Global Kitchen</p>
+            </div>
+        </div>
+
+        <div class="label" style="margin-top: 40px;">Intelligence Feed</div>
+        
+        <div class="card" style="padding: 0; overflow: hidden; margin-bottom: 30px;">
+            <div id="view-feedback-btn" class="list-item" style="margin-bottom: 0; border: none; border-radius: 0; background: transparent; cursor: pointer;">
+                <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(43, 166, 64, 0.1); display: flex; align-items: center; justify-content: center;">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--success)" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-13.5 8.38 8.38 0 0 1 3.8.9L21 3l-1.5 4.5z"/></svg>
+                </div>
+                <div style="flex-grow: 1;">
+                    <div style="font-weight: 700; color: #fff;">Performance Feedback</div>
+                    <div style="font-size: 12px; color: var(--text-dim);">Review fulfillment intelligence</div>
+                </div>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--text-dim)" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+            <div style="height: 1px; background: var(--border); margin: 0 20px;"></div>
+            <div onclick="logout()" class="list-item" style="margin-bottom: 0; border: none; border-radius: 0; background: transparent; cursor: pointer;">
+                <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: center;">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+                </div>
+                <div style="flex-grow: 1;">
+                    <div style="font-weight: 700; color: #fff;">Logout</div>
+                    <div style="font-size: 12px; color: var(--text-dim);">Terminate portal session</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="feedback-feed" style="display: none;">
+            <!-- Feedback items will load here -->
+        </div>
+
+        <nav class="nav-bar">
+            <a href="staff_home.html" class="nav-link">
+                <div class="nav-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2"/></svg></div>
+                <span>QUEUE</span>
+            </a>
+            <a href="staff_profile.html" class="nav-link active">
+                <div class="nav-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                <span>PROFILE</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        const currentRes = sessionStorage.getItem('current_staff_res') || 'Global Kitchen';
+        document.getElementById('staff-res-title').innerText = 'Assigned: ' + currentRes;
+
+        document.getElementById('view-feedback-btn').onclick = () => {
+            const feed = document.getElementById('feedback-feed');
+            feed.style.display = feed.style.display === 'none' ? 'block' : 'none';
+        };
+
+        function logout() {
+            if (confirm('Terminate portal session?')) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        function loadPerformance() {
+            const feedbackList = JSON.parse(localStorage.getItem('d2d_feedback') || '[]');
+            const resFeedback = feedbackList.filter(f => f.restaurant === currentRes);
+            const feedContainer = document.getElementById('feedback-feed');
+
+            // Calculate Score
+            if (resFeedback.length > 0) {
+                const positive = resFeedback.filter(f => f.rating === 1).length;
+                const score = Math.round((positive / resFeedback.length) * 100);
+                document.getElementById('staff-percentage').innerText = score + '%';
+                document.getElementById('staff-percentage').style.color = score > 70 ? 'var(--success)' : 'var(--warning)';
+            } else {
+                document.getElementById('staff-percentage').innerText = '---';
+                document.getElementById('staff-percentage').style.color = 'var(--text-dim)';
+            }
+
+            if (resFeedback.length === 0) {
+                feedContainer.innerHTML = `
+                    <div class="card" style="text-align: center; opacity: 0.5; padding: 40px;">
+                        <div style="font-size: 13px; font-weight: 600;">NO FEEDBACK YET</div>
+                    </div>
+                `;
+                return;
+            }
+
+            feedContainer.innerHTML = resFeedback.map(f => `
+                <div class="card" style="padding: 20px; border-left: 4px solid ${f.rating === 1 ? 'var(--success)' : 'var(--danger)'};">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <div style="font-size: 10px; font-weight: 700; color: var(--text-dim);">#${f.orderId || 'MOCK'}</div>
+                        <div style="color: ${f.rating === 1 ? 'var(--success)' : 'var(--danger)'}; font-size: 12px; font-weight: 800;">
+                            ${f.rating === 1 ? 'EXCEPTIONAL' : 'SUBPAR'}
+                        </div>
+                    </div>
+                    <div style="font-size: 15px; line-height: 1.5; color: #fff;">
+                        ${f.comment || 'No specific comment provided.'}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        loadPerformance();
+    </script>
+</body>
+</html>

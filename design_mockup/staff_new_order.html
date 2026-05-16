@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D2D | New Fulfillment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1>New Entry</h1>
+            <p class="subtitle">Manual order injection.</p>
+        </div>
+
+        <div class="card" style="padding: 32px;">
+            <div class="input-wrapper">
+                <span class="label">Customer Identifier (Email)</span>
+                <input type="email" id="cust-email" placeholder="customer@intelligence.com">
+            </div>
+            
+            <button class="btn btn-primary" onclick="createOrder()">INITIALIZE ORDER</button>
+        </div>
+
+        <a href="staff_home.html" class="btn btn-outline" style="margin-top: 20px;">ABORT ENTRY</a>
+    </div>
+
+    <script>
+        const currentRes = sessionStorage.getItem('current_staff_res') || 'Global Kitchen';
+
+        function createOrder() {
+            const email = document.getElementById('cust-email').value;
+            if (!email) return alert('Enter customer identifier');
+
+            const orders = JSON.parse(localStorage.getItem('d2d_orders') || '[]');
+            const newOrder = {
+                id: Math.floor(1000 + Math.random() * 9000),
+                email: email,
+                restaurant: currentRes,
+                status: 'PENDING',
+                timestamp: new Date().getTime()
+            };
+
+            orders.unshift(newOrder);
+            localStorage.setItem('d2d_orders', JSON.stringify(orders));
+            window.location.href = 'staff_home.html';
+        }
+    </script>
+</body>
+</html>

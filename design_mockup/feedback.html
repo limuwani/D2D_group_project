@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D2D | Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .feedback-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px; }
+        .feedback-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 30px 20px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            color: var(--text-dim);
+        }
+        .feedback-btn svg { width: 36px; height: 36px; stroke: var(--text-dim); transition: 0.3s; }
+        .feedback-btn.selected {
+            background: rgba(255, 0, 0, 0.1);
+            border-color: var(--accent);
+            color: #fff;
+        }
+        .feedback-btn.selected svg { stroke: var(--accent); fill: var(--accent); }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1 id="feedback-title">Experience</h1>
+            <p class="subtitle">How was your service intelligence?</p>
+        </div>
+        
+        <div class="feedback-grid">
+            <div class="feedback-btn" id="pos" onclick="selectFeedback('pos')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                EXCEPTIONAL
+            </div>
+            <div class="feedback-btn" id="neg" onclick="selectFeedback('neg')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="transform: rotate(180deg);"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                SUBPAR
+            </div>
+        </div>
+
+        <div class="input-wrapper">
+            <span class="label">Additional Intelligence</span>
+            <input type="text" id="feedback-comment" placeholder="Share your experience details...">
+        </div>
+
+        <button onclick="transmitFeedback()" class="btn btn-primary" style="margin-top: 20px; width: 100%;">TRANSMIT FEEDBACK</button>
+        <a href="orders.html" class="btn btn-outline" style="margin-top: 16px;">SKIP</a>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('id');
+        const restaurantName = urlParams.get('res') || 'Global Kitchen';
+        
+        document.getElementById('feedback-title').innerText = restaurantName;
+
+        let selectedRating = null;
+
+        function selectFeedback(id) {
+            document.querySelectorAll('.feedback-btn').forEach(b => b.classList.remove('selected'));
+            document.getElementById(id).classList.add('selected');
+            selectedRating = (id === 'pos' ? 1 : 0);
+        }
+
+        function transmitFeedback() {
+            if (selectedRating === null) return alert('Please select a rating');
+            
+            const comment = document.getElementById('feedback-comment').value;
+            const feedbackList = JSON.parse(localStorage.getItem('d2d_feedback') || '[]');
+            
+            const newFeedback = {
+                orderId: orderId,
+                restaurant: restaurantName,
+                rating: selectedRating,
+                comment: comment,
+                timestamp: new Date().getTime()
+            };
+
+            feedbackList.unshift(newFeedback);
+            localStorage.setItem('d2d_feedback', JSON.stringify(feedbackList));
+            
+            window.location.href = 'orders.html';
+        }
+    </script>
+</body>
+</html>

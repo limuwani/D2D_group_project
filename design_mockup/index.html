@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>D2D | Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="header" style="margin-top: 40px; text-align: center;">
+            <div style="width: 80px; height: 80px; background: var(--surface); border: 2px solid var(--border); border-radius: 24px; margin: 0 auto 30px auto; display: flex; align-items: center; justify-content: center; transform: rotate(-10deg); box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+                <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <h1>Premium Access</h1>
+            <p class="subtitle">Enter your credentials to continue.</p>
+        </div>
+
+        <div class="card" style="padding: 32px;">
+            <div class="input-wrapper">
+                <span class="label">Email Address</span>
+                <input type="email" placeholder="john@premium.com">
+            </div>
+            <a href="setup_security.html" class="btn btn-primary">SIGN IN</a>
+            <div style="margin-top: 16px; text-align: center;">
+                <a href="forgot_password.html" style="color: var(--text-dim); font-size: 12px; text-decoration: none; font-weight: 500;">Forgot Password?</a>
+            </div>
+        </div>
+        
+        <div style="margin-top: 40px; text-align: center; display: flex; flex-direction: column; gap: 20px;">
+            <a href="staff_select_res.html" style="color: var(--text-dim); font-size: 13px; text-decoration: none; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;">Staff Portal</a>
+            <a href="admin_panel.html" style="color: var(--accent); font-size: 13px; text-decoration: none; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;">Admin Command Center</a>
+            <a href="terms.html" style="color: var(--text-dim); font-size: 11px; text-decoration: none; font-weight: 500; opacity: 0.6;">Terms & Conditions</a>
+        </div>
+    </div>
+</body>
+</html>

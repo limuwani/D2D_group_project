@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff | Control</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="toast" class="toast">Status Updated</div>
+        <div class="header">
+            <div>
+                <h1>Queue Control</h1>
+                <p class="subtitle" id="staff-res-subtitle">Operational fulfillment intelligence.</p>
+            </div>
+        </div>
+
+        <div id="staff-orders-container">
+            <!-- Staff orders will load here -->
+        </div>
+
+        <a href="staff_new_order.html" class="btn btn-primary" style="margin-top: 20px;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            ADD NEW ORDER
+        </a>
+
+        <nav class="nav-bar">
+            <a href="staff_home.html" class="nav-link active">
+                <div class="nav-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2"/></svg></div>
+                <span>QUEUE</span>
+            </a>
+            <a href="staff_profile.html" class="nav-link">
+                <div class="nav-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                <span>PROFILE</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        document.getElementById('staff-res-subtitle').innerText = (sessionStorage.getItem('current_staff_res') || 'Global') + ' Hub';
+
+        function loadStaffOrders() {
+            const container = document.getElementById('staff-orders-container');
+            const orders = JSON.parse(localStorage.getItem('d2d_orders') || '[]');
+
+            if (orders.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; margin-top: 80px; padding: 0 40px; margin-bottom: 40px;">
+                        <div style="width: 100px; height: 100px; background: rgba(255,255,255,0.03); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px auto;">
+                            <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="var(--text-dim)" stroke-width="1.5"><path d="M9 11l3 3L22 4m-2 8v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h8"/></svg>
+                        </div>
+                        <h2 style="font-weight: 800; font-size: 20px; letter-spacing: -0.5px; margin-bottom: 8px;">All caught up!</h2>
+                        <p style="color: var(--text-dim); font-size: 14px; line-height: 1.6;">The fulfillment queue is currently clear. No active orders require attention.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = orders.map(order => `
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                        <div>
+                            <span class="label" style="margin-bottom: 4px;">#${order.id}</span>
+                            <div style="font-weight: 800; font-size: 18px; color: #fff;">${order.restaurant || 'Unknown'}</div>
+                        </div>
+                        <div class="badge badge-${order.status.toLowerCase()}">${order.status}</div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <button onclick="updateStatus('${order.id}', 'READY')" class="btn btn-outline" style="padding: 14px; font-size: 11px;">SET READY</button>
+                        <button onclick="updateStatus('${order.id}', 'COLLECTED')" class="btn btn-primary" style="padding: 14px; font-size: 11px;">COLLECTED</button>
+                    </div>
+                    <button onclick="deleteOrder('${order.id}')" style="background: none; border: none; color: #ff4444; font-size: 10px; font-weight: 700; margin-top: 15px; width: 100%; cursor: pointer; letter-spacing: 1px;">REMOVE FROM QUEUE</button>
+                </div>
+            `).join('');
+        }
+
+        function updateStatus(orderId, newStatus) {
+            const orders = JSON.parse(localStorage.getItem('d2d_orders') || '[]');
+            const updatedOrders = orders.map(order => {
+                if (String(order.id) === String(orderId)) {
+                    return { ...order, status: newStatus };
+                }
+                return order;
+            });
+            localStorage.setItem('d2d_orders', JSON.stringify(updatedOrders));
+            
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+            
+            loadStaffOrders();
+        }
+
+        function deleteOrder(orderId) {
+            if (confirm('Permanently remove this order?')) {
+                const orders = JSON.parse(localStorage.getItem('d2d_orders') || '[]');
+                const filteredOrders = orders.filter(order => String(order.id) !== String(orderId));
+                localStorage.setItem('d2d_orders', JSON.stringify(filteredOrders));
+                loadStaffOrders();
+            }
+        }
+
+        loadStaffOrders();
+    </script>
+</body>
+</html>
