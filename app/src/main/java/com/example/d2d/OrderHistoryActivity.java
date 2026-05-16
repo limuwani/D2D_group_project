@@ -1,48 +1,44 @@
-/*
 package com.example.d2d;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import android.widget.ImageButton;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrdersFragment extends Fragment {
+public class OrderHistoryActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private OrderAdapter adapter;
     private List<Order> orderList;
     private DatabaseHelper dbHelper;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_orders, container, false);
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_order_history);
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        ImageButton backBtn = findViewById(R.id.back_btn);
+        if (backBtn != null) {
+            backBtn.setOnClickListener(v -> finish());
+        }
 
-        recyclerView = view.findViewById(R.id.orders_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView = findViewById(R.id.orders_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         orderList = new ArrayList<>();
         adapter = new OrderAdapter(orderList);
         recyclerView.setAdapter(adapter);
 
-        dbHelper = new DatabaseHelper(getActivity());
+        dbHelper = new DatabaseHelper(this);
         loadOrdersFromDatabase();
     }
 
     private void loadOrdersFromDatabase() {
-        Cursor cursor = dbHelper.getAllOrders();
+        Cursor cursor = dbHelper.getCompletedOrders();
         orderList.clear();
 
         if (cursor != null && cursor.moveToFirst()) {
@@ -54,9 +50,13 @@ public class OrdersFragment extends Fragment {
                 orderList.add(new Order(id, restaurant, status));
             } while (cursor.moveToNext());
             cursor.close();
+        } else {
+            // Inject mock order history if the database is empty for demonstration
+            orderList.add(new Order("101", "Casa Nova", "Collected"));
+            orderList.add(new Order("89", "D2D Frozen", "Collected"));
+            orderList.add(new Order("74", "Wits Dining", "Collected"));
         }
+        
         adapter.notifyDataSetChanged();
     }
 }
-
-*/

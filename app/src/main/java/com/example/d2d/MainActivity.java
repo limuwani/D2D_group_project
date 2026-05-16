@@ -1,4 +1,3 @@
-/*
 package com.example.d2d;
 
 import android.os.Bundle;
@@ -54,14 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(1);
                 return true;
             } else if (itemId == R.id.profile || itemId == R.id.staff_profile) {
-                // --- LOGOUT LOGIC ---
-                DatabaseHelper dbHelper = new DatabaseHelper(MainActivity.this);
-                dbHelper.getWritableDatabase().execSQL("UPDATE sessions SET is_active = 0");
-                getSharedPreferences("D2D_PREFS", MODE_PRIVATE).edit().clear().apply();
-                
-                android.content.Intent intent = new android.content.Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+                viewPager.setCurrentItem(2);
                 return true;
             }
             return false;
@@ -72,20 +64,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                switch (position) {
-                    case 0:
-                        activeNav.getMenu().findItem("staff".equals(getIntent().getStringExtra("user_role")) ? R.id.staff_home_button : R.id.home_button).setChecked(true);
-                        break;
-                    case 1:
-                        activeNav.getMenu().findItem("staff".equals(getIntent().getStringExtra("user_role")) ? R.id.manage : R.id.orders).setChecked(true);
-                        break;
-                    case 2:
-                        activeNav.getMenu().findItem("staff".equals(getIntent().getStringExtra("user_role")) ? R.id.staff_profile : R.id.profile).setChecked(true);
-                        break;
+                if ("staff".equals(role)) {
+                    switch (position) {
+                        case 0: activeNav.setSelectedItemId(R.id.staff_home_button); break;
+                        case 1: activeNav.setSelectedItemId(R.id.manage); break;
+                        case 2: activeNav.setSelectedItemId(R.id.staff_profile); break;
+                    }
+                } else {
+                    switch (position) {
+                        case 0: activeNav.setSelectedItemId(R.id.home_button); break;
+                        case 1: activeNav.setSelectedItemId(R.id.orders); break;
+                        case 2: activeNav.setSelectedItemId(R.id.profile); break;
+                    }
                 }
             }
         });
     }
 }
-
-*/

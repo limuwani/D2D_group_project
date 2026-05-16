@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="8dp"
+    android:background="@drawable/white_border_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/queue_order_id_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ORDER #101"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/queue_order_status_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PREPARING"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:background="@drawable/glass_red"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"/>
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <TextView
+        android:id="@+id/queue_customer_name_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Customer: Naledi"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/queue_mark_ready_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="READY"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:backgroundTint="@null"
+            android:background="@drawable/green_border_bg"
+            android:layout_marginEnd="5dp"/>
+
+        <Button
+            android:id="@+id/queue_mark_collected_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="COLLECTED"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:backgroundTint="@null"
+            android:background="@drawable/red_border_bg"
+            android:layout_marginStart="5dp"/>
+    </LinearLayout>
+
+</LinearLayout>

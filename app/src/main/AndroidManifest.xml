@@ -39,6 +39,7 @@
         <activity android:name=".RecoveryStep2Activity"/>
         <activity android:name=".NewPasswordActivity"/>
         <activity android:name=".select_res"/>
+        <activity android:name=".OrderHistoryActivity"/>
     </application>
 
 </manifest>

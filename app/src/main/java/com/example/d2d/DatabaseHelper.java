@@ -1,4 +1,3 @@
-/*
 package com.example.d2d;
 
 import android.content.ContentValues;
@@ -88,6 +87,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM " + TABLE_ORDERS + " ORDER BY timestamp DESC", null);
     }
 
+    public Cursor getCompletedOrders() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_ORDERS + " WHERE status = 'Collected' ORDER BY timestamp DESC", null);
+    }
+
+    public Cursor getActiveOrder() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_ORDERS + " WHERE status != 'Collected' ORDER BY timestamp DESC LIMIT 1", null);
+    }
+
     // --- SESSION METHODS ---
     public void saveSession(String userId, String token) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -111,5 +120,3 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM " + TABLE_USERS + " LIMIT 1", null);
     }
 }
-
-*/

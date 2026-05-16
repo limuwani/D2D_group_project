@@ -1,4 +1,3 @@
-/*
 package com.example.d2d;
 
 import com.google.gson.annotations.SerializedName;
@@ -37,5 +36,3 @@ public class LoginResponse {
         this.user_id = user_id;
     }
 }
-
-*/

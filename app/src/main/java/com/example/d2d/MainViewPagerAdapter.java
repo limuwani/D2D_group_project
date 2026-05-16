@@ -1,4 +1,3 @@
-/*
 package com.example.d2d;
 
 import androidx.annotation.NonNull;
@@ -19,7 +18,7 @@ public class MainViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 1:
-                return new OrdersFragment();
+                return new OrderStatusFragment();
             case 2:
                 return new ProfileFragment();
             default:
@@ -35,5 +34,3 @@ public class MainViewPagerAdapter extends FragmentStateAdapter {
         return 3;
     }
 }
-
-*/

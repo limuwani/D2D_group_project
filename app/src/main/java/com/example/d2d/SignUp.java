@@ -1,4 +1,3 @@
-/*
 // Modified by Anon - Responsive UI & Flow
 package com.example.d2d;
 
@@ -159,5 +158,3 @@ public class SignUp extends AppCompatActivity {
         });
     }
 }
-
-*/

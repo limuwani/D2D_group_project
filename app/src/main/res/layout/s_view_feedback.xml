@@ -1,122 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@drawable/main">
 
-    <ScrollView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <ImageButton
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_arrow_back_24"
+            android:background="@drawable/no_backround"
+            android:contentDescription="Back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Performance"
+            android:fontFamily="@font/archivoblack"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/white_border_bg"
+        android:layout_marginHorizontal="16dp"
+        android:padding="20dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Average Rating"
+            android:textColor="#DDDDDD"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/avg_rating_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4.8"
+            android:textColor="@color/white"
+            android:textSize="48sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⭐⭐⭐⭐⭐"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/total_reviews_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Based on 12 reviews"
+            android:textColor="#AAAAAA"
+            android:layout_marginTop="5dp"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recent Feedback"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="10dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/feedback_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:paddingHorizontal="6dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp"
-            android:gravity="center_horizontal">
-
-            <!-- Satisfaction Circle -->
-            <LinearLayout
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/round_shape">
-
-                <TextView
-                    android:id="@+id/average_rate_for_staff"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="100%"
-                    android:textColor="@color/green"
-                    android:textSize="35sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/archivoblack" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="SATISFACTION"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="Staff Profile"
-                android:textColor="@color/white"
-                android:textSize="35sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/archivoblack"
-                android:gravity="center" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
-
-            <!-- Feedback Card -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/green_border_bg"
-                android:padding="20dp"
-                android:layout_marginHorizontal="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:id="@+id/status"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="ORDER #101"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="EXCEPTIONAL"
-                        android:textStyle="bold"
-                        android:textColor="@color/green"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Excellent Service"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/back_to_queue_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:layout_marginHorizontal="30dp"
-                android:text="BACK TO QUEUE"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:background="@drawable/btn_gradient_bg"
-                app:backgroundTint="@null" />
-        </LinearLayout>
-    </ScrollView>
 </LinearLayout>

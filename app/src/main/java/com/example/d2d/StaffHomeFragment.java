@@ -1,4 +1,3 @@
-/*
 package com.example.d2d;
 
 import android.content.Intent;
@@ -10,8 +9,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -20,9 +24,13 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class StaffHomeFragment extends Fragment {
+public class StaffHomeFragment extends Fragment implements StaffQueueAdapter.OnStatusChangeListener {
 
     private final OkHttpClient client = new OkHttpClient();
+    private RecyclerView recyclerView;
+    private StaffQueueAdapter adapter;
+    private List<Order> orderList;
+    private View emptyStateLayout;
 
     @Nullable
     @Override
@@ -37,23 +45,61 @@ public class StaffHomeFragment extends Fragment {
         // Hide back button in fragment mode
         View backBtn = view.findViewById(R.id.back_btn);
         if (backBtn != null) backBtn.setVisibility(View.GONE);
-
-        // --- BUTTON HANDLERS FOR MOCK DATA (Testing updateOder.php) ---
-        // Normally these would be inside a RecyclerView adapter
-        View setReadyBtn = view.findViewById(R.id.mark_collected_1);
-        if (setReadyBtn != null) {
-            setReadyBtn.setOnClickListener(v -> updateOrderStatus("101", "ready"));
-        }
-
-        View collectedBtn = view.findViewById(R.id.mark_collected_btn_1);
-        if (collectedBtn != null) {
-            collectedBtn.setOnClickListener(v -> updateOrderStatus("101", "collected"));
-        }
+        
+        emptyStateLayout = view.findViewById(R.id.empty_queue_state);
+        recyclerView = view.findViewById(R.id.active_queue_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        
+        orderList = new ArrayList<>();
+        adapter = new StaffQueueAdapter(getActivity(), orderList, this);
+        recyclerView.setAdapter(adapter);
 
         view.findViewById(R.id.add_new_order_btn).setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), AssignOrderActivity.class);
             startActivity(intent);
         });
+        
+        loadMockOrders();
+    }
+
+    private void loadMockOrders() {
+        orderList.clear();
+        // Generate mock data for demonstration
+        orderList.add(new Order("101", "Casa Nova", "preparing", "Naledi M."));
+        orderList.add(new Order("102", "D2D Frozen", "ready", "John Doe"));
+        orderList.add(new Order("103", "Burger King", "preparing", "Sarah K."));
+        
+        updateEmptyState();
+        adapter.notifyDataSetChanged();
+    }
+    
+    private void updateEmptyState() {
+        if (orderList.isEmpty()) {
+            emptyStateLayout.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        } else {
+            emptyStateLayout.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void onStatusChange(Order order, String newStatus) {
+        // In Option B (Mock), we update UI immediately
+        order.setStatus(newStatus);
+        adapter.notifyDataSetChanged();
+        
+        // Try real network call (will likely fail gracefully if API missing)
+        updateOrderStatus(order.getOrderId(), newStatus.toLowerCase());
+        
+        if (newStatus.equalsIgnoreCase("collected")) {
+            // Once collected, remove from active queue after a brief delay
+            recyclerView.postDelayed(() -> {
+                orderList.remove(order);
+                adapter.notifyDataSetChanged();
+                updateEmptyState();
+            }, 1000);
+        }
     }
 
     private void updateOrderStatus(String orderId, String newStatus) {
@@ -71,7 +117,7 @@ public class StaffHomeFragment extends Fragment {
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 if (getActivity() != null) {
                     getActivity().runOnUiThread(() -> 
-                        Toast.makeText(getContext(), "Network Error", Toast.LENGTH_SHORT).show());
+                        Toast.makeText(getContext(), "Mock Mode: API Not Found", Toast.LENGTH_SHORT).show());
                 }
             }
 
@@ -80,9 +126,9 @@ public class StaffHomeFragment extends Fragment {
                 if (getActivity() != null) {
                     getActivity().runOnUiThread(() -> {
                         if (response.isSuccessful()) {
-                            Toast.makeText(getContext(), "Order #" + orderId + " set to " + newStatus, Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "Order #" + orderId + " set to " + newStatus, Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getContext(), "Server Error: Failed to update", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Mock Mode: Server error", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -90,5 +136,3 @@ public class StaffHomeFragment extends Fragment {
         });
     }
 }
-
-*/

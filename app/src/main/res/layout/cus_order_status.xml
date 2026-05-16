@@ -147,9 +147,10 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/restaurant_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CASA NOVA"
+                    android:text="RESTAURANT NAME"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="22sp"
