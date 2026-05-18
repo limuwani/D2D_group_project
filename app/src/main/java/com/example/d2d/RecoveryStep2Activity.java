@@ -26,9 +26,12 @@ public class RecoveryStep2Activity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         questionSpinner.setAdapter(adapter);
 
+        final String email = getIntent().getStringExtra("email");
+
         Button verifyBtn = findViewById(R.id.verify_answer);
         verifyBtn.setOnClickListener(v -> {
             Intent intent = new Intent(RecoveryStep2Activity.this, NewPasswordActivity.class);
+            intent.putExtra("email", email);
             startActivity(intent);
         });
 

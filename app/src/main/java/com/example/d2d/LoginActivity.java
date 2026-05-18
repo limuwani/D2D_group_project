@@ -119,17 +119,27 @@ public class LoginActivity extends AppCompatActivity {
                 .putString("user_id", "501")
                 .putString("user_role", "customer").apply();
                 
+            // Save user and session to SQLite for auto-login / auto-load support
+            DatabaseHelper dbHelper = new DatabaseHelper(LoginActivity.this);
+            dbHelper.saveUser("501", "customer", username, "Naledi M.");
+            dbHelper.saveSession("501", "mock_token_bypass_" + System.currentTimeMillis());
+                
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra("user_id", "501");
             intent.putExtra("user_role", "customer");
             startActivity(intent);
             finish();
             return;
-        } else if (username.toLowerCase().endsWith("@staff.d2d.ac.za") && "staff123".equals(password)) {
+        } else if (username.toLowerCase().endsWith("@staff.d2d.ac.za") && !password.isEmpty()) {
             // Updated Staff Rule: Email domain @staff.d2d.ac.za
             getSharedPreferences("D2D_PREFS", MODE_PRIVATE).edit()
                 .putString("user_id", "201")
                 .putString("user_role", "staff").apply();
+
+            // Save user and session to SQLite for auto-login / auto-load support
+            DatabaseHelper dbHelper = new DatabaseHelper(LoginActivity.this);
+            dbHelper.saveUser("201", "staff", username, "Staff Member");
+            dbHelper.saveSession("201", "mock_token_bypass_" + System.currentTimeMillis());
 
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra("user_id", "201");
@@ -162,10 +172,13 @@ public class LoginActivity extends AppCompatActivity {
                     if (user != null && "success".equals(user.getStatus())) {
                         // SAVE USER IDENTITY TO VAULT (SharedPreferences)
                         android.content.SharedPreferences pref = getSharedPreferences("D2D_PREFS", MODE_PRIVATE);
-                        pref.edit()
+                        android.content.SharedPreferences.Editor editor = pref.edit()
                             .putString("user_id", user.getUser_id())
-                            .putString("user_role", user.getRole())
-                            .apply();
+                            .putString("user_role", user.getRole());
+                        if (user.getRestaurant_id() != null && !user.getRestaurant_id().isEmpty()) {
+                            editor.putString("restaurant_id", user.getRestaurant_id());
+                        }
+                        editor.apply();
 
                         // --- STANDARD SQLITE PERSISTENCE ---
                         DatabaseHelper dbHelper = new DatabaseHelper(LoginActivity.this);

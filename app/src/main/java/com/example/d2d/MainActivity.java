@@ -22,10 +22,11 @@ public class MainActivity extends AppCompatActivity {
         bottomNavStaff = findViewById(R.id.bottom_navigation_staff);
 
         // Get user role from intent or prefs
-        String role = getIntent().getStringExtra("user_role");
-        if (role == null) {
-            role = getSharedPreferences("D2D_PREFS", MODE_PRIVATE).getString("user_role", "customer");
+        String tempRole = getIntent().getStringExtra("user_role");
+        if (tempRole == null) {
+            tempRole = getSharedPreferences("D2D_PREFS", MODE_PRIVATE).getString("user_role", "customer");
         }
+        final String role = tempRole;
         final String finalRole = role;
 
         // Set up ViewPager Adapter with role
@@ -80,6 +81,22 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // Programmatically select tab if passed via intent
+        int selectTab = getIntent().getIntExtra("select_tab", -1);
+        if (selectTab != -1) {
+            viewPager.setCurrentItem(selectTab);
+        }
+    }
+
+    @Override
+    protected void onNewIntent(android.content.Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        int selectTab = intent.getIntExtra("select_tab", -1);
+        if (selectTab != -1 && viewPager != null) {
+            viewPager.setCurrentItem(selectTab);
+        }
     }
 
     public void selectTab(int position) {

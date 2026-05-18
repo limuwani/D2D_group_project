@@ -40,7 +40,7 @@ public class StaffQueueAdapter extends RecyclerView.Adapter<StaffQueueAdapter.Vi
         Order order = orderList.get(position);
         
         holder.orderIdText.setText("ORDER #" + order.getOrderId());
-        holder.customerNameText.setText("Customer: " + order.getCustomerName());
+        holder.customerNameText.setText("Customer: " + order.getCustomerName() + "  |  ID: " + order.getCustomerId());
         holder.statusText.setText(order.getStatus().toUpperCase());
 
         if (order.getStatus().equalsIgnoreCase("preparing") || order.getStatus().equalsIgnoreCase("in prep")) {

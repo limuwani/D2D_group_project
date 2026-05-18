@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    Staff New Order Assignment Screen (s_assign_order.xml)
+    Allows staff members to enter a customer's email address and select an assigned restaurant
+    to initialize a new order card for the active preparation queue.
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -6,6 +11,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/main">
 
+    <!-- ScrollView guarantees full access to inputs on smaller or rotated screens -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,6 +23,7 @@
             android:orientation="vertical"
             android:padding="20dp">
 
+            <!-- Title Header section with back navigation button -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -25,6 +32,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="30dp">
 
+                <!-- Back button to return to the active takeaway queue -->
                 <ImageButton
                     android:id="@+id/back_btn"
                     android:layout_width="wrap_content"
@@ -33,6 +41,7 @@
                     android:background="@drawable/no_backround"
                     android:contentDescription="Back" />
 
+                <!-- Screen main title -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -43,6 +52,7 @@
                     android:textSize="25sp" />
             </LinearLayout>
 
+            <!-- Instructive helper label -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,6 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
+            <!-- Input fields group container featuring rounded borders card style -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,6 +74,7 @@
                 android:padding="20dp"
                 android:layout_marginHorizontal="10dp">
 
+                <!-- Input section 1: Customer Email lookup -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -86,6 +98,7 @@
                     android:layout_marginTop="5dp"
                     android:drawablePadding="@dimen/drawable_padding" />
 
+                <!-- Input section 2: Assigned Restaurant picker -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -117,6 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp" />
 
+            <!-- Action button: Initialize order card -->
             <Button
                 android:id="@+id/send_to_customer"
                 android:layout_width="match_parent"
@@ -129,12 +143,15 @@
                 android:background="@drawable/btn_gradient_bg"
                 app:backgroundTint="@null" />
 
+            <!-- Action button: Cancel layout screen and return -->
             <Button
                 android:id="@+id/staff_cancel_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:text="Cancel"
+                android:textColor="@color/white"
+                android:textStyle="bold"
                 android:background="@drawable/categories"
                 app:backgroundTint="@null" />
         </LinearLayout>

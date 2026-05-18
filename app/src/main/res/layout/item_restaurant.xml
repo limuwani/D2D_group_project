@@ -40,13 +40,15 @@
 
         <TextView
             android:id="@+id/res_name_item"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Restaurant Name"
             android:textColor="@color/white"
             android:textSize="28sp"
             android:textStyle="bold"
-            android:fontFamily="@font/lobster" />
+            android:fontFamily="@font/lobster"
+            android:ellipsize="end"
+            android:maxLines="1" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,12 +71,15 @@
 
             <TextView
                 android:id="@+id/res_location_item"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Sandton"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="10dp"
+                android:maxLines="1"
+                android:ellipsize="end" />
 
             <TextView
                 android:id="@+id/res_rating_item"
@@ -82,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:text="Avg: 0.0"
                 android:textColor="@color/orange"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="15dp"
                 android:textStyle="bold"
                 android:textSize="14sp" />
         </LinearLayout>

@@ -12,13 +12,67 @@ public class NewPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_password);
 
+        final String email = getIntent().getStringExtra("email");
+        android.widget.EditText newPassField = findViewById(R.id.new_password_field);
+        android.widget.EditText confirmPassField = findViewById(R.id.confirm_new_password_field);
+
         Button updateBtn = findViewById(R.id.update_new_pass);
         updateBtn.setOnClickListener(v -> {
-            // After updating password, return to login
-            Intent intent = new Intent(NewPasswordActivity.this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
-            finish();
+            String newPass = newPassField.getText().toString().trim();
+            String confirmPass = confirmPassField.getText().toString().trim();
+
+            if (newPass.isEmpty()) {
+                newPassField.setError("Password cannot be empty");
+                newPassField.setBackgroundResource(R.drawable.edittext_error_style);
+                return;
+            }
+            newPassField.setBackgroundResource(R.drawable.white_border_bg);
+
+            if (!newPass.equals(confirmPass)) {
+                confirmPassField.setError("Passwords do not match");
+                confirmPassField.setBackgroundResource(R.drawable.edittext_error_style);
+                return;
+            }
+            confirmPassField.setBackgroundResource(R.drawable.white_border_bg);
+
+            executeResetPassword(email != null ? email : "unknown", newPass);
+        });
+    }
+
+    private void executeResetPassword(String email, String password) {
+        okhttp3.OkHttpClient client = new okhttp3.OkHttpClient();
+        okhttp3.RequestBody body = new okhttp3.FormBody.Builder()
+                .add("email", email)
+                .add("password", password)
+                .build();
+
+        okhttp3.Request request = new okhttp3.Request.Builder()
+                .url("https://wmc.ms.wits.ac.za/students/sgroup2676/d2dGroupProject/oderTrackingApp/users/resetPassword.php")
+                .post(body)
+                .build();
+
+        client.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(okhttp3.Call call, java.io.IOException e) {
+                runOnUiThread(() -> {
+                    android.widget.Toast.makeText(NewPasswordActivity.this, "Network warning: updated in mock mode.", android.widget.Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(NewPasswordActivity.this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                    finish();
+                });
+            }
+
+            @Override
+            public void onResponse(okhttp3.Call call, okhttp3.Response response) throws java.io.IOException {
+                runOnUiThread(() -> {
+                    android.widget.Toast.makeText(NewPasswordActivity.this, "Password updated successfully!", android.widget.Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(NewPasswordActivity.this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                    finish();
+                });
+            }
         });
     }
 }

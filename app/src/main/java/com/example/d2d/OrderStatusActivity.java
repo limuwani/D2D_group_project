@@ -21,6 +21,8 @@ public class OrderStatusActivity extends AppCompatActivity {
         // Fetch active order dynamically from SQLite database
         android.view.View orderCard = findViewById(R.id.active_order_card);
         android.view.View emptyState = findViewById(R.id.empty_state_layout);
+        android.widget.TextView orderIdText = findViewById(R.id.status);
+        android.widget.TextView restaurantText = findViewById(R.id.restaurant_name);
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         android.database.Cursor cursor = dbHelper.getActiveOrder();
@@ -31,22 +33,22 @@ public class OrderStatusActivity extends AppCompatActivity {
             String restaurant = cursor.getString(cursor.getColumnIndexOrThrow("restaurant_name"));
             cursor.close();
 
-            emptyState.setVisibility(android.view.View.GONE);
-            orderCard.setVisibility(android.view.View.VISIBLE);
+            if (emptyState != null) emptyState.setVisibility(android.view.View.GONE);
+            if (orderCard != null) {
+                orderCard.setVisibility(android.view.View.VISIBLE);
+                if (orderIdText != null) orderIdText.setText("ORDER #" + id);
+                if (restaurantText != null) restaurantText.setText(restaurant.toUpperCase());
 
-            android.widget.TextView orderIdText = findViewById(R.id.status);
-            android.widget.TextView restaurantText = findViewById(R.id.restaurant_name);
-            if (orderIdText != null) orderIdText.setText("ORDER #" + id);
-            if (restaurantText != null) restaurantText.setText(restaurant.toUpperCase());
-
-            orderCard.setOnClickListener(v -> {
-                android.content.Intent intent = new android.content.Intent(OrderStatusActivity.this, RateServiceActivity.class);
-                startActivity(intent);
-            });
+                orderCard.setOnClickListener(v -> {
+                    android.content.Intent intent = new android.content.Intent(OrderStatusActivity.this, RateServiceActivity.class);
+                    intent.putExtra("order_id", id);
+                    intent.putExtra("restaurant_name", restaurant);
+                    startActivity(intent);
+                });
+            }
         } else {
-            // No active order to show
-            emptyState.setVisibility(android.view.View.VISIBLE);
-            orderCard.setVisibility(android.view.View.GONE);
+            if (emptyState != null) emptyState.setVisibility(android.view.View.VISIBLE);
+            if (orderCard != null) orderCard.setVisibility(android.view.View.GONE);
         }
     }
 }

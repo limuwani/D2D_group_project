@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    Staff Active Takeaway Queue Item Card Layout (item_staff_queue.xml)
+    Renders an individual order card inside the staff active preparation list.
+    Displays Order ID, preparation status badge, assigned customer name,
+    and actions to transition the order through "READY" and "COLLECTED" phases.
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,12 +15,14 @@
     android:layout_marginVertical="8dp"
     android:background="@drawable/white_border_bg">
 
+    <!-- Header section holding Order ID and status badge -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
+        <!-- Display the order identifier (e.g. ORDER #101) -->
         <TextView
             android:id="@+id/queue_order_id_text"
             android:layout_width="0dp"
@@ -25,6 +33,7 @@
             android:textStyle="bold"
             android:textSize="18sp" />
 
+        <!-- Interactive glass-morphism status badge (e.g. PENDING, PREPARING, READY) -->
         <TextView
             android:id="@+id/queue_order_status_text"
             android:layout_width="wrap_content"
@@ -42,11 +51,12 @@
         android:layout_width="match_parent"
         android:layout_height="10dp" />
 
+    <!-- Label displaying the linked customer's name and ID -->
     <TextView
         android:id="@+id/queue_customer_name_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Customer: Naledi"
+        android:text="Customer: Naledi | ID: 501"
         android:textColor="@color/white"
         android:textSize="16sp" />
 
@@ -54,12 +64,14 @@
         android:layout_width="match_parent"
         android:layout_height="15dp" />
 
+    <!-- Action buttons row: MARK READY and MARK COLLECTED -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center">
 
+        <!-- Action Button: Mark the order status as "READY" for pickup -->
         <Button
             android:id="@+id/queue_mark_ready_btn"
             android:layout_width="0dp"
@@ -72,6 +84,7 @@
             android:background="@drawable/green_border_bg"
             android:layout_marginEnd="5dp"/>
 
+        <!-- Action Button: Mark the order status as "COLLECTED" (removes card from active list) -->
         <Button
             android:id="@+id/queue_mark_collected_btn"
             android:layout_width="0dp"

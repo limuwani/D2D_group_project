@@ -53,7 +53,36 @@ public class SignUp extends AppCompatActivity {
             startActivity(intent);
         });
 
+        setupPasswordVisibilityToggle(password);
+        setupPasswordVisibilityToggle(confirmed_pass);
+
         OnClickButtonListener();
+    }
+
+    @android.annotation.SuppressLint("ClickableViewAccessibility")
+    private void setupPasswordVisibilityToggle(EditText editText) {
+        editText.setOnTouchListener((v, event) -> {
+            final int DRAWABLE_RIGHT = 2;
+            if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
+                if (editText.getCompoundDrawables()[DRAWABLE_RIGHT] != null) {
+                    int drawableWidth = editText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width();
+                    if (event.getRawX() >= (editText.getRight() - drawableWidth - editText.getPaddingRight())) {
+                        togglePasswordVisibility(editText);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        });
+    }
+
+    private void togglePasswordVisibility(EditText editText) {
+        if (editText.getTransformationMethod() instanceof android.text.method.PasswordTransformationMethod) {
+            editText.setTransformationMethod(android.text.method.HideReturnsTransformationMethod.getInstance());
+        } else {
+            editText.setTransformationMethod(android.text.method.PasswordTransformationMethod.getInstance());
+        }
+        editText.setSelection(editText.getText().length());
     }
 
     public boolean validate(String Email, String Name, String Surname, String pass, String confirmed_password) {
@@ -118,42 +147,13 @@ public class SignUp extends AppCompatActivity {
             }
 
             if (isValid) {
-                registerUser(Fname, Lname, Email, pass);
-            }
-        });
-    }
-
-    private void registerUser(String fname, String lname, String emailAddr, String pass) {
-        String url = "https://wmc.ms.wits.ac.za/students/sgroup2676/d2dGroupProject/oderTrackingApp/users/register.php";
-
-        RequestBody body = new FormBody.Builder()
-                .add("first_name", fname)
-                .add("last_name", lname)
-                .add("email", emailAddr)
-                .add("password", pass)
-                .add("role", "customer")
-                .build();
-
-        Request request = new Request.Builder().url(url).post(body).build();
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                runOnUiThread(() -> Toast.makeText(SignUp.this, "Network error", Toast.LENGTH_SHORT).show());
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    runOnUiThread(() -> {
-                        Toast.makeText(SignUp.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(SignUp.this, SecureAccountActivity.class);
-                        startActivity(intent);
-                        finish();
-                    });
-                } else {
-                    runOnUiThread(() -> Toast.makeText(SignUp.this, "Registration failed. Try again.", Toast.LENGTH_SHORT).show());
-                }
+                Intent intent = new Intent(SignUp.this, SecureAccountActivity.class);
+                intent.putExtra("first_name", Fname);
+                intent.putExtra("last_name", Lname);
+                intent.putExtra("email", Email);
+                intent.putExtra("password", pass);
+                startActivity(intent);
+                finish();
             }
         });
     }

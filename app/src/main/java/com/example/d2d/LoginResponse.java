@@ -28,11 +28,22 @@ public class LoginResponse {
         this.role = role;
     }
 
+    @SerializedName("restaurant_id")
+    private String restaurant_id;
+
     public String getUser_id() {
         return user_id;
     }
 
     public void setUser_id(String user_id) {
         this.user_id = user_id;
+    }
+
+    public String getRestaurant_id() {
+        return restaurant_id;
+    }
+
+    public void setRestaurant_id(String restaurant_id) {
+        this.restaurant_id = restaurant_id;
     }
 }

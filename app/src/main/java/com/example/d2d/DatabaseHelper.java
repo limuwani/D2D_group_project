@@ -37,6 +37,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "restaurant_name TEXT, " +
                 "status TEXT, " +
                 "price TEXT, " +
+                "customer_name TEXT, " +
+                "customer_id TEXT, " +
                 "timestamp LONG)");
 
         // Create Sessions Table
@@ -71,12 +73,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // --- ORDER METHODS ---
     public void saveOrder(String orderId, String restaurantName, String status, String price) {
+        saveOrder(orderId, restaurantName, status, price, "Customer", "unknown");
+    }
+
+    public void saveOrder(String orderId, String restaurantName, String status, String price, String customerName, String customerId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("order_id", orderId);
         values.put("restaurant_name", restaurantName);
         values.put("status", status);
         values.put("price", price);
+        values.put("customer_name", customerName);
+        values.put("customer_id", customerId);
         values.put("timestamp", System.currentTimeMillis());
 
         db.insert(TABLE_ORDERS, null, values);
@@ -131,5 +139,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getActiveUser() {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_USERS + " LIMIT 1", null);
+    }
+
+    public void clearLocalSession() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_SESSIONS, null, null);
+        db.delete(TABLE_USERS, null, null);
+    }
+
+    public void markActiveOrdersAsCollected() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("status", "Collected");
+        db.update(TABLE_ORDERS, values, "status != 'Collected'", null);
+    }
+
+    public Cursor getAllActiveOrders() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_ORDERS + " WHERE status != 'Collected' ORDER BY timestamp DESC", null);
+    }
+
+    public void updateOrderStatusLocal(String orderId, String status) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("status", status);
+        db.update(TABLE_ORDERS, values, "order_id = ?", new String[]{orderId});
     }
 }

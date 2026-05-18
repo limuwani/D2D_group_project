@@ -18,12 +18,15 @@ public class MainViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 1:
+                if ("staff".equals(role)) {
+                    return new StaffHomeFragment();
+                }
                 return new OrderStatusFragment();
             case 2:
                 return new ProfileFragment();
             default:
                 if ("staff".equals(role)) {
-                    return new StaffHomeFragment();
+                    return new StaffAssignFragment();
                 }
                 return new HomeFragment();
         }

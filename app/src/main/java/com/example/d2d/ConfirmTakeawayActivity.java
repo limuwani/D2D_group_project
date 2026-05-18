@@ -98,6 +98,9 @@ public class ConfirmTakeawayActivity extends AppCompatActivity {
                     runOnUiThread(() -> {
                         Toast.makeText(ConfirmTakeawayActivity.this, "Order Placed Successfully!", Toast.LENGTH_LONG).show();
                         
+                        android.content.SharedPreferences pref = getSharedPreferences("D2D_PREFS", MODE_PRIVATE);
+                        String currentUserId = pref.getString("user_id", "501");
+
                         // --- STANDARD SQLITE PERSISTENCE ---
                         DatabaseHelper dbHelper = new DatabaseHelper(ConfirmTakeawayActivity.this);
                         if (activeOrderId != null) {
@@ -107,11 +110,15 @@ public class ConfirmTakeawayActivity extends AppCompatActivity {
                                     "ORD-" + System.currentTimeMillis(),
                                     (getIntent().getStringExtra("restaurant_name") != null) ? getIntent().getStringExtra("restaurant_name") : ("Restaurant #" + restaurantId),
                                     "pending",
-                                    "R 0.00"
+                                    "R 0.00",
+                                    "Me",
+                                    currentUserId
                             );
                         }
 
-                        Intent intent = new Intent(ConfirmTakeawayActivity.this, OrderStatusActivity.class);
+                        Intent intent = new Intent(ConfirmTakeawayActivity.this, MainActivity.class);
+                        intent.putExtra("select_tab", 1);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);
                         finish();
                     });
