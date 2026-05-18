@@ -26,9 +26,10 @@ public class MainActivity extends AppCompatActivity {
         if (role == null) {
             role = getSharedPreferences("D2D_PREFS", MODE_PRIVATE).getString("user_role", "customer");
         }
+        final String finalRole = role;
 
         // Set up ViewPager Adapter with role
-        MainViewPagerAdapter adapter = new MainViewPagerAdapter(this, role);
+        MainViewPagerAdapter adapter = new MainViewPagerAdapter(this, finalRole);
         viewPager.setAdapter(adapter);
 
         // Show correct Bottom Nav
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                if ("staff".equals(role)) {
+                if ("staff".equals(finalRole)) {
                     switch (position) {
                         case 0: activeNav.setSelectedItemId(R.id.staff_home_button); break;
                         case 1: activeNav.setSelectedItemId(R.id.manage); break;
@@ -79,5 +80,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void selectTab(int position) {
+        if (viewPager != null) {
+            viewPager.setCurrentItem(position);
+        }
     }
 }

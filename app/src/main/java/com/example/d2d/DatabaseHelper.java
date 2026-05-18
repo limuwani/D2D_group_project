@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "D2D_Local.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 4;
 
     // Table Names
     private static final String TABLE_USERS = "users";
@@ -94,8 +94,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getActiveOrder() {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM " + TABLE_ORDERS + " WHERE status != 'Collected' ORDER BY timestamp DESC LIMIT 1", null);
+        return db.rawQuery("SELECT * FROM " + TABLE_ORDERS + " WHERE status != 'Collected' AND status != 'pending_confirmation' ORDER BY timestamp DESC LIMIT 1", null);
     }
+
+    public Cursor getPendingConfirmationOrder() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_ORDERS + " WHERE status = 'pending_confirmation' ORDER BY timestamp DESC LIMIT 1", null);
+    }
+
+    public void updateOrderStatus(String orderId, String newStatus) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("status", newStatus);
+        db.update(TABLE_ORDERS, values, "order_id = ?", new String[]{orderId});
+    }
+
 
     // --- SESSION METHODS ---
     public void saveSession(String userId, String token) {

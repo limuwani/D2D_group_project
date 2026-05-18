@@ -16,6 +16,7 @@ import okhttp3.Response;
 
 public class ConfirmTakeawayActivity extends AppCompatActivity {
     private final OkHttpClient client = new OkHttpClient();
+    private String activeOrderId;
     private String restaurantId;
     private String userId;
 
@@ -25,17 +26,45 @@ public class ConfirmTakeawayActivity extends AppCompatActivity {
         setContentView(R.layout.confirm_takeaway);
 
         // 1. Get Data from previous screen and vault
-        restaurantId = String.valueOf(getIntent().getIntExtra("restaurant_id", -1));
+        int resIdInt = getIntent().getIntExtra("restaurant_id", -1);
+        restaurantId = String.valueOf(resIdInt);
+        String intentResName = getIntent().getStringExtra("restaurant_name");
         SharedPreferences pref = getSharedPreferences("D2D_PREFS", MODE_PRIVATE);
         userId = pref.getString("user_id", "unknown");
 
-        // Make the layout visible for testing
         android.view.View emptyState = findViewById(R.id.empty_state_layout);
         android.view.View confirmLayout = findViewById(R.id.confirm_layout);
+        android.widget.TextView totalOverdueText = findViewById(R.id.total_overdue);
 
-        // For testing: Hide empty state and show confirm layout
-        emptyState.setVisibility(android.view.View.GONE);
-        confirmLayout.setVisibility(android.view.View.VISIBLE);
+        // Check if there is a staff-initialized order awaiting confirmation in SQLite
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        android.database.Cursor cursor = dbHelper.getPendingConfirmationOrder();
+
+        if (cursor != null && cursor.moveToFirst()) {
+            activeOrderId = cursor.getString(cursor.getColumnIndexOrThrow("order_id"));
+            String dbRestaurantName = cursor.getString(cursor.getColumnIndexOrThrow("restaurant_name"));
+            cursor.close();
+
+            if (totalOverdueText != null) {
+                totalOverdueText.setText("The restaurant \"" + dbRestaurantName + "\" has initialized an order for you (Order #" + activeOrderId + "). Please confirm to start tracking.");
+            }
+
+            emptyState.setVisibility(android.view.View.GONE);
+            confirmLayout.setVisibility(android.view.View.VISIBLE);
+        } else if (resIdInt != -1) {
+            // Customer manually initiated order by selecting an open restaurant
+            activeOrderId = null;
+            String displayName = (intentResName != null) ? intentResName : ("Restaurant #" + restaurantId);
+            if (totalOverdueText != null) {
+                totalOverdueText.setText("You are placing a new takeaway order from \"" + displayName + "\". Please click Confirm below.");
+            }
+            emptyState.setVisibility(android.view.View.GONE);
+            confirmLayout.setVisibility(android.view.View.VISIBLE);
+        } else {
+            // Nothing pending and no restaurant selected
+            emptyState.setVisibility(android.view.View.VISIBLE);
+            confirmLayout.setVisibility(android.view.View.GONE);
+        }
 
         findViewById(R.id.confirm_order).setOnClickListener(v -> {
             placeOrder();
@@ -43,6 +72,9 @@ public class ConfirmTakeawayActivity extends AppCompatActivity {
 
         findViewById(R.id.customer_cancel_order).setOnClickListener(v -> finish());
         findViewById(R.id.back_to_home).setOnClickListener(v -> finish());
+
+        // Browse button on empty state
+        findViewById(R.id.browse_restaurants_btn).setOnClickListener(v -> finish());
     }
 
     private void placeOrder() {
@@ -68,12 +100,16 @@ public class ConfirmTakeawayActivity extends AppCompatActivity {
                         
                         // --- STANDARD SQLITE PERSISTENCE ---
                         DatabaseHelper dbHelper = new DatabaseHelper(ConfirmTakeawayActivity.this);
-                        dbHelper.saveOrder(
-                                "ORD-" + System.currentTimeMillis(),
-                                "Restaurant #" + restaurantId,
-                                "pending",
-                                "R 0.00"
-                        );
+                        if (activeOrderId != null) {
+                            dbHelper.updateOrderStatus(activeOrderId, "preparing");
+                        } else {
+                            dbHelper.saveOrder(
+                                    "ORD-" + System.currentTimeMillis(),
+                                    (getIntent().getStringExtra("restaurant_name") != null) ? getIntent().getStringExtra("restaurant_name") : ("Restaurant #" + restaurantId),
+                                    "pending",
+                                    "R 0.00"
+                            );
+                        }
 
                         Intent intent = new Intent(ConfirmTakeawayActivity.this, OrderStatusActivity.class);
                         startActivity(intent);
