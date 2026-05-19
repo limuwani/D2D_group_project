@@ -127,9 +127,10 @@
                     android:background="@drawable/white_border_bg">
 
                     <TextView
+                        android:id="@+id/confirm_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Incoming Order!"
+                        android:text="Confirm Order"
                         android:textStyle="bold"
                         android:textColor="@color/white"
                         android:textSize="20sp"

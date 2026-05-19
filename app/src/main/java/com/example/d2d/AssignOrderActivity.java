@@ -92,26 +92,7 @@ public class AssignOrderActivity extends AppCompatActivity {
                     
                     // Check if the customer account was successfully found in the backend
                     if (customer != null && "found".equals(customer.status)) {
-                        runOnUiThread(() -> {
-                            // Extract full name from first name and last name
-                            String fullName = customer.user_fname; // User requested only first name
-                            
-                            // Initialize details for the new order
-                            String orderId = String.valueOf(100 + (System.currentTimeMillis() % 100000));
-                            EditText restaurantEdit = findViewById(R.id.selected_restaurant);
-                            String restaurant = restaurantEdit.getText().toString().trim();
-                            if (restaurant.isEmpty()) {
-                                restaurant = "Casa Nova"; // Fallback value if empty
-                            }
-                            
-                            // Save order dynamically to local SQLite database
-                            DatabaseHelper dbHelper = new DatabaseHelper(AssignOrderActivity.this);
-                            dbHelper.saveOrder(orderId, restaurant, "preparing", "R 0.00", fullName, String.valueOf(customer.user_id));
-                            
-                            // Notify user and finish activity
-                            Toast.makeText(AssignOrderActivity.this, "Initialized Order #" + orderId + " for " + fullName, Toast.LENGTH_LONG).show();
-                            finish();
-                        });
+                        createOrderOnServer(String.valueOf(customer.user_id), customer.user_fname);
                     } else {
                         // Notify that customer email was not found in database
                         runOnUiThread(() -> Toast.makeText(AssignOrderActivity.this, "Customer not found.", Toast.LENGTH_SHORT).show());
@@ -124,9 +105,80 @@ public class AssignOrderActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * POJO matching the backend response payload from searchCustomers.php.
-     */
+    private void createOrderOnServer(String customerId, String fullName) {
+        // Fetch valid restaurant ID from database
+        String resUrl = "https://wmc.ms.wits.ac.za/students/sgroup2676/d2dGroupProject/oderTrackingApp/images/displayAllRestaurant.php";
+        Request resRequest = new Request.Builder().url(resUrl).build();
+
+        client.newCall(resRequest).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                executeCreateOrder(customerId, fullName, "1");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String targetId = "1";
+                if (response.isSuccessful() && response.body() != null) {
+                    try {
+                        org.json.JSONObject obj = new org.json.JSONObject(response.body().string());
+                        org.json.JSONArray arr = obj.optJSONArray("restaurants");
+                        if (arr != null && arr.length() > 0) {
+                            targetId = String.valueOf(arr.getJSONObject(0).optInt("restaurant_id"));
+                        }
+                    } catch (Exception e) {}
+                }
+                executeCreateOrder(customerId, fullName, targetId);
+            }
+        });
+    }
+
+    private void executeCreateOrder(String customerId, String fullName, String restaurantId) {
+        android.content.SharedPreferences pref = getSharedPreferences("D2D_PREFS", MODE_PRIVATE);
+        String staffId = pref.getString("user_id", "1");
+
+        String url = "https://wmc.ms.wits.ac.za/students/sgroup2676/d2dGroupProject/oderTrackingApp/orders/createOder.php";
+
+        okhttp3.RequestBody body = new okhttp3.FormBody.Builder()
+                .add("customer_id", customerId)
+                .add("staff_id", staffId)
+                .add("restaurant_id", restaurantId)
+                .build();
+
+        Request request = new Request.Builder().url(url).post(body).build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                runOnUiThread(() -> Toast.makeText(AssignOrderActivity.this, "Network error: Failed to reach server.", Toast.LENGTH_LONG).show());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful() && response.body() != null) {
+                    try {
+                        String json = response.body().string();
+                        org.json.JSONObject obj = new org.json.JSONObject(json);
+                        if ("success".equalsIgnoreCase(obj.optString("status"))) {
+                            String orderId = obj.optString("order_id", "N/A");
+                            runOnUiThread(() -> {
+                                Toast.makeText(AssignOrderActivity.this, "Order #" + orderId + " initialized for " + fullName, Toast.LENGTH_LONG).show();
+                                finish();
+                            });
+                            return;
+                        }
+                    } catch (Exception e) {}
+                    runOnUiThread(() -> {
+                        Toast.makeText(AssignOrderActivity.this, "Order initialized for " + fullName, Toast.LENGTH_LONG).show();
+                        finish();
+                    });
+                } else {
+                    runOnUiThread(() -> Toast.makeText(AssignOrderActivity.this, "Create Order Error: " + response.code(), Toast.LENGTH_LONG).show());
+                }
+            }
+        });
+    }
+
     private static class CustomerSearchResponse {
         String status;
         int user_id;

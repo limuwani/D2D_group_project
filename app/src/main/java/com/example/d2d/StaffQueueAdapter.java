@@ -43,9 +43,19 @@ public class StaffQueueAdapter extends RecyclerView.Adapter<StaffQueueAdapter.Vi
         holder.customerNameText.setText("Customer: " + order.getCustomerName() + "  |  ID: " + order.getCustomerId());
         holder.statusText.setText(order.getStatus().toUpperCase());
 
+        boolean isReady = order.getStatus().equalsIgnoreCase("READY");
+
+        // Constraint: Must be Ready before being Collected
+        holder.markCollectedBtn.setEnabled(isReady);
+        holder.markCollectedBtn.setAlpha(isReady ? 1.0f : 0.5f);
+        
+        // Hide Ready button if already Ready
+        holder.markReadyBtn.setVisibility(isReady ? View.GONE : View.VISIBLE);
+
+        // Update color based on status
         if (order.getStatus().equalsIgnoreCase("preparing") || order.getStatus().equalsIgnoreCase("in prep")) {
             holder.statusText.setBackgroundResource(R.drawable.glass_red);
-        } else if (order.getStatus().equalsIgnoreCase("ready")) {
+        } else if (isReady) {
             holder.statusText.setBackgroundResource(R.drawable.green_border_bg);
         } else {
             holder.statusText.setBackgroundResource(R.drawable.white_border_bg);
@@ -56,7 +66,9 @@ public class StaffQueueAdapter extends RecyclerView.Adapter<StaffQueueAdapter.Vi
         });
 
         holder.markCollectedBtn.setOnClickListener(v -> {
-            if (listener != null) listener.onStatusChange(order, "Collected");
+            if (isReady && listener != null) {
+                listener.onStatusChange(order, "Collected");
+            }
         });
     }
 

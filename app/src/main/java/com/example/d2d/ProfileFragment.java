@@ -109,7 +109,7 @@ public class ProfileFragment extends Fragment {
                 if (getActivity() != null) {
                     getActivity().runOnUiThread(() -> {
                         if (emailText != null) {
-                            emailText.setText("offline_mode@d2d.com\nOrders: 0 | Member Since: 1 day");
+                            emailText.setText("Profile unavailable (offline)");
                         }
                     });
                 }
@@ -268,7 +268,8 @@ public class ProfileFragment extends Fragment {
 
         if (historyBtn != null) {
             historyBtn.setOnClickListener(v -> {
-                Toast.makeText(getContext(), "Order History coming soon", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), OrderHistoryActivity.class);
+                startActivity(intent);
             });
         }
 

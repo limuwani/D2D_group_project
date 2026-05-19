@@ -12,7 +12,7 @@ public class RateServiceActivity extends AppCompatActivity {
     private boolean isUpSelected = false;
     private boolean isDownSelected = false;
     private String orderId = "";
-    private String waiterId = "24";
+    private String waiterId = "1"; // Default staff ID fallback
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +22,8 @@ public class RateServiceActivity extends AppCompatActivity {
         upLayout = findViewById(R.id.thumbs_up_layout);
         downLayout = findViewById(R.id.thumbs_down_layout);
 
-        upLayout.setOnClickListener(v -> {
-            toggleUp();
-        });
-
-        downLayout.setOnClickListener(v -> {
-            toggleDown();
-        });
+        upLayout.setOnClickListener(v -> toggleUp());
+        downLayout.setOnClickListener(v -> toggleDown());
 
         // Retrieve dynamic intent extras
         orderId = getIntent().getStringExtra("order_id");
@@ -41,25 +36,21 @@ public class RateServiceActivity extends AppCompatActivity {
             resNameText.setText(restaurantName);
         }
 
-        // Generate a dynamic waiter ID based on the order ID to make it look realistic, or fallback to #24
-        if (orderId != null && !orderId.isEmpty()) {
-            String digits = orderId.replaceAll("\\D+", "");
-            if (!digits.isEmpty()) {
-                try {
-                    int val = Integer.parseInt(digits.substring(Math.max(0, digits.length() - 2)));
-                    if (val > 0) {
-                        waiterId = String.valueOf(val);
-                    }
-                } catch (NumberFormatException e) {
-                    // Fallback to 24
-                }
-            }
-        }
+        // Use a generic placeholder instead of mock logic
         if (waiterIdText != null) {
-            waiterIdText.setText("#" + waiterId + "?");
+            waiterIdText.setText("the staff?");
         }
 
         android.widget.EditText commentField = findViewById(R.id.comments);
+
+        // Security check: Only customers should be here
+        android.content.SharedPreferences pref = getSharedPreferences("D2D_PREFS", MODE_PRIVATE);
+        String role = pref.getString("user_role", "customer");
+        if ("staff".equalsIgnoreCase(role)) {
+            android.widget.Toast.makeText(this, "Staff members cannot rate services.", android.widget.Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
 
         findViewById(R.id.submit_feedback).setOnClickListener(v -> {
             String comment = commentField.getText().toString().trim();
@@ -106,10 +97,7 @@ public class RateServiceActivity extends AppCompatActivity {
     }
 
     private void returnToHome() {
-        DatabaseHelper dbHelper = new DatabaseHelper(this);
-        dbHelper.markActiveOrdersAsCollected();
-
-        android.content.Intent intent = new android.content.Intent(RateServiceActivity.this, select_res.class);
+        android.content.Intent intent = new android.content.Intent(RateServiceActivity.this, MainActivity.class);
         intent.setFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP | android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         finish();

@@ -13,6 +13,7 @@ public class NewPasswordActivity extends AppCompatActivity {
         setContentView(R.layout.new_password);
 
         final String email = getIntent().getStringExtra("email");
+        final String customerId = getIntent().getStringExtra("customer_id");
         android.widget.EditText newPassField = findViewById(R.id.new_password_field);
         android.widget.EditText confirmPassField = findViewById(R.id.confirm_new_password_field);
 
@@ -35,19 +36,19 @@ public class NewPasswordActivity extends AppCompatActivity {
             }
             confirmPassField.setBackgroundResource(R.drawable.white_border_bg);
 
-            executeResetPassword(email != null ? email : "unknown", newPass);
+            executeUpdatePassword(customerId != null ? customerId : email, newPass);
         });
     }
 
-    private void executeResetPassword(String email, String password) {
+    private void executeUpdatePassword(String userIdOrEmail, String newPassword) {
         okhttp3.OkHttpClient client = new okhttp3.OkHttpClient();
         okhttp3.RequestBody body = new okhttp3.FormBody.Builder()
-                .add("email", email)
-                .add("password", password)
+                .add("customer_id", userIdOrEmail)
+                .add("new_password", newPassword)
                 .build();
 
         okhttp3.Request request = new okhttp3.Request.Builder()
-                .url("https://wmc.ms.wits.ac.za/students/sgroup2676/d2dGroupProject/oderTrackingApp/users/resetPassword.php")
+                .url("https://wmc.ms.wits.ac.za/students/sgroup2676/d2dGroupProject/oderTrackingApp/users/updatePassword.php")
                 .post(body)
                 .build();
 
@@ -55,23 +56,21 @@ public class NewPasswordActivity extends AppCompatActivity {
             @Override
             public void onFailure(okhttp3.Call call, java.io.IOException e) {
                 runOnUiThread(() -> {
-                    android.widget.Toast.makeText(NewPasswordActivity.this, "Network warning: updated in mock mode.", android.widget.Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(NewPasswordActivity.this, LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
-                    finish();
+                    android.widget.Toast.makeText(NewPasswordActivity.this, "Network error. Try again.", android.widget.Toast.LENGTH_SHORT).show();
                 });
             }
 
             @Override
             public void onResponse(okhttp3.Call call, okhttp3.Response response) throws java.io.IOException {
-                runOnUiThread(() -> {
-                    android.widget.Toast.makeText(NewPasswordActivity.this, "Password updated successfully!", android.widget.Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(NewPasswordActivity.this, LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
-                    finish();
-                });
+                if (response.isSuccessful()) {
+                    runOnUiThread(() -> {
+                        android.widget.Toast.makeText(NewPasswordActivity.this, "Password updated successfully!", android.widget.Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(NewPasswordActivity.this, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        finish();
+                    });
+                }
             }
         });
     }

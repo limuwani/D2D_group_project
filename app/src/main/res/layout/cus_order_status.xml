@@ -103,131 +103,25 @@
                     app:backgroundTint="@null" />
             </LinearLayout>
 
-            <!-- Pending Confirmation Card (shown when staff initializes an order) -->
+            <!-- Container for Multiple Active Orders -->
             <LinearLayout
-                android:id="@+id/pending_confirm_card"
+                android:id="@+id/orders_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/green_border_bg"
-                android:visibility="gone">
+                android:orientation="vertical" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Incoming Order!"
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
-                    android:fontFamily="@font/archivoblack"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/pending_confirm_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Order #---"
-                    android:textColor="@color/green"
-                    android:textStyle="bold"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/pending_confirm_description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="A restaurant has initialized an order for you. Tap Confirm to start tracking."
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="20dp">
-
-                    <Button
-                        android:id="@+id/pending_confirm_btn"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="10dp"
-                        android:text="Confirm"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:background="@drawable/btn_gradient_bg"
-                        app:backgroundTint="@null" />
-
-                    <Button
-                        android:id="@+id/pending_dismiss_btn"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="10dp"
-                        android:text="Dismiss"
-                        android:textColor="@color/white"
-                        android:background="@drawable/categories"
-                        app:backgroundTint="@null" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- Active Order Item -->
-            <LinearLayout
-                android:id="@+id/active_order_card"
-                android:layout_width="match_parent"
+            <!-- Order History Link -->
+            <TextView
+                android:id="@+id/view_history_btn"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp"
-                android:layout_marginHorizontal="10dp"
-                android:background="@drawable/red_border_bg"
-                android:visibility="gone">
+                android:text="View Order History"
+                android:textColor="@color/white"
+                android:textStyle="bold|italic"
+                android:layout_gravity="center"
+                android:padding="16dp"
+                android:layout_marginTop="20dp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:id="@+id/status"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="ORDER #101"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:textSize="16sp" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingHorizontal="10dp"
-                        android:paddingVertical="4dp"
-                        android:background="@drawable/glass_red">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="PROCESSING"
-                            android:textStyle="bold"
-                            android:textColor="#CD1C18"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/restaurant_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="RESTAURANT NAME"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="22sp"
-                    android:layout_marginTop="10dp" />
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

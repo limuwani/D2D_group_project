@@ -113,44 +113,6 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // Hardcoded Bypass for Testing
-        if ("naledi@D2D.com".equalsIgnoreCase(username) && "naledi123".equals(password)) {
-            getSharedPreferences("D2D_PREFS", MODE_PRIVATE).edit()
-                .putString("user_id", "10000")
-                .putString("user_role", "customer").apply();
-                
-            // Save user and session to SQLite for auto-login / auto-load support
-            DatabaseHelper dbHelper = new DatabaseHelper(LoginActivity.this);
-            dbHelper.saveUser("10000", "customer", username, "Naledi M.");
-            dbHelper.saveSession("10000", "mock_token_bypass_" + System.currentTimeMillis());
-                
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            intent.putExtra("user_id", "10000");
-            intent.putExtra("user_role", "customer");
-            startActivity(intent);
-            finish();
-            return;
-        } else if (username.toLowerCase().endsWith("@staff.d2d.ac.za") && !password.isEmpty()) {
-            // Updated Staff Rule: Email domain @staff.d2d.ac.za
-            getSharedPreferences("D2D_PREFS", MODE_PRIVATE).edit()
-                .putString("user_id", "10000")
-                .putString("user_role", "staff")
-                .putString("restaurant_id", "10000") // Assign default mock restaurant: Campus Café
-                .apply();
-
-            // Save user and session to SQLite for auto-login / auto-load support
-            DatabaseHelper dbHelper = new DatabaseHelper(LoginActivity.this);
-            dbHelper.saveUser("10000", "staff", username, "Staff Member");
-            dbHelper.saveSession("10000", "mock_token_bypass_" + System.currentTimeMillis());
-
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            intent.putExtra("user_id", "10000");
-            intent.putExtra("user_role", "staff");
-            startActivity(intent);
-            finish();
-            return;
-        }
-
         RequestBody body = new FormBody.Builder()
                 .add("username", username)
                 .add("password", password)
