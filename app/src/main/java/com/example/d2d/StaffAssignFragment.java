@@ -53,12 +53,14 @@ public class StaffAssignFragment extends Fragment {
 
         // Load the staff's assigned restaurant name from their profile
         android.content.SharedPreferences pref = requireActivity().getSharedPreferences("D2D_PREFS", android.content.Context.MODE_PRIVATE);
-        String restaurantId = pref.getString("restaurant_id", null);
-        if (restaurantId != null) {
+        String restaurantId = pref.getString("restaurant_id", "");
+        final boolean hasRestaurant = (restaurantId != null && !restaurantId.isEmpty() && !"null".equalsIgnoreCase(restaurantId) && !"0".equals(restaurantId));
+
+        if (!hasRestaurant) {
+            restaurantEditText.setText("---");
+        } else {
             restaurantEditText.setText("Loading…");
             fetchRestaurantName(restaurantId);
-        } else {
-            restaurantEditText.setHint("Restaurant not assigned");
         }
 
         // Repurpose cancel button to clear inputs
@@ -74,6 +76,10 @@ public class StaffAssignFragment extends Fragment {
         View initializeBtn = view.findViewById(R.id.send_to_customer);
         if (initializeBtn != null) {
             initializeBtn.setOnClickListener(v -> {
+                if (!hasRestaurant) {
+                    Toast.makeText(getContext(), "You must be assigned to a restaurant to initialize orders.", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 String email = emailEditText.getText().toString().trim();
                 if (email.isEmpty()) {
                     emailEditText.setError("Email required");
@@ -163,31 +169,7 @@ public class StaffAssignFragment extends Fragment {
                     CustomerSearchResponse customer = gson.fromJson(jsonData, CustomerSearchResponse.class);
 
                     if (customer != null && "found".equals(customer.status)) {
-                        if (getActivity() != null) {
-                            getActivity().runOnUiThread(() -> {
-                                String fullName = customer.user_fname; // User requested only first name
-                                String orderId = String.valueOf(100 + (System.currentTimeMillis() % 100000));
-                                // Restaurant name was resolved from the API and populated in the read-only field
-                                String restaurant = restaurantEditText.getText().toString().trim();
-                                if (restaurant.isEmpty() || restaurant.equals("Loading…")) {
-                                    restaurant = "Restaurant"; // Safety fallback
-                                }
-
-                                // Save order dynamically to SQLite database
-                                DatabaseHelper dbHelper = new DatabaseHelper(requireContext());
-                                dbHelper.saveOrder(orderId, restaurant, "pending_confirmation", "R 0.00");
-
-                                Toast.makeText(getContext(), "Initialized Order #" + orderId + " for " + fullName, Toast.LENGTH_LONG).show();
-
-                                // Clear only the email field for the next order (restaurant stays)
-                                if (emailEditText != null) emailEditText.setText("");
-
-                                // Programmatically switch to Orders/Queue tab (Tab 1) so staff sees their new card
-                                if (getActivity() instanceof MainActivity) {
-                                    ((MainActivity) getActivity()).selectTab(1);
-                                }
-                            });
-                        }
+                        createOrderOnServer(String.valueOf(customer.user_id), customer.user_fname);
                     } else {
                         if (getActivity() != null) {
                             getActivity().runOnUiThread(() ->
@@ -204,6 +186,127 @@ public class StaffAssignFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void createOrderOnServer(String customerId, String fullName) {
+        android.content.SharedPreferences pref = requireActivity().getSharedPreferences("D2D_PREFS", android.content.Context.MODE_PRIVATE);
+        String staffId = pref.getString("user_id", "10000");
+        String restaurantId = pref.getString("restaurant_id", "10000");
+        if (restaurantId == null || restaurantId.isEmpty() || "null".equalsIgnoreCase(restaurantId) || "0".equals(restaurantId)) {
+            restaurantId = "10000";
+        }
+
+        String url = "https://wmc.ms.wits.ac.za/students/sgroup2676/d2dGroupProject/oderTrackingApp/orders/createOder.php"
+                + "?customer_id=" + customerId
+                + "&staff_id=" + staffId
+                + "&restaurant_id=" + restaurantId;
+
+        Request request = new Request.Builder().url(url).get().build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                if (getActivity() != null) {
+                    getActivity().runOnUiThread(() -> {
+                        String localOrderId = String.valueOf(100 + (System.currentTimeMillis() % 100000));
+                        saveAndShowOrder(localOrderId, fullName, customerId);
+                    });
+                }
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    // Success! Since createOder.php returns [] on success, immediately fetch customer order history to resolve the newly generated database order ID.
+                    fetchLatestOrderIdAndComplete(customerId, fullName);
+                } else {
+                    if (getActivity() != null) {
+                        getActivity().runOnUiThread(() -> {
+                            String localOrderId = String.valueOf(100 + (System.currentTimeMillis() % 100000));
+                            saveAndShowOrder(localOrderId, fullName, customerId);
+                        });
+                    }
+                }
+            }
+        });
+    }
+
+    private void fetchLatestOrderIdAndComplete(String customerId, String fullName) {
+        String url = "https://wmc.ms.wits.ac.za/students/sgroup2676/d2dGroupProject/oderTrackingApp/orders/displayOderHistory.php"
+                + "?user_id=" + customerId
+                + "&role=customer";
+
+        Request request = new Request.Builder().url(url).get().build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                if (getActivity() != null) {
+                    getActivity().runOnUiThread(() -> {
+                        String localOrderId = String.valueOf(100 + (System.currentTimeMillis() % 100000));
+                        saveAndShowOrder(localOrderId, fullName, customerId);
+                    });
+                }
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                String orderIdStr = null;
+                if (response.isSuccessful() && response.body() != null) {
+                    try {
+                        String responseData = response.body().string().trim();
+                        if (responseData.startsWith("[")) {
+                            org.json.JSONArray arr = new org.json.JSONArray(responseData);
+                            int maxId = 0;
+                            for (int i = 0; i < arr.length(); i++) {
+                                org.json.JSONObject obj = arr.getJSONObject(i);
+                                int id = obj.optInt("order_id", 0);
+                                if (id > maxId) {
+                                    maxId = id;
+                                }
+                            }
+                            if (maxId > 0) {
+                                orderIdStr = String.valueOf(maxId);
+                            }
+                        } else if (responseData.startsWith("{")) {
+                            org.json.JSONObject obj = new org.json.JSONObject(responseData);
+                            int id = obj.optInt("order_id", 0);
+                            if (id > 0) {
+                                orderIdStr = String.valueOf(id);
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                final String finalOrderId = (orderIdStr != null && !orderIdStr.isEmpty()) ? orderIdStr : String.valueOf(100 + (System.currentTimeMillis() % 100000));
+                if (getActivity() != null) {
+                    getActivity().runOnUiThread(() -> saveAndShowOrder(finalOrderId, fullName, customerId));
+                }
+            }
+        });
+    }
+
+    private void saveAndShowOrder(String orderId, String fullName, String customerId) {
+        String restaurant = restaurantEditText.getText().toString().trim();
+        if (restaurant.isEmpty() || restaurant.equals("Loading…")) {
+            restaurant = "Restaurant"; // Safety fallback
+        }
+
+        // Save order dynamically to SQLite database
+        DatabaseHelper dbHelper = new DatabaseHelper(requireContext());
+        dbHelper.saveOrder(orderId, restaurant, "pending_confirmation", "R 0.00", fullName, customerId);
+
+        Toast.makeText(getContext(), "Initialized Order #" + orderId + " for " + fullName, Toast.LENGTH_LONG).show();
+
+        // Clear only the email field for the next order (restaurant stays)
+        if (emailEditText != null) emailEditText.setText("");
+
+        // Programmatically switch to Orders/Queue tab (Tab 1) so staff sees their new card
+        if (getActivity() instanceof MainActivity) {
+            ((MainActivity) getActivity()).selectTab(1);
+        }
     }
 
     private static class CustomerSearchResponse {

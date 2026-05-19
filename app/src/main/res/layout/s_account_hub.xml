@@ -31,7 +31,7 @@
                     android:id="@+id/average_rate_for_staff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="100%"
+                    android:text="_ _ _"
                     android:textColor="@color/green"
                     android:textSize="35sp"
                     android:textStyle="bold"
@@ -77,13 +77,13 @@
                     android:textSize="15sp"/>
 
                 <TextView
+                    android:id="@+id/staff_assigned_restaurant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    android:text="restaurant"
-
+                    android:text="Loading..."
                     />
             </LinearLayout>
 
@@ -118,6 +118,21 @@
                 android:drawableStart="@drawable/order_history"
                 android:drawablePadding="15dp"
                 />
+
+            <android.widget.Button
+                android:id="@+id/staff_view_handbook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:padding="16dp"
+                android:background="@drawable/white_border_bg"
+                android:text="Agent Handbook"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:drawableStart="@drawable/book"
+                />
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="20dp"/>
@@ -141,7 +156,7 @@
             <android.widget.Button
                 android:id="@+id/staff_view_feedback"
                 android:layout_width="match_parent"
-                android:background="@drawable/white_border_bg"
+                android:background="@drawable/green_border_bg"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:padding="16dp"
@@ -150,7 +165,7 @@
                 android:textSize="18sp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:drawableStart="@drawable/feedback"
+                android:drawableStart="@drawable/green_feed"
                 android:drawablePadding="15dp"/>
             <Space
                 android:layout_width="match_parent"

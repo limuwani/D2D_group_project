@@ -52,6 +52,7 @@
                 android:orientation="vertical"
                 android:gravity="center"
                 android:padding="20dp"
+                android:background="@drawable/categories"
                 android:visibility="visible">
 
                 <TextView
@@ -100,6 +101,77 @@
                     android:textStyle="bold"
                     android:background="@drawable/btn_gradient_bg"
                     app:backgroundTint="@null" />
+            </LinearLayout>
+
+            <!-- Pending Confirmation Card (shown when staff initializes an order) -->
+            <LinearLayout
+                android:id="@+id/pending_confirm_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/green_border_bg"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Incoming Order!"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/archivoblack"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/pending_confirm_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Order #---"
+                    android:textColor="@color/green"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/pending_confirm_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="A restaurant has initialized an order for you. Tap Confirm to start tracking."
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
+
+                    <Button
+                        android:id="@+id/pending_confirm_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="10dp"
+                        android:text="Confirm"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:background="@drawable/btn_gradient_bg"
+                        app:backgroundTint="@null" />
+
+                    <Button
+                        android:id="@+id/pending_dismiss_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:text="Dismiss"
+                        android:textColor="@color/white"
+                        android:background="@drawable/categories"
+                        app:backgroundTint="@null" />
+                </LinearLayout>
             </LinearLayout>
 
             <!-- Active Order Item -->

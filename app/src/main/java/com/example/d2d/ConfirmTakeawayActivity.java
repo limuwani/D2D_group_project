@@ -34,7 +34,7 @@ public class ConfirmTakeawayActivity extends AppCompatActivity {
 
         android.view.View emptyState = findViewById(R.id.empty_state_layout);
         android.view.View confirmLayout = findViewById(R.id.confirm_layout);
-        android.widget.TextView totalOverdueText = findViewById(R.id.total_overdue);
+        android.widget.TextView orderDescriptionText = findViewById(R.id.order_description);
 
         // Check if there is a staff-initialized order awaiting confirmation in SQLite
         DatabaseHelper dbHelper = new DatabaseHelper(this);
@@ -45,8 +45,8 @@ public class ConfirmTakeawayActivity extends AppCompatActivity {
             String dbRestaurantName = cursor.getString(cursor.getColumnIndexOrThrow("restaurant_name"));
             cursor.close();
 
-            if (totalOverdueText != null) {
-                totalOverdueText.setText("The restaurant \"" + dbRestaurantName + "\" has initialized an order for you (Order #" + activeOrderId + "). Please confirm to start tracking.");
+            if (orderDescriptionText != null) {
+                orderDescriptionText.setText("The restaurant \"" + dbRestaurantName + "\" has initialized an order for you (Order #" + activeOrderId + "). Please confirm to start tracking.");
             }
 
             emptyState.setVisibility(android.view.View.GONE);
@@ -55,8 +55,8 @@ public class ConfirmTakeawayActivity extends AppCompatActivity {
             // Customer manually initiated order by selecting an open restaurant
             activeOrderId = null;
             String displayName = (intentResName != null) ? intentResName : ("Restaurant #" + restaurantId);
-            if (totalOverdueText != null) {
-                totalOverdueText.setText("You are placing a new takeaway order from \"" + displayName + "\". Please click Confirm below.");
+            if (orderDescriptionText != null) {
+                orderDescriptionText.setText("You are placing a new takeaway order from \"" + displayName + "\". Please click Confirm below.");
             }
             emptyState.setVisibility(android.view.View.GONE);
             confirmLayout.setVisibility(android.view.View.VISIBLE);
@@ -95,37 +95,88 @@ public class ConfirmTakeawayActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    runOnUiThread(() -> {
-                        Toast.makeText(ConfirmTakeawayActivity.this, "Order Placed Successfully!", Toast.LENGTH_LONG).show();
-                        
-                        android.content.SharedPreferences pref = getSharedPreferences("D2D_PREFS", MODE_PRIVATE);
-                        String currentUserId = pref.getString("user_id", "501");
-
-                        // --- STANDARD SQLITE PERSISTENCE ---
-                        DatabaseHelper dbHelper = new DatabaseHelper(ConfirmTakeawayActivity.this);
-                        if (activeOrderId != null) {
-                            dbHelper.updateOrderStatus(activeOrderId, "preparing");
-                        } else {
-                            dbHelper.saveOrder(
-                                    "ORD-" + System.currentTimeMillis(),
-                                    (getIntent().getStringExtra("restaurant_name") != null) ? getIntent().getStringExtra("restaurant_name") : ("Restaurant #" + restaurantId),
-                                    "pending",
-                                    "R 0.00",
-                                    "Me",
-                                    currentUserId
-                            );
-                        }
-
-                        Intent intent = new Intent(ConfirmTakeawayActivity.this, MainActivity.class);
-                        intent.putExtra("select_tab", 1);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        startActivity(intent);
-                        finish();
-                    });
+                    if (activeOrderId != null) {
+                        runOnUiThread(() -> completeOrderWithId(activeOrderId));
+                    } else {
+                        // Success! Fetch customer order history to resolve the newly generated database order ID.
+                        fetchLatestOrderIdAndComplete();
+                    }
                 } else {
                     runOnUiThread(() -> Toast.makeText(ConfirmTakeawayActivity.this, "Server error. Please try again.", Toast.LENGTH_SHORT).show());
                 }
             }
         });
+    }
+
+    private void fetchLatestOrderIdAndComplete() {
+        String url = "https://wmc.ms.wits.ac.za/students/sgroup2676/d2dGroupProject/oderTrackingApp/orders/displayOderHistory.php"
+                + "?user_id=" + userId
+                + "&role=customer";
+
+        Request request = new Request.Builder().url(url).get().build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                runOnUiThread(() -> completeOrderWithId("ORD-" + System.currentTimeMillis()));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String orderIdStr = null;
+                if (response.isSuccessful() && response.body() != null) {
+                    try {
+                        String responseData = response.body().string().trim();
+                        if (responseData.startsWith("[")) {
+                            org.json.JSONArray arr = new org.json.JSONArray(responseData);
+                            int maxId = 0;
+                            for (int i = 0; i < arr.length(); i++) {
+                                org.json.JSONObject obj = arr.getJSONObject(i);
+                                int id = obj.optInt("order_id", 0);
+                                if (id > maxId) {
+                                    maxId = id;
+                                }
+                            }
+                            if (maxId > 0) {
+                                orderIdStr = String.valueOf(maxId);
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                final String finalOrderId = (orderIdStr != null && !orderIdStr.isEmpty()) ? orderIdStr : "ORD-" + System.currentTimeMillis();
+                runOnUiThread(() -> completeOrderWithId(finalOrderId));
+            }
+        });
+    }
+
+    private void completeOrderWithId(String resolvedOrderId) {
+        Toast.makeText(ConfirmTakeawayActivity.this, "Order Placed Successfully!", Toast.LENGTH_LONG).show();
+
+        android.content.SharedPreferences pref = getSharedPreferences("D2D_PREFS", MODE_PRIVATE);
+        String currentUserId = pref.getString("user_id", "10000");
+
+        // --- STANDARD SQLITE PERSISTENCE ---
+        DatabaseHelper dbHelper = new DatabaseHelper(ConfirmTakeawayActivity.this);
+        if (activeOrderId != null) {
+            dbHelper.updateOrderStatus(activeOrderId, "preparing");
+        } else {
+            dbHelper.saveOrder(
+                    resolvedOrderId,
+                    (getIntent().getStringExtra("restaurant_name") != null) ? getIntent().getStringExtra("restaurant_name") : ("Restaurant #" + restaurantId),
+                    "pending",
+                    "R 0.00",
+                    "Me",
+                    currentUserId
+            );
+        }
+
+        Intent intent = new Intent(ConfirmTakeawayActivity.this, MainActivity.class);
+        intent.putExtra("select_tab", 1);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        finish();
     }
 }

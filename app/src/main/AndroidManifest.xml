@@ -24,22 +24,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".SignUp"/>
-        <activity android:name=".CustomerActivity"/>
-        <activity android:name=".StaffActivity"/>
-        <activity android:name=".ConfirmTakeawayActivity"/>
-        <activity android:name=".OrderStatusActivity"/>
-        <activity android:name=".RateServiceActivity"/>
-        <activity android:name=".AssignOrderActivity"/>
-        <activity android:name=".StaffFeedbackActivity"/>
-        <activity android:name=".SecureAccountActivity"/>
-        <activity android:name=".TermsActivity"/>
-        <activity android:name=".RecoveryStep1Activity"/>
-        <activity android:name=".RecoveryStep2Activity"/>
-        <activity android:name=".NewPasswordActivity"/>
-        <activity android:name=".select_res"/>
-        <activity android:name=".OrderHistoryActivity"/>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SignUp" />
+        <activity android:name=".CustomerActivity" />
+        <activity android:name=".StaffActivity" />
+        <activity android:name=".ConfirmTakeawayActivity" />
+        <activity android:name=".OrderStatusActivity" />
+        <activity android:name=".RateServiceActivity" />
+        <activity android:name=".AssignOrderActivity" />
+        <activity android:name=".StaffFeedbackActivity" />
+        <activity android:name=".SecureAccountActivity" />
+        <activity android:name=".TermsActivity" />
+        <activity android:name=".RecoveryStep1Activity" />
+        <activity android:name=".RecoveryStep2Activity" />
+        <activity android:name=".NewPasswordActivity" />
+        <activity android:name=".select_res" />
+        <activity android:name=".OrderHistoryActivity" />
+        <activity android:name=".CusAboutActivity" />
+        <activity android:name=".StaffAboutActivity" />
     </application>
 
 </manifest>

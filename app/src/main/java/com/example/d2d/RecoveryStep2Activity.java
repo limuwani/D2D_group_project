@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 public class RecoveryStep2Activity extends AppCompatActivity {
     Spinner questionSpinner;
@@ -16,7 +15,7 @@ public class RecoveryStep2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.revover_account_step_2);
+        setContentView(R.layout.recover_account_step_2);
 
         questionSpinner = findViewById(R.id.choose_question);
 

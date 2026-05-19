@@ -42,7 +42,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
         String userId = pref.getString("user_id", "unknown");
 
         okhttp3.OkHttpClient client = new okhttp3.OkHttpClient();
-        String url = "https://wmc.ms.wits.ac.za/students/sgroup2676/d2dGroupProject/oderTrackingApp/orders/displayOderHistory.php?customer_id=" + userId;
+        String url = "https://wmc.ms.wits.ac.za/students/sgroup2676/d2dGroupProject/oderTrackingApp/orders/displayOderHistory.php?user_id=" + userId + "&role=customer";
 
         okhttp3.Request request = new okhttp3.Request.Builder()
                 .url(url)
@@ -61,17 +61,25 @@ public class OrderHistoryActivity extends AppCompatActivity {
             public void onResponse(okhttp3.Call call, okhttp3.Response response) throws java.io.IOException {
                 if (response.isSuccessful() && response.body() != null) {
                     try {
-                        String jsonData = response.body().string();
-                        org.json.JSONObject jsonObject = new org.json.JSONObject(jsonData);
+                        String jsonData = response.body().string().trim();
                         final List<Order> fetchedOrders = new ArrayList<>();
-                        
-                        if (jsonObject.has("orders")) {
-                            org.json.JSONArray array = jsonObject.getJSONArray("orders");
+                        org.json.JSONArray array = null;
+
+                        if (jsonData.startsWith("[")) {
+                            array = new org.json.JSONArray(jsonData);
+                        } else if (jsonData.startsWith("{")) {
+                            org.json.JSONObject jsonObject = new org.json.JSONObject(jsonData);
+                            if (jsonObject.has("orders")) {
+                                array = jsonObject.getJSONArray("orders");
+                            }
+                        }
+
+                        if (array != null) {
                             for (int i = 0; i < array.length(); i++) {
                                 org.json.JSONObject orderObj = array.getJSONObject(i);
                                 fetchedOrders.add(new Order(
-                                        orderObj.getString("order_id"),
-                                        orderObj.optString("restaurant_name", "Casa Nova"),
+                                        String.valueOf(orderObj.optInt("order_id", orderObj.optInt("id", 0))),
+                                        orderObj.optString("restaurant_name", orderObj.optString("name", "Casa Nova")),
                                         orderObj.optString("status", "Collected")
                                 ));
                             }

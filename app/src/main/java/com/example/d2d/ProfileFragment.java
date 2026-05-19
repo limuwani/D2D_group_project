@@ -76,10 +76,11 @@ public class ProfileFragment extends Fragment {
         Button historyBtn = view.findViewById(R.id.customer_view_history);
         Button logoutBtn = view.findViewById(R.id.customer_logout);
         Button deleteAccountBtn = view.findViewById(R.id.customer_delete_account);
+        Button aboutBtn = view.findViewById(R.id.customer_view_about);
         android.widget.TextView emailText = view.findViewById(R.id.customer_email);
 
         final SharedPreferences pref = requireActivity().getSharedPreferences("D2D_PREFS", Context.MODE_PRIVATE);
-        String userId = pref.getString("user_id", "501");
+        String userId = pref.getString("user_id", "10000");
         String userRole = pref.getString("user_role", "customer");
 
         if (emailText != null) {
@@ -93,13 +94,11 @@ public class ProfileFragment extends Fragment {
                 if (getActivity() != null) {
                     getActivity().runOnUiThread(() -> {
                         if (emailText != null) {
-                            String name = data.optString("customer_name", "Customer");
-                            String surname = data.optString("customer_surname", "User");
                             String email = data.optString("email", "customer@d2d.com");
                             int orders = data.optInt("number_of_orders", 0);
                             String age = data.optString("age_of_the_profile", "Recently joined");
                             
-                            emailText.setText(name.toUpperCase() + " " + surname.toUpperCase() + "\n" + email + "\nOrders: " + orders + " | Member Since: " + age);
+                            emailText.setText(email + "\nOrders: " + orders + " | Member Since: " + age);
                         }
                     });
                 }
@@ -138,6 +137,13 @@ public class ProfileFragment extends Fragment {
                     })
                     .setNegativeButton("Cancel", null)
                     .show();
+            });
+        }
+
+        if (aboutBtn != null) {
+            aboutBtn.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), CusAboutActivity.class);
+                startActivity(intent);
             });
         }
     }
@@ -182,10 +188,11 @@ public class ProfileFragment extends Fragment {
         Button historyBtn = view.findViewById(R.id.staff_view_history);
         Button logoutBtn = view.findViewById(R.id.staff_logout);
         Button feedbackBtn = view.findViewById(R.id.staff_view_feedback);
+        Button handbookBtn = view.findViewById(R.id.staff_view_handbook);
         android.widget.TextView satisfactionText = view.findViewById(R.id.average_rate_for_staff);
 
         final SharedPreferences pref = requireActivity().getSharedPreferences("D2D_PREFS", Context.MODE_PRIVATE);
-        String userId = pref.getString("user_id", "201");
+        String userId = pref.getString("user_id", "10000");
         String userRole = pref.getString("user_role", "staff");
 
         if (satisfactionText != null) {
@@ -284,6 +291,75 @@ public class ProfileFragment extends Fragment {
                 }
             });
         }
+
+        // Fetch and show assigned restaurant on staff profile
+        android.widget.TextView assignedResText = view.findViewById(R.id.staff_assigned_restaurant);
+        if (assignedResText != null) {
+            String restaurantId = pref.getString("restaurant_id", "");
+            boolean hasRestaurant = (restaurantId != null && !restaurantId.isEmpty() && !"null".equalsIgnoreCase(restaurantId) && !"0".equals(restaurantId));
+            if (!hasRestaurant) {
+                assignedResText.setText("---");
+            } else {
+                assignedResText.setText("Loading...");
+                fetchRestaurantNameForProfile(restaurantId, assignedResText);
+            }
+        }
+
+        if (handbookBtn != null) {
+            handbookBtn.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), StaffAboutActivity.class);
+                startActivity(intent);
+            });
+        }
+    }
+
+    private void fetchRestaurantNameForProfile(String restaurantId, android.widget.TextView textView) {
+        okhttp3.OkHttpClient client = new okhttp3.OkHttpClient();
+        okhttp3.Request request = new okhttp3.Request.Builder()
+                .url("https://wmc.ms.wits.ac.za/students/sgroup2676/d2dGroupProject/oderTrackingApp/images/displayAllRestaurant.php")
+                .build();
+
+        client.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(@NonNull okhttp3.Call call, @NonNull java.io.IOException e) {
+                if (getActivity() != null) {
+                    getActivity().runOnUiThread(() -> {
+                        if (textView != null) {
+                            textView.setText("Restaurant #" + restaurantId);
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onResponse(@NonNull okhttp3.Call call, @NonNull okhttp3.Response response) throws java.io.IOException {
+                if (response.isSuccessful() && response.body() != null) {
+                    try {
+                        String resData = response.body().string();
+                        org.json.JSONObject obj = new org.json.JSONObject(resData);
+                        org.json.JSONArray arr = obj.optJSONArray("restaurants");
+                        String resolvedName = null;
+                        if (arr != null) {
+                            for (int i = 0; i < arr.length(); i++) {
+                                org.json.JSONObject r = arr.getJSONObject(i);
+                                if (String.valueOf(r.optInt("restaurant_id")).equals(restaurantId)) {
+                                    resolvedName = r.optString("name");
+                                    break;
+                                }
+                            }
+                        }
+                        final String name = (resolvedName != null) ? resolvedName : "Restaurant #" + restaurantId;
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(() -> {
+                                if (textView != null) textView.setText(name);
+                            });
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
     private void performLogout() {

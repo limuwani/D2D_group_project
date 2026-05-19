@@ -124,7 +124,7 @@ public class SecureAccountActivity extends AppCompatActivity {
                     
                     android.content.SharedPreferences pref = getSharedPreferences("D2D_PREFS", MODE_PRIVATE);
                     pref.edit()
-                        .putString("user_id", "501")
+                        .putString("user_id", "10000")
                         .putString("user_role", userRole)
                         .apply();
 
