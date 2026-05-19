@@ -214,6 +214,17 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                 }
                             }
+                            // Extract first name or full name
+                            String parsedName = jsonObj.optString("first_name", "");
+                            if (parsedName.isEmpty()) parsedName = jsonObj.optString("name", "");
+                            if (parsedName.isEmpty() && jsonObj.has("data")) {
+                                org.json.JSONObject dataObj = jsonObj.optJSONObject("data");
+                                if (dataObj != null) {
+                                    parsedName = dataObj.optString("first_name", "");
+                                    if (parsedName.isEmpty()) parsedName = dataObj.optString("name", "");
+                                }
+                            }
+                            if (parsedName.isEmpty()) parsedName = "User " + parsedUserId;
 
                             android.content.SharedPreferences pref = getSharedPreferences("D2D_PREFS", MODE_PRIVATE);
                             android.content.SharedPreferences.Editor editor = pref.edit()
@@ -226,18 +237,23 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.putString("restaurant_id", "10000"); // Safe fallback
                             }
                             editor.apply();
+
+                            // --- STANDARD SQLITE PERSISTENCE ---
+                            DatabaseHelper dbHelper = new DatabaseHelper(LoginActivity.this);
+                            dbHelper.saveUser(parsedUserId, parsedRole, username, parsedName);
+                            dbHelper.saveSession(parsedUserId, "mock_token_" + System.currentTimeMillis());
                         } catch (Exception e) {
                             Log.e("LOGIN_ERROR", "Robust JSON extraction error", e);
+                            
+                            // Safe fallback if JSON parsing fails completely
+                            DatabaseHelper dbHelper = new DatabaseHelper(LoginActivity.this);
+                            dbHelper.saveUser(parsedUserId != null ? parsedUserId : "unknown", parsedRole != null ? parsedRole : "customer", username, "User " + parsedUserId);
+                            dbHelper.saveSession(parsedUserId != null ? parsedUserId : "unknown", "mock_token_" + System.currentTimeMillis());
                         }
 
-                        // --- STANDARD SQLITE PERSISTENCE ---
-                        DatabaseHelper dbHelper = new DatabaseHelper(LoginActivity.this);
-                        dbHelper.saveUser(parsedUserId, parsedRole, username, "User " + parsedUserId);
-                        dbHelper.saveSession(parsedUserId, "mock_token_" + System.currentTimeMillis());
-
-                        // Background sync of staff profile/restaurant details from userProfile.php
-                        if ("staff".equalsIgnoreCase(parsedRole) && parsedUserId != null) {
-                            fetchAndSaveStaffRestaurant(parsedUserId);
+                        // Background sync of profile details from userProfile.php for ALL users
+                        if (parsedUserId != null) {
+                            fetchAndSaveUserProfile(parsedUserId, parsedRole, username);
                         }
                     }
 
@@ -270,9 +286,9 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void fetchAndSaveStaffRestaurant(String userId) {
+    private void fetchAndSaveUserProfile(String userId, String userRole, String username) {
         okhttp3.OkHttpClient client = new okhttp3.OkHttpClient();
-        String url = "https://wmc.ms.wits.ac.za/students/sgroup2676/d2dGroupProject/oderTrackingApp/users/userProfile.php?user_id=" + userId + "&user_role=staff";
+        String url = "https://wmc.ms.wits.ac.za/students/sgroup2676/d2dGroupProject/oderTrackingApp/users/userProfile.php?user_id=" + userId + "&user_role=" + userRole;
         okhttp3.Request request = new okhttp3.Request.Builder().url(url).build();
         client.newCall(request).enqueue(new okhttp3.Callback() {
             @Override
@@ -286,14 +302,28 @@ public class LoginActivity extends AppCompatActivity {
                         org.json.JSONObject obj = new org.json.JSONObject(jsonData);
                         if ("success".equals(obj.optString("status")) && obj.has("data")) {
                             org.json.JSONObject data = obj.getJSONObject("data");
-                            String restaurantId = data.optString("restaurant_id", "");
-                            if (restaurantId.isEmpty()) {
-                                restaurantId = data.optString("restaurantId", "");
+                            
+                            // Extract first name - API returns "customer_name"
+                            String apiName = data.optString("customer_name", "");
+                            if (apiName.isEmpty()) apiName = data.optString("first_name", "");
+                            if (apiName.isEmpty()) apiName = data.optString("name", "");
+                            
+                            if (!apiName.isEmpty()) {
+                                DatabaseHelper dbHelper = new DatabaseHelper(LoginActivity.this);
+                                dbHelper.saveUser(userId, userRole, username, apiName);
                             }
-                            if (!restaurantId.isEmpty() && !"null".equalsIgnoreCase(restaurantId) && !"0".equals(restaurantId)) {
-                                getSharedPreferences("D2D_PREFS", MODE_PRIVATE).edit()
-                                    .putString("restaurant_id", restaurantId)
-                                    .apply();
+
+                            // Extract restaurant ID for staff
+                            if ("staff".equalsIgnoreCase(userRole)) {
+                                String restaurantId = data.optString("restaurant_id", "");
+                                if (restaurantId.isEmpty()) {
+                                    restaurantId = data.optString("restaurantId", "");
+                                }
+                                if (!restaurantId.isEmpty() && !"null".equalsIgnoreCase(restaurantId) && !"0".equals(restaurantId)) {
+                                    getSharedPreferences("D2D_PREFS", MODE_PRIVATE).edit()
+                                        .putString("restaurant_id", restaurantId)
+                                        .apply();
+                                }
                             }
                         }
                     } catch (Exception e) {

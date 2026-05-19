@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:text="Ensure absolute accuracy when managing the queue:"
                 android:padding="16dp"
             />
@@ -153,7 +153,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:text="The D2D architecture relies on secure nodes. Do not share your Secure Access Key. In case of a node failure, immediately contact the Command Center. Unauthorized data manipulation will result in immediate access revocation"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:padding="16dp"
             />
 
@@ -184,7 +184,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:text="The intelligence and architecture of the D2D platform were engineered by a dedicated team of visionaries."
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:padding="10dp"
             />
             <Space
@@ -281,8 +281,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="20dp"
-            android:text="@string/back_to_login"
-            android:textSize="20dp"
+            android:text="BACK TO PROFILE"
+            android:padding="10dp"
             android:textColor="@color/white"
             android:background="@drawable/white_border_bg"
             app:backgroundTint="@null" />

@@ -114,7 +114,6 @@
                 android:text="Order History"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="18sp"
                 android:drawableStart="@drawable/order_history"
                 android:drawablePadding="15dp"
                 />
@@ -130,7 +129,6 @@
                 android:text="Agent Handbook"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="18sp"
                 android:drawableStart="@drawable/book"
                 />
             <Space
@@ -144,7 +142,6 @@
                 android:layout_marginHorizontal="20dp"
                 android:padding="16dp"
                 android:text="Logout"
-                android:textSize="18sp"
                 app:backgroundTint="@null"
                 android:textColor="@color/white"
                 android:textStyle="bold"
@@ -162,7 +159,6 @@
                 android:padding="16dp"
                 android:text="Performance Feedback"
                 app:backgroundTint="@null"
-                android:textSize="18sp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:drawableStart="@drawable/green_feed"

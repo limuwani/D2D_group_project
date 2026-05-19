@@ -109,7 +109,8 @@ public class RateServiceActivity extends AppCompatActivity {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         dbHelper.markActiveOrdersAsCollected();
 
-        android.content.Intent intent = new android.content.Intent(RateServiceActivity.this, select_res.class);
+        android.content.Intent intent = new android.content.Intent(RateServiceActivity.this, MainActivity.class);
+        intent.putExtra("select_tab", 1);
         intent.setFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP | android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         finish();

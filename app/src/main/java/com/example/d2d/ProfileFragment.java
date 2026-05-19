@@ -96,9 +96,7 @@ public class ProfileFragment extends Fragment {
                         if (emailText != null) {
                             String email = data.optString("email", "customer@d2d.com");
                             int orders = data.optInt("number_of_orders", 0);
-                            String age = data.optString("age_of_the_profile", "Recently joined");
-                            
-                            emailText.setText(email + "\nOrders: " + orders + " | Member Since: " + age);
+                            emailText.setText(email + "\nOrders: " + orders + " | Member Since: ");
                         }
                     });
                 }

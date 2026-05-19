@@ -55,6 +55,7 @@
                 android:visibility="visible">
 
                 <TextView
+                    android:id="@+id/greeting_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Hello 🖐️"
@@ -175,6 +176,107 @@
                         android:background="@drawable/categories"
                         app:backgroundTint="@null" />
                 </LinearLayout>
+            </LinearLayout>
+
+            <!-- Active Order Tracking (shown after customer confirms) -->
+            <LinearLayout
+                android:id="@+id/tracking_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Live Tracking"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="15dp" />
+
+                <LinearLayout
+                    android:id="@+id/tracking_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@drawable/red_border_bg">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tracking_order_id"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="ORDER #---"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:textSize="16sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="4dp"
+                            android:id="@+id/tracking_status_badge"
+                            android:background="@drawable/glass_red">
+
+                            <TextView
+                                android:id="@+id/tracking_status_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="PREPARING"
+                                android:textStyle="bold"
+                                android:textColor="#CD1C18"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tracking_restaurant_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RESTAURANT"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="22sp"
+                        android:layout_marginTop="10dp" />
+
+                    <ProgressBar
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:indeterminate="true" />
+
+                    <TextView
+                        android:id="@+id/tracking_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Your order is being prepared…"
+                        android:textColor="@color/white"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/rate_service_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="RATE SERVICE"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:background="@drawable/btn_gradient_bg"
+                    app:backgroundTint="@null" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

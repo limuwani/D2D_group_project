@@ -36,6 +36,35 @@ public class ConfirmTakeawayActivity extends AppCompatActivity {
         android.view.View confirmLayout = findViewById(R.id.confirm_layout);
         android.widget.TextView orderDescriptionText = findViewById(R.id.order_description);
 
+        // Personalize the greeting
+        android.widget.TextView greetingText = findViewById(R.id.greeting_text);
+        if (greetingText != null) {
+            DatabaseHelper dbHelper = new DatabaseHelper(this);
+            android.database.Cursor userCursor = dbHelper.getActiveUser();
+            String firstName = "";
+            if (userCursor != null && userCursor.moveToFirst()) {
+                @android.annotation.SuppressLint("Range") String name = userCursor.getString(userCursor.getColumnIndex("name"));
+                if (name != null && !name.isEmpty() && !name.startsWith("User ")) {
+                    firstName = name.split("[ .]")[0]; // Split by space or dot
+                    if (firstName.length() > 0) {
+                        firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase();
+                    }
+                } else {
+                    // Fallback to email parsing if name wasn't provided by API
+                    @android.annotation.SuppressLint("Range") String email = userCursor.getString(userCursor.getColumnIndex("email"));
+                    if (email != null && email.contains("@")) {
+                        String namePart = email.split("@")[0].replaceAll("[0-9]", "");
+                        if (namePart.length() > 0) {
+                            firstName = namePart.substring(0, 1).toUpperCase() + namePart.substring(1).toLowerCase();
+                        }
+                    }
+                }
+                userCursor.close();
+            }
+            if (firstName.isEmpty()) firstName = "Student";
+            greetingText.setText("Hello " + firstName);
+        }
+
         // Check if there is a staff-initialized order awaiting confirmation in SQLite
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         android.database.Cursor cursor = dbHelper.getPendingConfirmationOrder();
@@ -46,22 +75,16 @@ public class ConfirmTakeawayActivity extends AppCompatActivity {
             cursor.close();
 
             if (orderDescriptionText != null) {
-                orderDescriptionText.setText("The restaurant \"" + dbRestaurantName + "\" has initialized an order for you (Order #" + activeOrderId + "). Please confirm to start tracking.");
+                orderDescriptionText
+                        .setText("The restaurant \"" + dbRestaurantName + "\" has initialized an order for you (Order #"
+                                + activeOrderId + "). Please confirm to start tracking.");
             }
 
             emptyState.setVisibility(android.view.View.GONE);
             confirmLayout.setVisibility(android.view.View.VISIBLE);
-        } else if (resIdInt != -1) {
-            // Customer manually initiated order by selecting an open restaurant
-            activeOrderId = null;
-            String displayName = (intentResName != null) ? intentResName : ("Restaurant #" + restaurantId);
-            if (orderDescriptionText != null) {
-                orderDescriptionText.setText("You are placing a new takeaway order from \"" + displayName + "\". Please click Confirm below.");
-            }
-            emptyState.setVisibility(android.view.View.GONE);
-            confirmLayout.setVisibility(android.view.View.VISIBLE);
         } else {
-            // Nothing pending and no restaurant selected
+            // Default to empty state as per user request (only staff can initialize orders)
+            activeOrderId = null;
             emptyState.setVisibility(android.view.View.VISIBLE);
             confirmLayout.setVisibility(android.view.View.GONE);
         }
@@ -89,7 +112,9 @@ public class ConfirmTakeawayActivity extends AppCompatActivity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                runOnUiThread(() -> Toast.makeText(ConfirmTakeawayActivity.this, "Network error. Please try again.", Toast.LENGTH_SHORT).show());
+                runOnUiThread(() -> Toast
+                        .makeText(ConfirmTakeawayActivity.this, "Network error. Please try again.", Toast.LENGTH_SHORT)
+                        .show());
             }
 
             @Override
@@ -98,11 +123,13 @@ public class ConfirmTakeawayActivity extends AppCompatActivity {
                     if (activeOrderId != null) {
                         runOnUiThread(() -> completeOrderWithId(activeOrderId));
                     } else {
-                        // Success! Fetch customer order history to resolve the newly generated database order ID.
+                        // Success! Fetch customer order history to resolve the newly generated database
+                        // order ID.
                         fetchLatestOrderIdAndComplete();
                     }
                 } else {
-                    runOnUiThread(() -> Toast.makeText(ConfirmTakeawayActivity.this, "Server error. Please try again.", Toast.LENGTH_SHORT).show());
+                    runOnUiThread(() -> Toast.makeText(ConfirmTakeawayActivity.this, "Server error. Please try again.",
+                            Toast.LENGTH_SHORT).show());
                 }
             }
         });
@@ -146,7 +173,8 @@ public class ConfirmTakeawayActivity extends AppCompatActivity {
                     }
                 }
 
-                final String finalOrderId = (orderIdStr != null && !orderIdStr.isEmpty()) ? orderIdStr : "ORD-" + System.currentTimeMillis();
+                final String finalOrderId = (orderIdStr != null && !orderIdStr.isEmpty()) ? orderIdStr
+                        : "ORD-" + System.currentTimeMillis();
                 runOnUiThread(() -> completeOrderWithId(finalOrderId));
             }
         });
@@ -165,12 +193,13 @@ public class ConfirmTakeawayActivity extends AppCompatActivity {
         } else {
             dbHelper.saveOrder(
                     resolvedOrderId,
-                    (getIntent().getStringExtra("restaurant_name") != null) ? getIntent().getStringExtra("restaurant_name") : ("Restaurant #" + restaurantId),
+                    (getIntent().getStringExtra("restaurant_name") != null)
+                            ? getIntent().getStringExtra("restaurant_name")
+                            : ("Restaurant #" + restaurantId),
                     "pending",
                     "R 0.00",
                     "Me",
-                    currentUserId
-            );
+                    currentUserId);
         }
 
         Intent intent = new Intent(ConfirmTakeawayActivity.this, MainActivity.class);

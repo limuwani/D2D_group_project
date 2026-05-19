@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -27,6 +28,7 @@ public class HomeFragment extends Fragment {
 
     private final OkHttpClient client = new OkHttpClient();
     private RecyclerView recyclerView;
+    private ProgressBar loadingSpinner;
     private RestaurantAdapter adapter;
     private List<Restaurant> restaurantList;
 
@@ -42,6 +44,8 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.restaurant_recycler_view);
+        loadingSpinner = view.findViewById(R.id.loading_spinner);
+        
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         restaurantList = new ArrayList<>();
         adapter = new RestaurantAdapter(getActivity(), restaurantList);
@@ -52,6 +56,9 @@ public class HomeFragment extends Fragment {
     }
 
     private void fetchRestaurants() {
+        if (loadingSpinner != null) loadingSpinner.setVisibility(View.VISIBLE);
+        if (recyclerView != null) recyclerView.setVisibility(View.GONE);
+
         String url = "https://wmc.ms.wits.ac.za/students/sgroup2676/d2dGroupProject/oderTrackingApp/images/displayAllRestaurant.php";
         Request request = new Request.Builder().url(url).build();
 
@@ -59,6 +66,11 @@ public class HomeFragment extends Fragment {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
+                if (getActivity() != null) {
+                    getActivity().runOnUiThread(() -> {
+                        if (loadingSpinner != null) loadingSpinner.setVisibility(View.GONE);
+                    });
+                }
             }
 
             @Override
@@ -86,11 +98,32 @@ public class HomeFragment extends Fragment {
                             }
 
                             if (getActivity() != null) {
-                                getActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
+                                getActivity().runOnUiThread(() -> {
+                                    adapter.notifyDataSetChanged();
+                                    if (loadingSpinner != null) loadingSpinner.setVisibility(View.GONE);
+                                    if (recyclerView != null) recyclerView.setVisibility(View.VISIBLE);
+                                });
+                            }
+                        } else {
+                            if (getActivity() != null) {
+                                getActivity().runOnUiThread(() -> {
+                                    if (loadingSpinner != null) loadingSpinner.setVisibility(View.GONE);
+                                });
                             }
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(() -> {
+                                if (loadingSpinner != null) loadingSpinner.setVisibility(View.GONE);
+                            });
+                        }
+                    }
+                } else {
+                    if (getActivity() != null) {
+                        getActivity().runOnUiThread(() -> {
+                            if (loadingSpinner != null) loadingSpinner.setVisibility(View.GONE);
+                        });
                     }
                 }
             }
