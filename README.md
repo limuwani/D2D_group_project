@@ -24,7 +24,7 @@
 
 ## <img src="https://api.iconify.design/mdi/book-open-page-variant.svg?color=%234285f4" width="24" align="center"> Overview
 
-**Dream To Digital (D2D)** is a comprehensive, scalable Android application tailored to streamline order tracking, fulfillment monitoring, and service feedback collection for the food and beverage industry. Rather than a customer-facing e-commerce application, D2D serves as a robust internal and customer operational tool ensuring transparency throughout the order lifecycle—from preparation to collection.
+**Dream To Digital (D2D)** is a comprehensive, scalable Android application tailored to streamline order tracking, fulfillment monitoring, and service feedback collection for the food and beverage industry. Rather than a customer-facing e-commerce application, D2D serves as a robust internal and customer operational tool ensuring transparency throughout the order lifecycle-from preparation to collection.
 
 With distinct portals for both **Customers** and **Staff Members**, D2D provides targeted features that reduce bottlenecks, enhance operational efficiency, and deliver actionable insights through structured user feedback.
 
