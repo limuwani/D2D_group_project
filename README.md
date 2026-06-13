@@ -52,37 +52,37 @@ With distinct portals for both **Customers** and **Staff Members**, D2D provides
 <table>
   <tr>
     <td align="center" width="25%">
-      <img src="assets/Discover.jpg" alt="Discover" width="180" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
+      <img src="Assets/Discover.jpg" alt="Discover" width="180" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
       <br/><b><img src="https://api.iconify.design/mdi/home.svg?color=%2334A853" width="18" align="center"> Discover</b>
     </td>
     <td align="center" width="25%">
-      <img src="assets/Initialize%20Order.jpg" alt="Initialize Order" width="180" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
+      <img src="Assets/Initialize%20Order.jpg" alt="Initialize Order" width="180" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
       <br/><b><img src="https://api.iconify.design/mdi/cart.svg?color=%23ea4335" width="18" align="center"> Initialize Order</b>
     </td>
     <td align="center" width="25%">
-      <img src="assets/Manage%20Order.jpg" alt="Manage Order" width="180" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
+      <img src="Assets/Manage%20Order.jpg" alt="Manage Order" width="180" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
       <br/><b><img src="https://api.iconify.design/mdi/play-circle.svg?color=%234285f4" width="18" align="center"> Manage Order</b>
     </td>
     <td align="center" width="25%">
-      <img src="assets/Agent%20Book.jpg" alt="Agent Book" width="180" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
+      <img src="Assets/Agent%20Book.jpg" alt="Agent Book" width="180" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
       <br/><b><img src="https://api.iconify.design/mdi/chef-hat.svg?color=%23673ab7" width="18" align="center"> Staff Portal</b>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="assets/Login.jpg" alt="Login" width="180" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
+      <img src="Assets/Login.jpg" alt="Login" width="180" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
       <br/><b><img src="https://api.iconify.design/mdi/lock.svg?color=%23fbbc05" width="18" align="center"> Login</b>
     </td>
     <td align="center">
-      <img src="assets/Register.jpg" alt="Register" width="180" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
+      <img src="Assets/Register.jpg" alt="Register" width="180" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
       <br/><b><img src="https://api.iconify.design/mdi/file-document-edit.svg?color=%234285f4" width="18" align="center"> Registration</b>
     </td>
     <td align="center">
-      <img src="assets/No%20Orders.jpg" alt="No Orders" width="180" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
+      <img src="Assets/No%20Orders.jpg" alt="No Orders" width="180" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
       <br/><b><img src="https://api.iconify.design/mdi/clipboard-text.svg?color=%2334A853" width="18" align="center"> Empty State</b>
     </td>
     <td align="center">
-      <img src="assets/About%20D2D.jpg" alt="About D2D" width="180" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
+      <img src="Assets/About%20D2D.jpg" alt="About D2D" width="180" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"/>
       <br/><b><img src="https://api.iconify.design/mdi/information.svg?color=%23ea4335" width="18" align="center"> About D2D</b>
     </td>
   </tr>
