@@ -101,7 +101,7 @@ D2D is engineered following modern Android development practices to ensure perfo
 - **Target SDK:** 35 (Android 15)
 - **UI Toolkit:** XML Layouts, Material Design Components, ConstraintLayout
 - **Architecture Components:** ViewModel, LiveData, Android Navigation Component
-- **Networking:** OkHttp3 for RESTful API communication, Gson for JSON serialization/deserialization
+- **Networking:** OkHttp3 for HTTP communication with PHP scripts, Gson for JSON serialization/deserialization
 
 ### Backend Services & Database
 - **API Layer:** PHP scripts processing HTTP requests securely.
