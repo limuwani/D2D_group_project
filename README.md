@@ -161,7 +161,7 @@ Contributions are what make the open-source community such an amazing place to l
 The success of D2D is driven by:
 
 <div align="center">
-  <img src="Assets/Team.jpg" alt="D2D Development Team" width="100%" style="border-radius: 16px; margin: 15px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+  <img src="Assets/Team.jpg" alt="D2D Development Team" width="500" style="border-radius: 16px; margin: 15px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
 </div>
 
 * [**sphe-hlongwa**](https://github.com/sphe-hlongwa)
